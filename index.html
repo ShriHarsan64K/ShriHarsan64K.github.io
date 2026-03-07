@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shri Harsan M | Data Scientist & AI Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --gold:#c9a96e;--gold2:#e2c48a;
+  --bg:#080808;--bg2:#0d0d16;
+  --card:#131328;--card2:#191935;
+  --purple:#2a1f6e;
+  --text:#f2f2f2;--text2:#9999bb;
+  --border:rgba(255,255,255,0.06);
+}
+body{background:var(--bg);color:var(--text);font-family:'Nunito Sans',sans-serif;overflow-x:hidden;cursor:none;line-height:1.6}
+
+/* CURSOR */
+#cur{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;will-change:left,top}
+#cur-ring{position:fixed;width:32px;height:32px;border:1.5px solid rgba(201,169,110,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s;will-change:left,top}
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:10000;width:0;pointer-events:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 3.5rem;background:rgba(8,8,8,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;color:var(--text);letter-spacing:.02em}
+.nav-logo em{color:var(--gold);font-style:normal}
+.nav-links{display:flex;gap:3rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text2);font-size:.88rem;font-weight:600;letter-spacing:.04em;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+
+/* FLORAL BG */
+.floral{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;
+  background-image:
+    repeating-radial-gradient(ellipse 38px 68px at 40px 40px,rgba(201,169,110,.12) 0,rgba(201,169,110,.12) 1px,transparent 1px,transparent 100%),
+    repeating-radial-gradient(ellipse 68px 38px at 40px 40px,rgba(201,169,110,.12) 0,rgba(201,169,110,.12) 1px,transparent 1px,transparent 100%);
+  background-size:80px 80px}
+
+/* HERO */
+#home{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+#particle-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-line{position:absolute;left:3.5rem;top:50%;transform:translateY(-50%);width:1.5px;height:180px;background:rgba(255,255,255,.15);z-index:2}
+.hero-content{position:relative;z-index:2;padding:5.5rem 3.5rem 3rem 5rem;max-width:600px}
+.hero-dot{width:13px;height:13px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold);animation:pdot 2.2s ease-in-out infinite;margin-bottom:1.2rem}
+@keyframes pdot{0%,100%{box-shadow:0 0 10px var(--gold)}50%{box-shadow:0 0 24px var(--gold2),0 0 48px rgba(201,169,110,.22)}}
+.hero-h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(2.8rem,5.2vw,4.8rem);line-height:1.06;margin-bottom:.6rem;color:var(--text)}
+.hero-h1 .gold{color:var(--gold)}
+.hero-sub{font-size:clamp(.95rem,1.6vw,1.18rem);color:var(--text2);margin-bottom:2rem}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn-p{padding:.72rem 1.7rem;background:var(--gold);color:#080808;border:none;border-radius:6px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:none;text-decoration:none;letter-spacing:.04em;transition:all .25s}
+.btn-p:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 22px rgba(201,169,110,.32)}
+.btn-o{padding:.72rem 1.7rem;background:transparent;color:var(--text);border:1.5px solid rgba(255,255,255,.2);border-radius:6px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;cursor:none;text-decoration:none;transition:all .25s}
+.btn-o:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;z-index:2}
+.scroll-mouse{width:24px;height:40px;border:2px solid rgba(255,255,255,.3);border-radius:12px;display:flex;justify-content:center;padding-top:5px}
+.scroll-ball{width:3px;height:7px;background:var(--gold);border-radius:2px;animation:sb 1.8s ease-in-out infinite}
+@keyframes sb{0%{opacity:1;transform:translateY(0)}70%{opacity:0;transform:translateY(12px)}100%{opacity:0;transform:translateY(0)}}
+
+/* SECTIONS */
+.sec{position:relative;z-index:1;padding:5.5rem 3.5rem}
+.wrap{max-width:1180px;margin:0 auto}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text2);margin-bottom:.85rem}
+.sh{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(2.2rem,4.2vw,3.8rem);line-height:1.05;color:var(--text);margin-bottom:1.4rem}
+.sh em{color:var(--gold);font-style:normal}
+
+/* ABOUT */
+#about{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.about-body{font-size:1rem;line-height:1.88;color:var(--text2);max-width:800px;margin-bottom:2.8rem}
+.gem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.95rem}
+.gem-card{background:var(--card);border:1px solid rgba(42,31,110,.9);border-radius:14px;padding:1.5rem 1.35rem;transition:transform .3s,box-shadow .3s,border-color .3s;cursor:none}
+.gem-card:hover{transform:translateY(-5px);border-color:rgba(201,169,110,.26);box-shadow:0 15px 34px rgba(0,0,0,.5)}
+.gem-icon{font-size:1.9rem;margin-bottom:.65rem;display:block;animation:gf 5s ease-in-out infinite}
+@keyframes gf{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.gem-card:nth-child(2) .gem-icon{animation-delay:.8s}
+.gem-card:nth-child(3) .gem-icon{animation-delay:1.6s}
+.gem-card:nth-child(4) .gem-icon{animation-delay:2.4s}
+.gem-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;color:var(--text);margin-bottom:.35rem}
+.gem-sub{font-size:.78rem;color:var(--text2);line-height:1.55}
+
+/* TIMELINE */
+#experience{background:var(--bg)}
+.tl-wrap{position:relative;max-width:880px;margin:2.8rem auto 0;padding:1rem 0}
+.tl-line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(201,169,110,.3) 10%,rgba(201,169,110,.3) 90%,transparent);transform:translateX(-50%)}
+.tl-item{display:grid;grid-template-columns:1fr 80px 1fr;margin-bottom:3rem}
+.tl-card-wrap{padding:0 .5rem}
+.tl-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.5rem 1.7rem;transition:transform .3s,border-color .3s,box-shadow .3s}
+.tl-card:hover{transform:translateY(-4px);border-color:rgba(201,169,110,.22);box-shadow:0 12px 32px rgba(0,0,0,.42)}
+.tl-center{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding-top:.9rem}
+.tl-node{width:50px;height:50px;border-radius:50%;background:var(--purple);border:1.5px solid rgba(201,169,110,.32);display:flex;align-items:center;justify-content:center;font-size:1.25rem;box-shadow:0 0 16px rgba(42,31,110,.65)}
+.tl-date{font-family:'DM Mono',monospace;font-size:.66rem;color:var(--text2);text-align:center;white-space:nowrap}
+.tl-role{font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;color:var(--text);margin-bottom:.22rem}
+.tl-co{font-size:.79rem;color:var(--gold);font-weight:600;margin-bottom:.65rem}
+.tl-ul{list-style:none}
+.tl-ul li{font-size:.79rem;color:var(--text2);line-height:1.65;padding-left:.95rem;position:relative;margin-bottom:.22rem}
+.tl-ul li::before{content:'▸';position:absolute;left:0;color:var(--gold)}
+
+/* PROJECTS */
+#projects{background:var(--bg2)}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
+.proj-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.65rem;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s,border-color .3s;cursor:none}
+.proj-card:hover{transform:translateY(-6px);border-color:rgba(201,169,110,.22);box-shadow:0 18px 42px rgba(0,0,0,.48)}
+.proj-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.66rem;font-weight:700;background:rgba(201,169,110,.13);color:var(--gold);letter-spacing:.05em;margin-bottom:.75rem;align-self:flex-start}
+.proj-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:.96rem;color:var(--text);margin-bottom:.5rem}
+.proj-desc{font-size:.8rem;color:var(--text2);line-height:1.7;flex:1;margin-bottom:.9rem}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.38rem;margin-bottom:.9rem}
+.ptag{font-family:'DM Mono',monospace;font-size:.66rem;padding:.18rem .52rem;border-radius:4px;font-weight:500}
+.t-ts{background:rgba(55,118,171,.2);color:#64b5f6}
+.t-fl{background:rgba(5,150,105,.2);color:#4dd0a7}
+.t-gp{background:rgba(201,169,110,.15);color:var(--gold)}
+.t-re{background:rgba(100,80,200,.2);color:#b39ddb}
+.t-ra{background:rgba(0,180,180,.18);color:#80deea}
+.t-py{background:rgba(55,118,171,.2);color:#90caf9}
+.t-yo{background:rgba(255,111,0,.18);color:#ffcc80}
+.t-dl{background:rgba(233,30,99,.18);color:#f48fb1}
+.t-cv{background:rgba(156,39,176,.18);color:#ce93d8}
+.t-pt{background:rgba(240,98,146,.2);color:#f48fb1}
+.t-pm{background:rgba(0,150,136,.2);color:#80cbc4}
+.t-er{background:rgba(100,180,100,.18);color:#a5d6a7}
+.t-ll{background:rgba(0,150,200,.18);color:#81d4fa}
+.t-ch{background:rgba(150,50,50,.2);color:#ef9a9a}
+.t-st{background:rgba(180,100,0,.2);color:#ffcc80}
+.t-ml{background:rgba(100,100,200,.2);color:#c5cae9}
+.t-na{background:rgba(60,160,60,.18);color:#a5d6a7}
+.t-ag{background:rgba(200,150,0,.18);color:#ffe082}
+.proj-link{display:inline-flex;align-items:center;gap:.32rem;font-size:.78rem;color:var(--gold);font-weight:700;text-decoration:none;font-family:'Nunito',sans-serif;transition:gap .18s;margin-top:auto}
+.proj-link:hover{gap:.65rem}
+.proj-link::after{content:'→'}
+
+/* ACHIEVEMENTS */
+#achievements{background:var(--bg)}
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
+.ach-card{background:var(--card);border-radius:13px;padding:1.5rem;border-left:3px solid var(--gold);transition:transform .3s,box-shadow .3s;cursor:none}
+.ach-card.sv{border-left-color:#c0c0c0}.ach-card.br{border-left-color:#cd7f32}.ach-card.cy{border-left-color:#00bcd4}
+.ach-card:hover{transform:translateY(-4px);box-shadow:0 13px 30px rgba(0,0,0,.42)}
+.ach-badge{display:inline-block;padding:.18rem .58rem;border-radius:5px;font-size:.66rem;font-weight:700;letter-spacing:.06em;margin-bottom:.65rem}
+.bg-g{background:rgba(201,169,110,.15);color:var(--gold)}.bg-s{background:rgba(192,192,192,.15);color:#d0d0d0}.bg-b{background:rgba(205,127,50,.15);color:#d4935a}.bg-c{background:rgba(0,188,212,.12);color:#4dd0e1}
+.ach-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;color:var(--text);margin-bottom:.22rem}
+.ach-org{font-size:.76rem;color:var(--gold);font-weight:600;margin-bottom:.38rem}
+.ach-desc{font-size:.76rem;color:var(--text2);line-height:1.58}
+
+/* SKILLS */
+#skills{background:var(--bg2)}
+.skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem}
+.skill-cat{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.4rem;transition:transform .3s,border-color .3s;cursor:none}
+.skill-cat:hover{transform:translateY(-4px);border-color:rgba(201,169,110,.22)}
+.skill-cat-h{font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.8rem}
+.pills{display:flex;flex-wrap:wrap;gap:.38rem}
+.pill{padding:.22rem .65rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:20px;font-size:.74rem;font-family:'DM Mono',monospace;color:var(--text2);transition:border-color .2s,color .2s}
+.pill:hover{border-color:var(--gold);color:var(--gold)}
+
+/* CERTS */
+#certifications{background:var(--bg)}
+.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.95rem;margin-top:2.5rem}
+.cert-card{background:var(--card);border-radius:12px;padding:1.3rem;border:1px solid rgba(42,31,110,.8);border-top:2.5px solid var(--gold);transition:transform .3s,box-shadow .3s;cursor:none}
+.cert-card:hover{transform:translateY(-4px);box-shadow:0 11px 28px rgba(0,0,0,.38)}
+.cert-iss{font-size:.7rem;color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.38rem}
+.cert-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.84rem;color:var(--text);margin-bottom:.32rem;line-height:1.38}
+.cert-meta{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text2)}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--bg2)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
+.testi-card{background:var(--card2);border:1px solid rgba(42,31,110,.6);border-radius:15px;padding:1.8rem 1.65rem 1.5rem;transition:transform .3s,box-shadow .3s;cursor:none}
+.testi-card:hover{transform:translateY(-5px);box-shadow:0 17px 38px rgba(0,0,0,.48)}
+.testi-qq{display:flex;flex-direction:column;gap:6px;margin-bottom:1.1rem}
+.testi-qq span{display:block;height:3.5px;border-radius:2px;background:var(--gold)}
+.testi-qq span:last-child{width:60%}
+.testi-text{font-size:.87rem;color:var(--text2);line-height:1.82;margin-bottom:1.4rem}
+.testi-person{display:flex;align-items:center;gap:.75rem}
+.testi-avatar{width:36px;height:36px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;border:1.5px solid rgba(201,169,110,.28)}
+.testi-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.84rem;color:var(--text)}
+.testi-name em{color:var(--gold);font-style:normal;margin-right:.12rem}
+.testi-role{font-size:.72rem;color:var(--text2);margin-top:.08rem}
+
+/* CONTACT */
+#contact{background:var(--bg);display:flex;align-items:center;min-height:100vh;padding:5.5rem 3.5rem;overflow:hidden;position:relative;z-index:1}
+.contact-left{flex:0 0 50%;padding-right:3rem}
+.contact-form{margin-top:1.8rem;display:flex;flex-direction:column;gap:1.2rem;max-width:420px}
+.form-group{display:flex;flex-direction:column;gap:.38rem}
+.form-lbl{font-size:.8rem;font-weight:700;color:var(--text)}
+.form-inp,.form-ta{background:rgba(19,19,40,.95);border:1px solid rgba(42,31,110,.9);border-radius:8px;padding:.75rem .95rem;color:var(--text);font-family:'Nunito Sans',sans-serif;font-size:.85rem;outline:none;resize:none;transition:border-color .22s,box-shadow .22s}
+.form-inp::placeholder,.form-ta::placeholder{color:rgba(153,153,187,.38)}
+.form-inp:focus,.form-ta:focus{border-color:rgba(201,169,110,.42);box-shadow:0 0 0 3px rgba(201,169,110,.07)}
+.form-ta{height:125px}
+.btn-send{align-self:flex-start;padding:.72rem 1.9rem;background:transparent;border:1.5px solid rgba(255,255,255,.32);color:var(--text);border-radius:7px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:none;letter-spacing:.06em;transition:all .22s}
+.btn-send:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(201,169,110,.17)}
+.contact-right{flex:0 0 50%;height:560px;position:relative}
+#earth-canvas{width:100%;height:100%;display:block}
+
+/* TECH BAR */
+.tech-bar{background:var(--bg);padding:2.2rem 3.5rem;border-top:1px solid var(--border)}
+.tech-inner{max-width:1180px;margin:0 auto;display:flex;gap:2.2rem;justify-content:center;flex-wrap:wrap}
+.tl-logo{display:flex;flex-direction:column;align-items:center;gap:.38rem;cursor:none;transition:transform .22s}
+.tl-logo:hover{transform:translateY(-4px)}
+.tl-logo img{width:46px;height:46px;object-fit:contain;filter:saturate(.65) brightness(.8);transition:filter .22s}
+.tl-logo:hover img{filter:saturate(1) brightness(1)}
+.tl-logo span{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text2)}
+
+footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.footer-copy{font-size:.76rem;color:var(--text2)}
+.footer-links{display:flex;gap:1.4rem}
+.footer-links a{font-size:.76rem;color:var(--text2);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+
+/* FADE UP */
+.fu{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.fu.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:1100px){
+  .gem-grid,.skill-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}
+  .proj-grid,.ach-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}
+  .sec{padding:4rem 1.5rem}
+  .hero-content{padding:5rem 1.5rem 2rem 2rem}
+  .hero-line{display:none}
+  .gem-grid,.skill-grid,.cert-grid,.proj-grid,.ach-grid,.testi-grid{grid-template-columns:1fr}
+  .tl-item{display:flex;flex-direction:column}
+  .tl-line{left:24px}
+  #contact{flex-direction:column;min-height:auto}
+  .contact-right{width:100%;height:320px;flex:none}
+  .contact-left{padding-right:0;flex:none;width:100%}
+  footer{flex-direction:column;text-align:center;padding:1.5rem}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div id="prog"></div>
+<div class="floral"></div>
+
+<nav>
+  <div class="nav-logo"><em>Shri Harsan</em> | Data Scientist</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-dot"></div>
+    <h1 class="hero-h1">Hi, I'm<br><span class="gold">Shri Harsan M</span></h1>
+    <p class="hero-sub">I engineer intelligence from data.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-p">View Work</a>
+      <a href="#contact" class="btn-o">Contact Me</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-mouse"><div class="scroll-ball"></div></div>
+  </div>
+</section>
+
+<section id="about" class="sec">
+  <div class="wrap">
+    <div class="eyebrow fu">Introduction</div>
+    <h2 class="sh fu">Overview.</h2>
+    <p class="about-body fu">
+      I am a passionate Data Scientist and AI Engineer with a strong academic foundation in physics and engineering, now directing that analytical rigour toward building production-grade intelligent systems. My work spans the full spectrum of applied AI — from deriving physical laws computationally through Physics-Informed Neural Networks, to deploying real-time computer vision systems and orchestrating LLM-powered autonomous agents. I thrive at the intersection of mathematical rigour and practical engineering, driven by a singular goal: making AI that genuinely works in the real world.
+    </p>
+    <div class="gem-grid">
+      <div class="gem-card fu"><span class="gem-icon">💎</span><div class="gem-title">Physics-Informed ML</div><div class="gem-sub">Integrating physical laws into neural networks for scientifically consistent, data-efficient predictions</div></div>
+      <div class="gem-card fu"><span class="gem-icon">🔮</span><div class="gem-title">Computer Vision</div><div class="gem-sub">Deep learning for real-world visual intelligence — detection, classification, and ecological assessment</div></div>
+      <div class="gem-card fu"><span class="gem-icon">⚡</span><div class="gem-title">Generative AI</div><div class="gem-sub">Building RAG pipelines, LLM agents, and AI-powered developer tools with GPT-4 and LLaMA 3</div></div>
+      <div class="gem-card fu"><span class="gem-icon">☁️</span><div class="gem-title">Cloud & MLOps</div><div class="gem-sub">AWS-certified, end-to-end ML pipelines, vector databases, and scalable real-time inference</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="sec">
+  <div class="wrap">
+    <div style="text-align:center">
+      <div class="eyebrow fu">Career</div>
+      <h2 class="sh fu">Experience.</h2>
+    </div>
+    <div class="tl-wrap">
+      <div class="tl-line"></div>
+      <div class="tl-item fu">
+        <div class="tl-card-wrap" style="grid-column:1">
+          <div class="tl-card">
+            <div class="tl-role">Data Entry Operator Intern</div>
+            <div class="tl-co">Motherson Group of Companies, Chennai</div>
+            <ul class="tl-ul">
+              <li>Processed 1,000+ data entries in Excel and Empro ERP, improving efficiency by 30% through quality control</li>
+              <li>Led process re-engineering across 10 departments, reducing paperwork by 75%</li>
+              <li>Streamlined cross-functional manufacturing workflows for higher operational productivity</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-center" style="grid-column:2"><div class="tl-node">🏭</div><div class="tl-date">Mar – May 2025</div></div>
+        <div style="grid-column:3"></div>
+      </div>
+      <div class="tl-item fu">
+        <div style="grid-column:1"></div>
+        <div class="tl-center" style="grid-column:2"><div class="tl-node">🤖</div><div class="tl-date">Jun 2022</div></div>
+        <div class="tl-card-wrap" style="grid-column:3">
+          <div class="tl-card">
+            <div class="tl-role">AI Intern</div>
+            <div class="tl-co">Top Engineers, Chennai</div>
+            <ul class="tl-ul">
+              <li>Applied machine learning and IoT integration for AI-driven automation</li>
+              <li>Developed real-time data analysis pipelines for industrial smart systems</li>
+              <li>Built foundational understanding of AI applications in industrial automation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="sec">
+  <div class="wrap">
+    <div class="eyebrow fu">Portfolio</div>
+    <h2 class="sh fu">Work.</h2>
+    <div class="proj-grid">
+      <div class="proj-card fu">
+        <div class="proj-badge">🏆 TOP 10 · SCHNEIDER HACKATHON</div>
+        <div class="proj-title">AI Code Reviewer & Auto-Fix</div>
+        <p class="proj-desc">VSCode extension analysing code against 558 Schneider Electric industrial standards. Achieved 91% quality improvement (35→95/100) with one-click auto-fix across 7 languages. Reduced review bottlenecks by 60%.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-fl">Flask</span><span class="ptag t-gp">GPT-4</span><span class="ptag t-re">React</span><span class="ptag t-ra">RAG</span></div>
+        <a href="https://github.com/ShriHarsan64K/Schneider-AI-Code-Reviewer" target="_blank" class="proj-link">View Code</a>
+      </div>
+      <div class="proj-card fu">
+        <div class="proj-badge">📚 M.TECH THESIS</div>
+        <div class="proj-title">Marine Biodiversity Assessment</div>
+        <p class="proj-desc">YOLOv8-based reef health monitoring with self-curated ReefIndicator-10K dataset (15K images, 8 species). 83.2% mAP@50 with novel CRHS and TWD ecological metrics across 4 ocean basins.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-yo">YOLOv8</span><span class="ptag t-dl">Deep Learning</span><span class="ptag t-cv">Computer Vision</span></div>
+        <a href="https://github.com/ShriHarsan64K" target="_blank" class="proj-link">View Details</a>
+      </div>
+      <div class="proj-card fu">
+        <div class="proj-title">🌪️ Cyclone-PINN</div>
+        <p class="proj-desc">Physics-Informed Neural Network for tropical cyclone vortex recovery from sparse ERA5 observations. Hurricane Ida case study achieving 88% R² with only 20% of observations — fusing atmospheric physics with deep learning.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-pt">PyTorch</span><span class="ptag t-pm">Physics-ML</span><span class="ptag t-er">ERA5</span></div>
+        <a href="https://github.com/ShriHarsan64K/Cyclone-PINN" target="_blank" class="proj-link">View Code</a>
+      </div>
+      <div class="proj-card fu">
+        <div class="proj-badge">🔧 AMD SLINGSHOT 2026</div>
+        <div class="proj-title">ResearchMind</div>
+        <p class="proj-desc">AI Research Assistant running 100% offline on AMD Ryzen AI NPU. Analyses PDFs, detects knowledge gaps, builds local vector databases with LLaMA 3. Cuts paper reading time from 4–5 hours to under 60 seconds.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ll">LLaMA 3</span><span class="ptag t-ch">ChromaDB</span><span class="ptag t-st">Streamlit</span></div>
+        <a href="https://github.com/ShriHarsan64K/ResearchMind" target="_blank" class="proj-link">View Code</a>
+      </div>
+      <div class="proj-card fu">
+        <div class="proj-badge">🎯 FINALIST · TANFINET</div>
+        <div class="proj-title">NetFault AI</div>
+        <p class="proj-desc">AI-powered network fault detection and diagnosis using machine learning. Predicts and prevents network failures before they occur with intelligent monitoring and real-time anomaly classification.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ml">ML</span><span class="ptag t-na">Network Analysis</span><span class="ptag t-fl">Monitoring</span></div>
+        <a href="https://github.com/ShriHarsan64K/NetFault-AI" target="_blank" class="proj-link">View Code</a>
+      </div>
+      <div class="proj-card fu">
+        <div class="proj-title">AgentReady Score</div>
+        <p class="proj-desc">AI agent readiness scoring system for evaluating and optimising autonomous agents' performance across multiple metrics, benchmarks, and real-world task completion criteria.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ml">ML</span><span class="ptag t-ra">Evaluation</span><span class="ptag t-ag">Agents</span></div>
+        <a href="https://github.com/ShriHarsan64K/AgentReady-Score" target="_blank" class="proj-link">View Code</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements" class="sec">
+  <div class="wrap">
+    <div class="eyebrow fu">Recognition</div>
+    <h2 class="sh fu">Achievements.</h2>
+    <div class="ach-grid">
+      <div class="ach-card fu"><div class="ach-badge bg-g">🥇 1ST PLACE</div><div class="ach-title">SAE India Paper Presentation</div><div class="ach-org">Society of Automotive Engineers</div><div class="ach-desc">National-level technical paper presentation on automotive engineering innovations.</div></div>
+      <div class="ach-card sv fu"><div class="ach-badge bg-s">🥈 2ND PLACE</div><div class="ach-title">National Technical Design Competition</div><div class="ach-org">SRM IST, 2025</div><div class="ach-desc">Runner-up among 200+ participants in university-level design competition.</div></div>
+      <div class="ach-card br fu"><div class="ach-badge bg-b">🥉 3RD PLACE</div><div class="ach-title">AIOT Paper Presentation</div><div class="ach-org">FAME Society</div><div class="ach-desc">Third place for research on AI and IoT integration in industrial automation.</div></div>
+      <div class="ach-card cy fu"><div class="ach-badge bg-c">🏆 TOP 10</div><div class="ach-title">Schneider Electric Hackathon</div><div class="ach-org">Schneider Electric, 2025</div><div class="ach-desc">Top 10 finalist for AI Code Reviewer achieving 91% quality improvement.</div></div>
+      <div class="ach-card cy fu"><div class="ach-badge bg-c">🎯 FINALIST</div><div class="ach-title">NetFault AI Hackathon</div><div class="ach-org">Tanfinet, 2025</div><div class="ach-desc">Finalist for AI-powered network fault detection using machine learning.</div></div>
+      <div class="ach-card fu"><div class="ach-badge bg-g">👥 LEADERSHIP</div><div class="ach-title">Head of Events — FAME Society</div><div class="ach-org">SRM IST</div><div class="ach-desc">Organised 10+ technical events with 200+ participants across 3 universities.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="sec">
+  <div class="wrap">
+    <div class="eyebrow fu">Expertise</div>
+    <h2 class="sh fu">Technical Skills.</h2>
+    <div class="skill-grid">
+      <div class="skill-cat fu"><div class="skill-cat-h">Programming</div><div class="pills"><span class="pill">Python</span><span class="pill">SQL</span><span class="pill">MATLAB</span></div></div>
+      <div class="skill-cat fu"><div class="skill-cat-h">AI / ML</div><div class="pills"><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">YOLOv8</span><span class="pill">PINNs</span><span class="pill">LLaMA 3</span><span class="pill">GPT-4</span></div></div>
+      <div class="skill-cat fu"><div class="skill-cat-h">Data & Cloud</div><div class="pills"><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Tableau</span><span class="pill">Power BI</span><span class="pill">MySQL</span><span class="pill">ChromaDB</span><span class="pill">AWS</span></div></div>
+      <div class="skill-cat fu"><div class="skill-cat-h">Engineering</div><div class="pills"><span class="pill">CATIA</span><span class="pill">RAG</span><span class="pill">Streamlit</span><span class="pill">Flask</span><span class="pill">Git</span><span class="pill">Physics-ML</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications" class="sec">
+  <div class="wrap">
+    <div class="eyebrow fu">Credentials</div>
+    <h2 class="sh fu">Certifications.</h2>
+    <div class="cert-grid">
+      <div class="cert-card fu"><div class="cert-iss">AWS Academy</div><div class="cert-name">Machine Learning Foundations</div><div class="cert-meta">20 hrs · Mar 2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">AWS Academy</div><div class="cert-name">ML for Natural Language Processing</div><div class="cert-meta">20 hrs · Mar 2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">AWS Academy</div><div class="cert-name">Generative AI Foundations</div><div class="cert-meta">12 hrs · Mar 2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">AWS</div><div class="cert-name">Cloud Practitioner</div><div class="cert-meta">2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">Google (Coursera)</div><div class="cert-name">Crash Course on Python</div><div class="cert-meta">Feb 2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">IBM (Coursera)</div><div class="cert-name">Python for Data Science, AI & Dev</div><div class="cert-meta">Feb 2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">Google & Kaggle</div><div class="cert-name">AI Agents Intensive</div><div class="cert-meta">2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">IIT NPTEL</div><div class="cert-name">Fundamentals of AI</div><div class="cert-meta">2025</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="sec">
+  <div class="wrap">
+    <div class="eyebrow fu">Words That Drive Me</div>
+    <h2 class="sh fu">Inspiration.</h2>
+    <div class="testi-grid">
+      <div class="testi-card fu">
+        <div class="testi-qq"><span></span><span></span></div>
+        <p class="testi-text">"The goal is to turn data into information, and information into insight. Every model is a hypothesis; every dataset is a chance to be proven wrong — and that is where science lives."</p>
+        <div class="testi-person">
+          <div class="testi-avatar" style="font-size:.85rem;font-family:'DM Mono',monospace;color:var(--gold);background:rgba(42,31,110,.8)">DS</div>
+          <div><div class="testi-name"><em>—</em> Carly Fiorina</div><div class="testi-role">Former CEO, Hewlett-Packard · On Data & Strategy</div></div>
+        </div>
+      </div>
+      <div class="testi-card fu">
+        <div class="testi-qq"><span></span><span></span></div>
+        <p class="testi-text">"In the middle of every difficulty lies opportunity. Life is not measured by the number of breaths we take, but by the moments that take our breath away."</p>
+        <div class="testi-person">
+          <div class="testi-avatar" style="font-size:.85rem;font-family:'DM Mono',monospace;color:var(--gold);background:rgba(42,31,110,.8)">AE</div>
+          <div><div class="testi-name"><em>—</em> Albert Einstein</div><div class="testi-role">Theoretical Physicist · On Life & Perspective</div></div>
+        </div>
+      </div>
+      <div class="testi-card fu">
+        <div class="testi-qq"><span></span><span></span></div>
+        <p class="testi-text">"It does not matter how slowly you go as long as you do not stop. Our greatest glory is not in never falling, but in rising every time we fall."</p>
+        <div class="testi-person">
+          <div class="testi-avatar" style="font-size:.85rem;font-family:'DM Mono',monospace;color:var(--gold);background:rgba(42,31,110,.8)">CO</div>
+          <div><div class="testi-name"><em>—</em> Confucius</div><div class="testi-role">Chinese Philosopher · On Perseverance</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-left">
+    <div class="eyebrow fu">I Would Love to Hear From You</div>
+    <h2 class="sh fu">Contact.</h2>
+    <form class="contact-form" action="https://formsubmit.co/shriharsang@gmail.com" method="POST">
+      <!-- FormSubmit Configuration -->
+      <input type="hidden" name="_subject" value="New Portfolio Contact Message!">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      
+      <div class="form-group fu"><label class="form-lbl">Your Name</label><input class="form-inp" type="text" name="name" placeholder="What's your name?" required/></div>
+      <div class="form-group fu"><label class="form-lbl">Your Email</label><input class="form-inp" type="email" name="email" placeholder="What's your email?" required/></div>
+      <div class="form-group fu"><label class="form-lbl">Your Message</label><textarea class="form-ta" name="message" placeholder="What do you want to say?" required></textarea></div>
+      <button type="submit" class="btn-send fu">Send Message</button>
+    </form>
+  </div>
+  <div class="contact-right"><canvas id="earth-canvas"></canvas></div>
+</section>
+
+<div class="tech-bar">
+  <div class="tech-inner">
+    <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/><span>Python</span></div>
+    <div class="tl-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS"/><span>AWS</span></div>
+    <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow"/><span>TensorFlow</span></div>
+    <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"/><span>PyTorch</span></div>
+    <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"/><span>Pandas</span></div>
+    <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL"/><span>SQL</span></div>
+    <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)"/><span>GitHub</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 Shri Harsan M · SRM Institute of Science and Technology</div>
+  <div class="footer-links">
+    <a href="https://github.com/ShriHarsan64K" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/shriharsan" target="_blank">LinkedIn</a>
+    <a href="https://leetcode.com/u/KptbBoLr4X/" target="_blank">LeetCode</a>
+  </div>
+</footer>
+
+<script>
+// ── CURSOR ──
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'},{passive:true});
+(function ar(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar)})();
+document.querySelectorAll('a,button,.gem-card,.proj-card,.ach-card,.cert-card,.testi-card,.skill-cat').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='44px';ring.style.height='44px'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='32px';ring.style.height='32px'});
+});
+
+// ── SCROLL PROGRESS ──
+const prog=document.getElementById('prog');
+window.addEventListener('scroll',()=>{const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=(s/h*100)+'%'},{passive:true});
+
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})}));
+
+// ── FADE UP ──
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)*.065+'s';obs.observe(el)});
+
+// ── HERO: REALISTIC MILKY WAY BACKGROUND ──
+(function(){
+  const canvas=document.getElementById('particle-canvas');
+  if(!canvas||typeof THREE==='undefined')return;
+  const W=window.innerWidth,H=window.innerHeight;
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.5));
+  renderer.setSize(W,H);
+  const scene=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(75,W/H,0.1,1000);
+  cam.position.set(0,0,1);
+
+  // ── REALISTIC MILKY WAY with natural colors ──
+  const STARS=45000;
+  const pos=new Float32Array(STARS*3),col=new Float32Array(STARS*3),sizes=new Float32Array(STARS);
+  
+  // Create Milky Way band structure
+  for(let i=0;i<STARS;i++){
+    let x, y, z, inBand;
+    
+    // 70% of stars in the Milky Way band
+    if(Math.random() < 0.7) {
+      // Milky Way band - horizontal across screen
+      const bandAngle = (Math.random() - 0.5) * Math.PI * 2;
+      const bandRadius = 15 + Math.random() * 35;
+      const bandThickness = Math.random() * 8;
+      const bandHeight = (Math.random() - 0.5) * bandThickness;
+      
+      x = bandRadius * Math.cos(bandAngle) + (Math.random() - 0.5) * 20;
+      y = bandHeight;
+      z = bandRadius * Math.sin(bandAngle) + (Math.random() - 0.5) * 15;
+      inBand = true;
+    } else {
+      // Background stars - distributed everywhere
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      const radius = 20 + Math.random() * 60;
+      
+      x = radius * Math.sin(phi) * Math.cos(theta);
+      y = radius * Math.sin(phi) * Math.sin(theta);
+      z = radius * Math.cos(phi);
+      inBand = false;
+    }
+    
+    pos[i*3] = x;
+    pos[i*3+1] = y;
+    pos[i*3+2] = z;
+    
+    // Realistic star colors - blue, white, yellow, orange, red
+    const colorType = Math.random();
+    const brightness = 0.3 + Math.random() * 0.7;
+    
+    if(colorType < 0.15) {
+      // Blue-white stars (hot)
+      col[i*3] = 0.7 + Math.random() * 0.3;
+      col[i*3+1] = 0.8 + Math.random() * 0.2;
+      col[i*3+2] = 1.0;
+    } else if(colorType < 0.35) {
+      // Yellow-white stars
+      col[i*3] = 1.0;
+      col[i*3+1] = 0.9 + Math.random() * 0.1;
+      col[i*3+2] = 0.7 + Math.random() * 0.2;
+    } else if(colorType < 0.5) {
+      // Golden/Orange stars
+      col[i*3] = 1.0;
+      col[i*3+1] = 0.6 + Math.random() * 0.3;
+      col[i*3+2] = 0.3 + Math.random() * 0.2;
+    } else if(colorType < 0.6) {
+      // Reddish stars (cool)
+      col[i*3] = 1.0;
+      col[i*3+1] = 0.4 + Math.random() * 0.3;
+      col[i*3+2] = 0.2 + Math.random() * 0.2;
+    } else {
+      // White stars (most common)
+      const white = 0.85 + Math.random() * 0.15;
+      col[i*3] = white;
+      col[i*3+1] = white;
+      col[i*3+2] = white;
+    }
+    
+    // Apply brightness
+    col[i*3] *= brightness;
+    col[i*3+1] *= brightness;
+    col[i*3+2] *= brightness;
+    
+    // Vary star sizes - brighter stars appear larger
+    if(inBand) {
+      sizes[i] = brightness > 0.7 ? 0.08 + Math.random() * 0.06 : 0.04 + Math.random() * 0.04;
+    } else {
+      sizes[i] = 0.025 + Math.random() * 0.03;
+    }
+  }
+
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const milkyWay=new THREE.Points(geo,new THREE.PointsMaterial({
+    size:0.04,
+    vertexColors:true,
+    transparent:true,
+    opacity:0.85,
+    sizeAttenuation:true,
+    blending:THREE.AdditiveBlending
+  }));
+  
+  // Tilt to show Milky Way band across the sky
+  milkyWay.rotation.x = Math.PI * 0.15;
+  milkyWay.rotation.z = Math.PI * 0.05;
+  scene.add(milkyWay);
+
+  // ── DARK DUST PATCHES - realistic dark nebulae ──
+  const DUST_PATCHES = 12;
+  for(let d=0; d<DUST_PATCHES; d++) {
+    const dustParticles = 1200;
+    const dustPos = new Float32Array(dustParticles*3);
+    const dustCol = new Float32Array(dustParticles*3);
+    
+    // Position dust patches along the Milky Way band
+    const dustX = (Math.random() - 0.5) * 70;
+    const dustY = (Math.random() - 0.5) * 8;
+    const dustZ = -8 - Math.random() * 35;
+    
+    for(let i=0; i<dustParticles; i++) {
+      const radius = Math.random() * 12;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      
+      dustPos[i*3] = dustX + radius * Math.sin(phi) * Math.cos(theta);
+      dustPos[i*3+1] = dustY + radius * Math.sin(phi) * Math.sin(theta) * 0.25;
+      dustPos[i*3+2] = dustZ + radius * Math.cos(phi);
+      
+      // Very dark colors - almost black with slight brownish tint
+      const darkness = 0.02 + Math.random() * 0.03;
+      dustCol[i*3] = darkness * 0.15;     // Slight reddish
+      dustCol[i*3+1] = darkness * 0.1;    // Less green
+      dustCol[i*3+2] = darkness * 0.08;   // Even less blue
+    }
+    
+    const dustGeo = new THREE.BufferGeometry();
+    dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+    dustGeo.setAttribute('color', new THREE.BufferAttribute(dustCol, 3));
+    const dustCloud = new THREE.Points(dustGeo, new THREE.PointsMaterial({
+      size: 0.25,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.7,
+      sizeAttenuation: true,
+      blending: THREE.NormalBlending  // Use normal blending for darkening effect
+    }));
+    dustCloud.rotation.x = milkyWay.rotation.x;
+    dustCloud.rotation.z = milkyWay.rotation.z;
+    scene.add(dustCloud);
+  }
+
+  // Add nebula-like glow clouds
+  const CLOUDS = 8;
+  for(let c=0;c<CLOUDS;c++){
+    const cloudParticles = 800;
+    const cloudPos = new Float32Array(cloudParticles*3);
+    const cloudCol = new Float32Array(cloudParticles*3);
+    
+    const cloudX = (Math.random() - 0.5) * 80;
+    const cloudY = (Math.random() - 0.5) * 15;
+    const cloudZ = -10 - Math.random() * 40;
+    
+    // Cloud color - pinkish, bluish, or golden nebula
+    const cloudType = Math.random();
+    let baseR, baseG, baseB;
+    if(cloudType < 0.33) {
+      // Pinkish nebula
+      baseR = 0.8; baseG = 0.3; baseB = 0.5;
+    } else if(cloudType < 0.66) {
+      // Bluish nebula  
+      baseR = 0.3; baseG = 0.5; baseB = 0.9;
+    } else {
+      // Golden nebula
+      baseR = 0.9; baseG = 0.7; baseB = 0.3;
+    }
+    
+    for(let i=0;i<cloudParticles;i++){
+      const radius = Math.random() * 8;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      
+      cloudPos[i*3] = cloudX + radius * Math.sin(phi) * Math.cos(theta);
+      cloudPos[i*3+1] = cloudY + radius * Math.sin(phi) * Math.sin(theta) * 0.3;
+      cloudPos[i*3+2] = cloudZ + radius * Math.cos(phi);
+      
+      const variance = 0.7 + Math.random() * 0.3;
+      const alpha = 0.15 + Math.random() * 0.15;
+      cloudCol[i*3] = baseR * variance * alpha;
+      cloudCol[i*3+1] = baseG * variance * alpha;
+      cloudCol[i*3+2] = baseB * variance * alpha;
+    }
+    
+    const cloudGeo = new THREE.BufferGeometry();
+    cloudGeo.setAttribute('position', new THREE.BufferAttribute(cloudPos, 3));
+    cloudGeo.setAttribute('color', new THREE.BufferAttribute(cloudCol, 3));
+    const cloud = new THREE.Points(cloudGeo, new THREE.PointsMaterial({
+      size: 0.15,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.4,
+      sizeAttenuation: true,
+      blending: THREE.AdditiveBlending
+    }));
+    scene.add(cloud);
+  }
+
+  let mox=0,moy=0,fr=0;
+  window.addEventListener('mousemove',e=>{mox=(e.clientX/window.innerWidth-.5)*.2;moy=(e.clientY/window.innerHeight-.5)*.15;},{passive:true});
+
+  function tick(){
+    requestAnimationFrame(tick); 
+    fr++;
+    // Very subtle rotation
+    milkyWay.rotation.y += 0.00008;
+    cam.position.x = mox * 0.5;
+    cam.position.y = -moy * 0.3;
+    renderer.render(scene,cam);
+  }
+  tick();
+  window.addEventListener('resize',()=>{const w=window.innerWidth,h=window.innerHeight;cam.aspect=w/h;cam.updateProjectionMatrix();renderer.setSize(w,h);},{passive:true});
+})();
+
+
+// ── REALISTIC EARTH WITH CITY LIGHTS — NO RIBBONS ──
+(function(){
+  const canvas = document.getElementById('earth-canvas');
+  if (!canvas || typeof THREE === 'undefined') return;
+  function getSize(){ const p=canvas.parentElement; return{w:p.offsetWidth||Math.floor(window.innerWidth*.5)||500,h:p.offsetHeight||560}; }
+  let {w:W,h:H}=getSize();
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setSize(W,H);
+  const scene=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(45,W/H,.1,100);
+  cam.position.z=3.2;
+
+  // Lighting — sun from upper right (like photo)
+  scene.add(new THREE.AmbientLight(0x112244,.6));
+  const sun=new THREE.DirectionalLight(0xffffff,3.5); sun.position.set(6,2,4); scene.add(sun);
+  const blue=new THREE.DirectionalLight(0x4466bb,.5); blue.position.set(-5,-2,-3); scene.add(blue);
+
+  // ── DAY TEXTURE (ocean + land with rich colours) ──
+  const dayC=document.createElement('canvas'); dayC.width=2048; dayC.height=1024;
+  const dc=dayC.getContext('2d');
+  // Deep blue ocean base
+  dc.fillStyle='#071a3e'; dc.fillRect(0,0,2048,1024);
+  // Ocean depth gradient
+  const og=dc.createRadialGradient(1024,512,100,1024,512,1000);
+  og.addColorStop(0,'rgba(8,35,90,.6)'); og.addColorStop(1,'rgba(2,8,28,.8)');
+  dc.fillStyle=og; dc.fillRect(0,0,2048,1024);
+
+  // LAND — painted with detail
+  dc.fillStyle='#1a6b30';
+  // North America
+  dc.beginPath(); dc.ellipse(420,320,80,130,.1,0,Math.PI*2); dc.fill();
+  dc.beginPath(); dc.ellipse(480,260,55,70,-.1,0,Math.PI*2); dc.fill();
+  dc.beginPath(); dc.ellipse(350,290,40,60,.15,0,Math.PI*2); dc.fill();
+  // Central + South America
+  dc.beginPath(); dc.ellipse(470,440,40,50,.1,0,Math.PI*2); dc.fill();
+  dc.beginPath(); dc.ellipse(500,560,55,100,.05,0,Math.PI*2); dc.fill();
+  dc.beginPath(); dc.ellipse(520,640,40,60,-.05,0,Math.PI*2); dc.fill();
+  // Europe
+  dc.beginPath(); dc.ellipse(960,270,60,65,.05,0,Math.PI*2); dc.fill();
+  dc.beginPath(); dc.ellipse(1010,230,40,50,.1,0,Math.PI*2); dc.fill();
+  // Africa
+  dc.beginPath(); dc.ellipse(1020,400,65,110,0,0,Math.PI*2); dc.fill();
+  dc.beginPath(); dc.ellipse(1000,340,45,55,.1,0,Math.PI*2); dc.fill();
+  // Russia/Asia — large landmass
+  dc.beginPath(); dc.ellipse(1280,220,200,95,.05,0,Math.PI*2); dc.fill();
+  dc.beginPath(); dc.ellipse(1380,300,120,80,-.05,0,Math.PI*2); dc.fill();
+  dc.beginPath(); dc.ellipse(1450,350,90,70,0,0,Math.PI*2); dc.fill();
+  // India
+  dc.beginPath(); dc.ellipse(1300,390,45,65,.05,0,Math.PI*2); dc.fill();
+  // SE Asia
+  dc.beginPath(); dc.ellipse(1500,380,55,50,.1,0,Math.PI*2); dc.fill();
+  // Australia
+  dc.beginPath(); dc.ellipse(1600,530,70,50,-.1,0,Math.PI*2); dc.fill();
+  // Greenland (white)
+  dc.fillStyle='#c8e8f8'; dc.beginPath(); dc.ellipse(750,160,50,40,0,0,Math.PI*2); dc.fill();
+  // Antarctica
+  dc.fillStyle='#d0eaff'; dc.fillRect(0,930,2048,94);
+  dc.beginPath(); dc.ellipse(1024,930,1024,50,0,0,Math.PI*2); dc.fill();
+  // Ice caps top
+  dc.fillStyle='rgba(180,220,255,.5)'; dc.beginPath(); dc.ellipse(1024,30,1024,55,0,0,Math.PI*2); dc.fill();
+
+  // Cloud layer
+  dc.fillStyle='rgba(255,255,255,.06)';
+  for(let i=0;i<300;i++){dc.beginPath();dc.ellipse(Math.random()*2048,Math.random()*1024,8+Math.random()*80,2+Math.random()*20,Math.random()*Math.PI,0,Math.PI*2);dc.fill();}
+
+  // ── NIGHT TEXTURE — city lights ──
+  const nightC=document.createElement('canvas'); nightC.width=2048; nightC.height=1024;
+  const nc=nightC.getContext('2d');
+  nc.fillStyle='#000308'; nc.fillRect(0,0,2048,1024);
+
+  // City lights — warm orange/yellow glow clusters matching land positions
+  function cityCluster(cx,cy,density,spread){
+    for(let i=0;i<density;i++){
+      const x=cx+(Math.random()-.5)*spread, y=cy+(Math.random()-.5)*spread*0.6;
+      const sz=1+Math.random()*3;
+      const alpha=0.4+Math.random()*0.6;
+      const r=200+Math.floor(Math.random()*55), g=140+Math.floor(Math.random()*60), b2=40+Math.floor(Math.random()*40);
+      nc.fillStyle=`rgba(${r},${g},${b2},${alpha})`;
+      nc.beginPath(); nc.arc(x,y,sz,0,Math.PI*2); nc.fill();
+      if(Math.random()>.7){
+        const g2=nc.createRadialGradient(x,y,0,x,y,sz*4);
+        g2.addColorStop(0,`rgba(${r},${g},${b2},.25)`); g2.addColorStop(1,'rgba(0,0,0,0)');
+        nc.fillStyle=g2; nc.beginPath(); nc.arc(x,y,sz*4,0,Math.PI*2); nc.fill();
+      }
+    }
+  }
+  // USA East Coast
+  cityCluster(520,310,280,55);
+  // USA West Coast
+  cityCluster(380,310,160,40);
+  // USA Central
+  cityCluster(455,320,120,50);
+  // Mexico/Central America
+  cityCluster(440,410,80,35);
+  // Brazil
+  cityCluster(560,530,120,55);
+  // Argentina
+  cityCluster(530,640,80,35);
+  // UK + W.Europe
+  cityCluster(960,255,260,60);
+  cityCluster(990,245,180,50);
+  cityCluster(1030,265,140,40);
+  // East Europe
+  cityCluster(1060,255,100,35);
+  // Russia W
+  cityCluster(1100,230,120,50);
+  // Russia E / Siberia (sparse)
+  cityCluster(1300,210,60,80);
+  // India
+  cityCluster(1290,380,200,55);
+  // China + E.Asia
+  cityCluster(1430,300,280,70);
+  cityCluster(1480,270,180,55);
+  // Japan
+  cityCluster(1560,290,160,30);
+  // SE Asia
+  cityCluster(1490,400,120,40);
+  // Australia
+  cityCluster(1620,540,100,45);
+  // N.Africa
+  cityCluster(980,360,60,50);
+  // S.Africa
+  cityCluster(1030,540,70,35);
+
+  const dayTex=new THREE.CanvasTexture(dayC);
+  const nightTex=new THREE.CanvasTexture(nightC);
+
+  // ── CUSTOM SHADER to blend day/night ──
+  const earthMat = new THREE.ShaderMaterial({
+    uniforms:{
+      dayMap:   {value: dayTex},
+      nightMap: {value: nightTex},
+      sunDir:   {value: new THREE.Vector3(6,2,4).normalize()},
+    },
+    vertexShader:`
+      varying vec2 vUv;
+      varying vec3 vNormal;
+      void main(){
+        vUv=uv; vNormal=normalize(normalMatrix*normal);
+        gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);
+      }
+    `,
+    fragmentShader:`
+      uniform sampler2D dayMap;
+      uniform sampler2D nightMap;
+      uniform vec3 sunDir;
+      varying vec2 vUv;
+      varying vec3 vNormal;
+      void main(){
+        float d=dot(vNormal,sunDir);
+        float blend=smoothstep(-0.1,0.25,d);
+        vec4 day=texture2D(dayMap,vUv);
+        vec4 night=texture2D(nightMap,vUv);
+        // Brighten day side, keep night dark with city glow
+        day.rgb*=1.2;
+        gl_FragColor=mix(night,day,blend);
+      }
+    `
+  });
+
+  const earth=new THREE.Mesh(new THREE.SphereGeometry(1,64,64), earthMat);
+  scene.add(earth);
+
+  // Thin blue atmosphere glow
+  const atmMat=new THREE.ShaderMaterial({
+    uniforms:{sunDir:{value:new THREE.Vector3(6,2,4).normalize()}},
+    vertexShader:`
+      varying vec3 vNormal;
+      void main(){vNormal=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}
+    `,
+    fragmentShader:`
+      uniform vec3 sunDir;
+      varying vec3 vNormal;
+      void main(){
+        float rim=1.0-abs(dot(vNormal,vec3(0,0,1)));
+        rim=pow(rim,2.5);
+        gl_FragColor=vec4(.3,.6,1.0,rim*.55);
+      }
+    `,
+    transparent:true, side:THREE.FrontSide, depthWrite:false
+  });
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.03,64,64), atmMat));
+
+  // Outer glow halo (back side)
+  const haloMat=new THREE.ShaderMaterial({
+    uniforms:{},
+    vertexShader:`varying vec3 vNormal;void main(){vNormal=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+    fragmentShader:`varying vec3 vNormal;void main(){float r=1.-abs(dot(vNormal,vec3(0,0,1)));r=pow(r,3.);gl_FragColor=vec4(.15,.4,.9,r*.4);}`,
+    transparent:true, side:THREE.BackSide, depthWrite:false
+  });
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.08,32,32), haloMat));
+
+  // ── REALISTIC BACKGROUND STARS ──
+  const STARS = 6000;
+  const stP = new Float32Array(STARS*3);
+  const stC = new Float32Array(STARS*3);
+  const stS = new Float32Array(STARS);
+  
+  for(let i=0;i<STARS;i++){
+    // Distribute stars in a sphere around the Earth
+    const r = 15 + Math.random() * 35;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    
+    stP[i*3] = r * Math.sin(phi) * Math.cos(theta);
+    stP[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+    stP[i*3+2] = r * Math.cos(phi);
+    
+    // Realistic star colors - blue, white, yellow, orange
+    const colorType = Math.random();
+    const brightness = 0.4 + Math.random() * 0.6;
+    
+    if(colorType < 0.2) {
+      // Blue-white stars
+      stC[i*3] = 0.7 * brightness;
+      stC[i*3+1] = 0.85 * brightness;
+      stC[i*3+2] = 1.0 * brightness;
+    } else if(colorType < 0.4) {
+      // Yellow-white stars
+      stC[i*3] = 1.0 * brightness;
+      stC[i*3+1] = 0.95 * brightness;
+      stC[i*3+2] = 0.75 * brightness;
+    } else if(colorType < 0.5) {
+      // Orange stars
+      stC[i*3] = 1.0 * brightness;
+      stC[i*3+1] = 0.7 * brightness;
+      stC[i*3+2] = 0.4 * brightness;
+    } else {
+      // White stars (most common)
+      const white = 0.85 * brightness;
+      stC[i*3] = white;
+      stC[i*3+1] = white;
+      stC[i*3+2] = white;
+    }
+    
+    // Vary star sizes
+    stS[i] = brightness > 0.7 ? 0.08 + Math.random() * 0.05 : 0.04 + Math.random() * 0.03;
+  }
+  
+  const stG = new THREE.BufferGeometry();
+  stG.setAttribute('position', new THREE.BufferAttribute(stP, 3));
+  stG.setAttribute('color', new THREE.BufferAttribute(stC, 3));
+  scene.add(new THREE.Points(stG, new THREE.PointsMaterial({
+    size: 0.06,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
+    sizeAttenuation: true,
+    blending: THREE.AdditiveBlending
+  })));
+
+  // ── SATURN/URANUS-STYLE RINGS ──
+  // Create a flat disc-like ring system similar to Saturn
+  const ringSystem = new THREE.Group();
+  
+  // Ring parameters - inspired by Saturn's rings (INCREASED VISIBILITY)
+  const ringSegments = [
+    { innerRadius: 1.3, outerRadius: 1.5, particles: 2000, color: [0.8, 0.85, 0.95], opacity: 0.5 },
+    { innerRadius: 1.52, outerRadius: 1.65, particles: 1200, color: [0.7, 0.75, 0.9], opacity: 0.45 },
+    { innerRadius: 1.68, outerRadius: 1.85, particles: 1800, color: [0.75, 0.8, 0.95], opacity: 0.55 },
+    { innerRadius: 1.88, outerRadius: 2.05, particles: 1000, color: [0.65, 0.7, 0.85], opacity: 0.4 }
+  ];
+  
+  ringSegments.forEach((segment, segIndex) => {
+    const particles = segment.particles;
+    const positions = new Float32Array(particles * 3);
+    const colors = new Float32Array(particles * 3);
+    
+    for(let i = 0; i < particles; i++) {
+      // Random angle around the ring
+      const angle = Math.random() * Math.PI * 2;
+      
+      // Random radius between inner and outer radius
+      const radius = segment.innerRadius + Math.random() * (segment.outerRadius - segment.innerRadius);
+      
+      // Position in ring plane
+      positions[i * 3] = radius * Math.cos(angle);
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 0.008; // Very flat ring
+      positions[i * 3 + 2] = radius * Math.sin(angle);
+      
+      // Brighter ice/dust colors with variation
+      const variation = 0.9 + Math.random() * 0.1;
+      colors[i * 3] = segment.color[0] * variation;
+      colors[i * 3 + 1] = segment.color[1] * variation;
+      colors[i * 3 + 2] = segment.color[2] * variation;
+    }
+    
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    
+    const material = new THREE.PointsMaterial({
+      size: 0.022,
+      vertexColors: true,
+      transparent: true,
+      opacity: segment.opacity,
+      sizeAttenuation: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+    
+    const ringSegmentMesh = new THREE.Points(geometry, material);
+    ringSystem.add(ringSegmentMesh);
+  });
+  
+  // Tilt the entire ring system like Saturn's rings
+  ringSystem.rotation.x = Math.PI * 0.25; // 45 degree tilt
+  ringSystem.rotation.z = Math.PI * 0.1;
+  
+  scene.add(ringSystem);
+
+  let emy=0;
+  window.addEventListener('mousemove',e=>{emy=(e.clientY/window.innerHeight-.5);},{passive:true});
+
+  function etick(){
+    requestAnimationFrame(etick);
+    
+    // Rotate Earth
+    earth.rotation.y += .003;
+    earth.rotation.x += (emy*.18-earth.rotation.x)*.02;
+    
+    // Slowly rotate the ring system like Saturn's rings
+    ringSystem.rotation.y += 0.0004;
+    
+    renderer.render(scene,cam);
+  }
+  etick();
+  window.addEventListener('resize',()=>{let {w,h}=getSize();cam.aspect=w/h;cam.updateProjectionMatrix();renderer.setSize(w,h);},{passive:true});
+})();
+</script>
+</body>
+</html>

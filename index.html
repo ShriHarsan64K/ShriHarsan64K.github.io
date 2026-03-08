@@ -176,8 +176,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .testi-role{font-size:.72rem;color:var(--text2);margin-top:.08rem}
 
 /* CONTACT */
-#contact{background:var(--bg);display:flex;align-items:center;min-height:100vh;padding:5.5rem 3.5rem;overflow:hidden;position:relative;z-index:1}
-.contact-left{flex:0 0 50%;padding-right:3rem}
+#contact{background:#000;display:flex;align-items:center;min-height:100vh;padding:5.5rem 3.5rem;overflow:hidden;position:relative;z-index:1}
+#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%, rgba(138,43,226,0.15) 0%, transparent 50%),radial-gradient(ellipse at 80% 30%, rgba(75,0,130,0.12) 0%, transparent 50%),radial-gradient(ellipse at 50% 70%, rgba(218,165,32,0.08) 0%, transparent 40%),linear-gradient(135deg, #0a0a1e 0%, #1a0a2e 50%, #0f0a1a 100%);z-index:0;pointer-events:none}
+#contact::after{content:'';position:absolute;inset:0;background-image:radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.8), transparent),radial-gradient(1px 1px at 15% 25%, rgba(200,200,255,0.6), transparent),radial-gradient(2px 2px at 20% 80%, rgba(255,255,255,0.7), transparent),radial-gradient(1px 1px at 25% 10%, rgba(255,200,150,0.5), transparent),radial-gradient(3px 3px at 30% 60%, rgba(255,255,255,0.9), transparent),radial-gradient(1px 1px at 35% 40%, rgba(255,255,200,0.6), transparent),radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.8), transparent),radial-gradient(1px 1px at 45% 15%, rgba(200,220,255,0.7), transparent),radial-gradient(2px 2px at 50% 50%, rgba(255,255,255,0.9), transparent),radial-gradient(1px 1px at 55% 85%, rgba(255,255,255,0.6), transparent),radial-gradient(3px 3px at 60% 30%, rgba(255,230,200,0.8), transparent),radial-gradient(1px 1px at 65% 65%, rgba(200,200,255,0.5), transparent),radial-gradient(2px 2px at 70% 20%, rgba(255,255,255,0.7), transparent),radial-gradient(1px 1px at 75% 75%, rgba(255,255,255,0.6), transparent),radial-gradient(2px 2px at 80% 45%, rgba(255,200,200,0.7), transparent),radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.8), transparent),radial-gradient(3px 3px at 90% 10%, rgba(255,255,255,0.9), transparent),radial-gradient(1px 1px at 95% 90%, rgba(200,220,255,0.6), transparent),radial-gradient(2px 2px at 12% 45%, rgba(255,255,255,0.7), transparent),radial-gradient(1px 1px at 18% 88%, rgba(255,230,180,0.5), transparent);background-size:100% 100%;background-position:0% 0%;opacity:0.6;z-index:0;pointer-events:none;animation:twinkle 4s ease-in-out infinite}
+.contact-left{flex:0 0 50%;padding-right:3rem;position:relative;z-index:2}
 .contact-form{margin-top:1.8rem;display:flex;flex-direction:column;gap:1.2rem;max-width:420px}
 .form-group{display:flex;flex-direction:column;gap:.38rem}
 .form-lbl{font-size:.8rem;font-weight:700;color:var(--text)}
@@ -185,10 +187,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .form-inp::placeholder,.form-ta::placeholder{color:rgba(153,153,187,.38)}
 .form-inp:focus,.form-ta:focus{border-color:rgba(201,169,110,.42);box-shadow:0 0 0 3px rgba(201,169,110,.07)}
 .form-ta{height:125px}
-.btn-send{align-self:flex-start;padding:.72rem 1.9rem;background:transparent;border:1.5px solid rgba(255,255,255,.32);color:var(--text);border-radius:7px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:none;letter-spacing:.06em;transition:all .22s}
+.btn-send{align-self:flex-start;padding:.72rem 1.9rem;background:transparent;border:1.5px solid rgba(255,255,255,.32);color:var(--text);border-radius:7px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;letter-spacing:.06em;transition:all .22s}
 .btn-send:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(201,169,110,.17)}
-.contact-right{flex:0 0 50%;height:560px;position:relative}
+.contact-right{flex:0 0 50%;height:650px;position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
 #earth-canvas{width:100%;height:100%;display:block}
+@keyframes twinkle{0%,100%{opacity:0.6}50%{opacity:0.8}}
 
 /* TECH BAR */
 .tech-bar{background:var(--bg);padding:2.2rem 3.5rem;border-top:1px solid var(--border)}
@@ -209,6 +212,15 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
 .fu{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
 .fu.in{opacity:1;transform:translateY(0)}
 
+/* NOTIFICATION ANIMATIONS */
+@keyframes slideIn{from{transform:translateX(400px);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes slideOut{from{transform:translateX(0);opacity:1}to{transform:translateX(400px);opacity:0}}
+
+/* SUCCESS MESSAGE */
+.success-notification{position:fixed;top:100px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#c9a96e,#e2c48a);color:#080808;padding:1.2rem 2.5rem;border-radius:12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;box-shadow:0 15px 50px rgba(201,169,110,0.4),0 0 0 1px rgba(201,169,110,0.3);z-index:10000;animation:successPop 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);display:flex;align-items:center;gap:0.8rem}
+.success-notification::before{content:'✓';font-size:1.5rem;font-weight:900}
+@keyframes successPop{0%{transform:translateX(-50%) scale(0.3);opacity:0}50%{transform:translateX(-50%) scale(1.05)}100%{transform:translateX(-50%) scale(1);opacity:1}}
+
 @media(max-width:1100px){
   .gem-grid,.skill-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}
   .proj-grid,.ach-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
@@ -221,9 +233,9 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
   .gem-grid,.skill-grid,.cert-grid,.proj-grid,.ach-grid,.testi-grid{grid-template-columns:1fr}
   .tl-item{display:flex;flex-direction:column}
   .tl-line{left:24px}
-  #contact{flex-direction:column;min-height:auto}
-  .contact-right{width:100%;height:320px;flex:none}
-  .contact-left{padding-right:0;flex:none;width:100%}
+  #contact{flex-direction:column;min-height:auto;padding:3rem 1.5rem}
+  .contact-right{width:100%;height:350px;flex:none;margin-top:2rem}
+  .contact-left{padding-right:0;width:100%;flex:none}
   footer{flex-direction:column;text-align:center;padding:1.5rem}
 }
 </style>
@@ -449,15 +461,16 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
   <div class="contact-left">
     <div class="eyebrow fu">I Would Love to Hear From You</div>
     <h2 class="sh fu">Contact.</h2>
-    <form class="contact-form" action="https://formsubmit.co/shriharsang@gmail.com" method="POST">
+    <form id="contact-form" class="contact-form" action="https://formsubmit.co/shriharsang@gmail.com" method="POST">
       <!-- FormSubmit Configuration -->
       <input type="hidden" name="_subject" value="New Portfolio Contact Message!">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_autoresponse" value="Thank you for contacting Shri Harsan! I'll get back to you soon.">
       
-      <div class="form-group fu"><label class="form-lbl">Your Name</label><input class="form-inp" type="text" name="name" placeholder="What's your name?" required/></div>
-      <div class="form-group fu"><label class="form-lbl">Your Email</label><input class="form-inp" type="email" name="email" placeholder="What's your email?" required/></div>
-      <div class="form-group fu"><label class="form-lbl">Your Message</label><textarea class="form-ta" name="message" placeholder="What do you want to say?" required></textarea></div>
+      <div class="form-group fu"><label class="form-lbl">Your Name</label><input class="form-inp" type="text" name="name" id="contact-name" placeholder="What's your name?" required/></div>
+      <div class="form-group fu"><label class="form-lbl">Your Email</label><input class="form-inp" type="email" name="email" id="contact-email" placeholder="What's your email?" required/></div>
+      <div class="form-group fu"><label class="form-lbl">Your Message</label><textarea class="form-ta" name="message" id="contact-message" placeholder="What do you want to say?" required></textarea></div>
       <button type="submit" class="btn-send fu">Send Message</button>
     </form>
   </div>
@@ -486,6 +499,58 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
 </footer>
 
 <script>
+// ── CONTACT FORM AJAX SUBMISSION ──
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contact-form');
+  if(form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const button = form.querySelector('.btn-send');
+      const originalText = button.textContent;
+      
+      // Show loading state
+      button.textContent = 'Sending...';
+      button.disabled = true;
+      button.style.opacity = '0.6';
+      
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        // Show success message
+        const notification = document.createElement('div');
+        notification.className = 'success-notification';
+        notification.innerHTML = 'Message sent successfully! I\'ll get back to you soon.';
+        document.body.appendChild(notification);
+        
+        // Reset form
+        form.reset();
+        
+        // Remove notification after 5 seconds
+        setTimeout(() => {
+          notification.style.animation = 'successPop 0.3s reverse';
+          setTimeout(() => notification.remove(), 300);
+        }, 5000);
+        
+      } catch (error) {
+        alert('Oops! Something went wrong. Please try again or email me directly at shriharsang@gmail.com');
+      } finally {
+        // Reset button
+        button.textContent = originalText;
+        button.disabled = false;
+        button.style.opacity = '1';
+      }
+    });
+  }
+});
+
 // ── CURSOR ──
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0;
@@ -737,14 +802,14 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
 (function(){
   const canvas = document.getElementById('earth-canvas');
   if (!canvas || typeof THREE === 'undefined') return;
-  function getSize(){ const p=canvas.parentElement; return{w:p.offsetWidth||Math.floor(window.innerWidth*.5)||500,h:p.offsetHeight||560}; }
+  function getSize(){ const p=canvas.parentElement; return{w:p.offsetWidth||600,h:p.offsetHeight||600}; }
   let {w:W,h:H}=getSize();
   const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   renderer.setSize(W,H);
   const scene=new THREE.Scene();
-  const cam=new THREE.PerspectiveCamera(45,W/H,.1,100);
-  cam.position.z=3.2;
+  const cam=new THREE.PerspectiveCamera(50,W/H,.1,100);
+  cam.position.z=4.2;
 
   // Lighting — sun from upper right (like photo)
   scene.add(new THREE.AmbientLight(0x112244,.6));

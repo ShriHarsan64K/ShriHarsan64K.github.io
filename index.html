@@ -8,7 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html{scroll-behavior:smooth}
 :root{
   --gold:#c9a96e;--gold2:#e2c48a;
   --bg:#080808;--bg2:#0d0d16;
@@ -20,9 +20,9 @@ html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smo
 body{background:var(--bg);color:var(--text);font-family:'Nunito Sans',sans-serif;overflow-x:hidden;cursor:none;line-height:1.6}
 
 /* CURSOR */
-#cur{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%) translateZ(0);transition:width .15s,height .15s;will-change:left,top;display:block;visibility:visible}
-#cur-ring{position:fixed;width:32px;height:32px;border:1.5px solid rgba(201,169,110,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%) translateZ(0);transition:width .2s,height .2s;will-change:left,top;display:block;visibility:visible}
-#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:10000;width:0;pointer-events:none;will-change:width}
+#cur{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;will-change:left,top}
+#cur-ring{position:fixed;width:32px;height:32px;border:1.5px solid rgba(201,169,110,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s;will-change:left,top}
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:10000;width:0;pointer-events:none}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 3.5rem;background:rgba(8,8,8,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
@@ -40,7 +40,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
   background-size:80px 80px}
 
 /* HERO */
-#home{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+#home{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;overflow:hidden}
 #particle-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .hero-line{position:absolute;left:3.5rem;top:50%;transform:translateY(-50%);width:1.5px;height:180px;background:rgba(255,255,255,.15);z-index:2}
 .hero-content{position:relative;z-index:2;padding:5.5rem 3.5rem 3rem 5rem;max-width:600px}
@@ -60,7 +60,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 @keyframes sb{0%{opacity:1;transform:translateY(0)}70%{opacity:0;transform:translateY(12px)}100%{opacity:0;transform:translateY(0)}}
 
 /* SECTIONS */
-.sec{position:relative;padding:5.5rem 3.5rem}
+.sec{position:relative;z-index:1;padding:5.5rem 3.5rem}
 .wrap{max-width:1180px;margin:0 auto}
 .eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text2);margin-bottom:.85rem}
 .sh{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(2.2rem,4.2vw,3.8rem);line-height:1.05;color:var(--text);margin-bottom:1.4rem}
@@ -70,8 +70,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 #about{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
 .about-body{font-size:1rem;line-height:1.88;color:var(--text2);max-width:800px;margin-bottom:2.8rem}
 .gem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.95rem}
-.gem-card{background:var(--card);border:1px solid rgba(42,31,110,.9);border-radius:14px;padding:1.5rem 1.35rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s,border-color .3s;cursor:none;will-change:transform}
-.gem-card:hover{transform:translateY(-5px) translateZ(0);border-color:rgba(201,169,110,.26);box-shadow:0 15px 34px rgba(0,0,0,.5)}
+.gem-card{background:var(--card);border:1px solid rgba(42,31,110,.9);border-radius:14px;padding:1.5rem 1.35rem;transition:transform .3s,box-shadow .3s,border-color .3s;cursor:none}
+.gem-card:hover{transform:translateY(-5px);border-color:rgba(201,169,110,.26);box-shadow:0 15px 34px rgba(0,0,0,.5)}
 .gem-icon{font-size:1.9rem;margin-bottom:.65rem;display:block;animation:gf 5s ease-in-out infinite}
 @keyframes gf{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 .gem-card:nth-child(2) .gem-icon{animation-delay:.8s}
@@ -100,8 +100,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* PROJECTS */
 #projects{background:var(--bg2)}
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
-.proj-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.65rem;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s,border-color .3s;cursor:none;will-change:transform}
-.proj-card:hover{transform:translateY(-6px) translateZ(0);border-color:rgba(201,169,110,.22);box-shadow:0 18px 42px rgba(0,0,0,.48)}
+.proj-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.65rem;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s,border-color .3s;cursor:none}
+.proj-card:hover{transform:translateY(-6px);border-color:rgba(201,169,110,.22);box-shadow:0 18px 42px rgba(0,0,0,.48)}
 .proj-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.66rem;font-weight:700;background:rgba(201,169,110,.13);color:var(--gold);letter-spacing:.05em;margin-bottom:.75rem;align-self:flex-start}
 .proj-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:.96rem;color:var(--text);margin-bottom:.5rem}
 .proj-desc{font-size:.8rem;color:var(--text2);line-height:1.7;flex:1;margin-bottom:.9rem}
@@ -176,22 +176,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .testi-role{font-size:.72rem;color:var(--text2);margin-top:.08rem}
 
 /* CONTACT */
-#contact{background:#000;display:flex;align-items:center;min-height:100vh;padding:5.5rem 3.5rem;overflow:hidden;position:relative;will-change:transform}
-#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 40%, rgba(100,60,180,0.35) 0%, rgba(80,50,150,0.25) 20%, transparent 45%),radial-gradient(ellipse at 75% 25%, rgba(60,40,140,0.3) 0%, rgba(50,35,120,0.2) 25%, transparent 50%),radial-gradient(ellipse at 50% 80%, rgba(120,80,200,0.25) 0%, rgba(90,60,160,0.15) 30%, transparent 55%),radial-gradient(ellipse at 15% 70%, rgba(80,50,150,0.2) 0%, transparent 40%),radial-gradient(ellipse at 85% 60%, rgba(70,45,140,0.25) 0%, transparent 45%),radial-gradient(ellipse at 40% 15%, rgba(90,60,170,0.2) 0%, transparent 35%),radial-gradient(circle at 60% 50%, rgba(100,70,180,0.15) 0%, transparent 30%),linear-gradient(135deg, #0a0818 0%, #150a25 30%, #0f0a1c 60%, #080810 100%);z-index:0;pointer-events:none;will-change:opacity}
-#contact::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 8% 23%, white, transparent 1px),radial-gradient(1px 1px at 15% 67%, white, transparent 1px),radial-gradient(2px 2px at 23% 11%, white, transparent 2px),radial-gradient(1px 1px at 31% 89%, white, transparent 1px),radial-gradient(1px 1px at 42% 34%, white, transparent 1px),radial-gradient(1px 1px at 56% 78%, white, transparent 1px),radial-gradient(2px 2px at 63% 5%, white, transparent 2px),radial-gradient(1px 1px at 71% 56%, white, transparent 1px),radial-gradient(1px 1px at 84% 91%, white, transparent 1px),radial-gradient(1px 1px at 92% 42%, white, transparent 1px),radial-gradient(1px 1px at 4% 51%, white, transparent 1px),radial-gradient(2px 2px at 11% 8%, white, transparent 2px),radial-gradient(1px 1px at 19% 74%, white, transparent 1px),radial-gradient(1px 1px at 28% 19%, white, transparent 1px),radial-gradient(1px 1px at 37% 95%, white, transparent 1px),radial-gradient(2px 2px at 46% 47%, white, transparent 2px),radial-gradient(1px 1px at 53% 3%, white, transparent 1px),radial-gradient(1px 1px at 67% 62%, white, transparent 1px),radial-gradient(1px 1px at 76% 28%, white, transparent 1px),radial-gradient(2px 2px at 88% 84%, white, transparent 2px),radial-gradient(1px 1px at 96% 15%, white, transparent 1px),radial-gradient(1px 1px at 6% 39%, white, transparent 1px),radial-gradient(1px 1px at 13% 86%, white, transparent 1px),radial-gradient(2px 2px at 21% 52%, white, transparent 2px),radial-gradient(1px 1px at 34% 7%, white, transparent 1px),radial-gradient(1px 1px at 41% 71%, white, transparent 1px),radial-gradient(1px 1px at 58% 25%, white, transparent 1px),radial-gradient(2px 2px at 69% 93%, white, transparent 2px),radial-gradient(1px 1px at 79% 44%, white, transparent 1px),radial-gradient(1px 1px at 87% 12%, white, transparent 1px),radial-gradient(1px 1px at 94% 68%, white, transparent 1px),radial-gradient(2px 2px at 3% 77%, white, transparent 2px),radial-gradient(1px 1px at 17% 31%, white, transparent 1px),radial-gradient(1px 1px at 26% 58%, white, transparent 1px),radial-gradient(1px 1px at 39% 14%, white, transparent 1px),radial-gradient(2px 2px at 48% 81%, white, transparent 2px),radial-gradient(1px 1px at 61% 49%, white, transparent 1px),radial-gradient(1px 1px at 73% 9%, white, transparent 1px),radial-gradient(1px 1px at 81% 72%, white, transparent 1px),radial-gradient(2px 2px at 91% 36%, white, transparent 2px),radial-gradient(1px 1px at 98% 97%, white, transparent 1px),radial-gradient(1px 1px at 9% 63%, white, transparent 1px),radial-gradient(1px 1px at 22% 21%, white, transparent 1px),radial-gradient(2px 2px at 33% 88%, white, transparent 2px),radial-gradient(1px 1px at 44% 38%, white, transparent 1px),radial-gradient(1px 1px at 51% 65%, white, transparent 1px),radial-gradient(1px 1px at 64% 17%, white, transparent 1px),radial-gradient(2px 2px at 77% 53%, white, transparent 2px),radial-gradient(1px 1px at 86% 2%, white, transparent 1px),radial-gradient(1px 1px at 93% 76%, white, transparent 1px),radial-gradient(1px 1px at 7% 45%, white, transparent 1px),radial-gradient(2px 2px at 16% 94%, white, transparent 2px),radial-gradient(1px 1px at 29% 27%, white, transparent 1px),radial-gradient(1px 1px at 38% 69%, white, transparent 1px),radial-gradient(1px 1px at 47% 6%, white, transparent 1px),radial-gradient(2px 2px at 59% 82%, white, transparent 2px),radial-gradient(1px 1px at 68% 41%, white, transparent 1px),radial-gradient(1px 1px at 74% 98%, white, transparent 1px),radial-gradient(1px 1px at 83% 54%, white, transparent 1px),radial-gradient(2px 2px at 89% 18%, white, transparent 2px),radial-gradient(1px 1px at 97% 85%, white, transparent 1px),radial-gradient(1px 1px at 5% 29%, white, transparent 1px),radial-gradient(1px 1px at 12% 72%, white, transparent 1px),radial-gradient(2px 2px at 24% 46%, white, transparent 2px),radial-gradient(1px 1px at 35% 4%, white, transparent 1px),radial-gradient(1px 1px at 43% 59%, white, transparent 1px),radial-gradient(1px 1px at 52% 92%, white, transparent 1px),radial-gradient(2px 2px at 66% 33%, white, transparent 2px),radial-gradient(1px 1px at 78% 61%, white, transparent 1px),radial-gradient(1px 1px at 85% 24%, white, transparent 1px),radial-gradient(1px 1px at 90% 87%, white, transparent 1px),radial-gradient(2px 2px at 99% 50%, white, transparent 2px),radial-gradient(1px 1px at 10% 13%, white, transparent 1px),radial-gradient(1px 1px at 20% 55%, white, transparent 1px),radial-gradient(1px 1px at 32% 79%, white, transparent 1px),radial-gradient(2px 2px at 45% 22%, white, transparent 2px),radial-gradient(1px 1px at 54% 36%, white, transparent 1px),radial-gradient(1px 1px at 62% 88%, white, transparent 1px),radial-gradient(1px 1px at 70% 48%, white, transparent 1px),radial-gradient(2px 2px at 82% 10%, white, transparent 2px),radial-gradient(1px 1px at 95% 64%, white, transparent 1px),radial-gradient(1px 1px at 14% 40%, white, transparent 1px),radial-gradient(1px 1px at 27% 83%, white, transparent 1px),radial-gradient(2px 2px at 36% 16%, white, transparent 2px),radial-gradient(1px 1px at 49% 70%, white, transparent 1px),radial-gradient(1px 1px at 57% 30%, white, transparent 1px),radial-gradient(1px 1px at 65% 96%, white, transparent 1px),radial-gradient(2px 2px at 72% 52%, white, transparent 2px),radial-gradient(1px 1px at 80% 20%, white, transparent 1px),radial-gradient(1px 1px at 88% 75%, white, transparent 1px),radial-gradient(1px 1px at 2% 60%, white, transparent 1px),radial-gradient(2px 2px at 18% 35%, white, transparent 2px),radial-gradient(1px 1px at 25% 90%, white, transparent 1px),radial-gradient(1px 1px at 40% 43%, white, transparent 1px),radial-gradient(1px 1px at 55% 11%, white, transparent 1px),radial-gradient(2px 2px at 75% 66%, white, transparent 2px),radial-gradient(1px 1px at 60% 57%, white, transparent 1px);background-size:100% 100%;opacity:0.9;z-index:0;pointer-events:none;animation:starBlink 3s ease-in-out infinite;will-change:opacity}
+#contact{background:#000;display:flex;align-items:center;min-height:100vh;padding:5.5rem 3.5rem;overflow:hidden;position:relative;z-index:1}
+#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%, rgba(138,43,226,0.15) 0%, transparent 50%),radial-gradient(ellipse at 80% 30%, rgba(75,0,130,0.12) 0%, transparent 50%),radial-gradient(ellipse at 50% 70%, rgba(218,165,32,0.08) 0%, transparent 40%),linear-gradient(135deg, #0a0a1e 0%, #1a0a2e 50%, #0f0a1a 100%);z-index:0;pointer-events:none}
+#contact::after{content:'';position:absolute;inset:0;background-image:radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.8), transparent),radial-gradient(1px 1px at 15% 25%, rgba(200,200,255,0.6), transparent),radial-gradient(2px 2px at 20% 80%, rgba(255,255,255,0.7), transparent),radial-gradient(1px 1px at 25% 10%, rgba(255,200,150,0.5), transparent),radial-gradient(3px 3px at 30% 60%, rgba(255,255,255,0.9), transparent),radial-gradient(1px 1px at 35% 40%, rgba(255,255,200,0.6), transparent),radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.8), transparent),radial-gradient(1px 1px at 45% 15%, rgba(200,220,255,0.7), transparent),radial-gradient(2px 2px at 50% 50%, rgba(255,255,255,0.9), transparent),radial-gradient(1px 1px at 55% 85%, rgba(255,255,255,0.6), transparent),radial-gradient(3px 3px at 60% 30%, rgba(255,230,200,0.8), transparent),radial-gradient(1px 1px at 65% 65%, rgba(200,200,255,0.5), transparent),radial-gradient(2px 2px at 70% 20%, rgba(255,255,255,0.7), transparent),radial-gradient(1px 1px at 75% 75%, rgba(255,255,255,0.6), transparent),radial-gradient(2px 2px at 80% 45%, rgba(255,200,200,0.7), transparent),radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.8), transparent),radial-gradient(3px 3px at 90% 10%, rgba(255,255,255,0.9), transparent),radial-gradient(1px 1px at 95% 90%, rgba(200,220,255,0.6), transparent),radial-gradient(2px 2px at 12% 45%, rgba(255,255,255,0.7), transparent),radial-gradient(1px 1px at 18% 88%, rgba(255,230,180,0.5), transparent);background-size:100% 100%;background-position:0% 0%;opacity:0.6;z-index:0;pointer-events:none;animation:twinkle 4s ease-in-out infinite}
 .contact-left{flex:0 0 50%;padding-right:3rem;position:relative;z-index:2}
 .contact-form{margin-top:1.8rem;display:flex;flex-direction:column;gap:1.2rem;max-width:420px}
 .form-group{display:flex;flex-direction:column;gap:.38rem}
 .form-lbl{font-size:.8rem;font-weight:700;color:var(--text)}
-.form-inp,.form-ta{background:rgba(19,19,40,.95);border:1px solid rgba(42,31,110,.9);border-radius:8px;padding:.75rem .95rem;color:var(--text);font-family:'Nunito Sans',sans-serif;font-size:.85rem;outline:none;resize:none;transition:border-color .22s,box-shadow .22s;will-change:border-color,box-shadow}
+.form-inp,.form-ta{background:rgba(19,19,40,.95);border:1px solid rgba(42,31,110,.9);border-radius:8px;padding:.75rem .95rem;color:var(--text);font-family:'Nunito Sans',sans-serif;font-size:.85rem;outline:none;resize:none;transition:border-color .22s,box-shadow .22s}
 .form-inp::placeholder,.form-ta::placeholder{color:rgba(153,153,187,.38)}
 .form-inp:focus,.form-ta:focus{border-color:rgba(201,169,110,.42);box-shadow:0 0 0 3px rgba(201,169,110,.07)}
 .form-ta{height:125px}
-.btn-send{align-self:flex-start;padding:.72rem 1.9rem;background:transparent;border:1.5px solid rgba(255,255,255,.32);color:var(--text);border-radius:7px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;letter-spacing:.06em;transition:all .22s;will-change:border-color,box-shadow,transform}
+.btn-send{align-self:flex-start;padding:.72rem 1.9rem;background:transparent;border:1.5px solid rgba(255,255,255,.32);color:var(--text);border-radius:7px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;letter-spacing:.06em;transition:all .22s}
 .btn-send:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(201,169,110,.17)}
 .contact-right{flex:0 0 50%;height:650px;position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
 #earth-canvas{width:100%;height:100%;display:block}
-@keyframes starBlink{0%{opacity:0.85}25%{opacity:0.95}50%{opacity:0.9}75%{opacity:1.0}100%{opacity:0.85}}
+@keyframes twinkle{0%,100%{opacity:0.6}50%{opacity:0.8}}
 
 /* TECH BAR */
 .tech-bar{background:var(--bg);padding:2.2rem 3.5rem;border-top:1px solid var(--border)}
@@ -347,7 +347,7 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
         <div class="proj-title">Marine Biodiversity Assessment</div>
         <p class="proj-desc">YOLOv8-based reef health monitoring with self-curated ReefIndicator-10K dataset (15K images, 8 species). 83.2% mAP@50 with novel CRHS and TWD ecological metrics across 4 ocean basins.</p>
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-yo">YOLOv8</span><span class="ptag t-dl">Deep Learning</span><span class="ptag t-cv">Computer Vision</span></div>
-        <a href="https://github.com/ShriHarsan64K" target="_blank" class="proj-link">View Details</a>
+        <a href="https://github.com/ShriHarsan64K/Marine_Biodiversity_Ecosystem" target="_blank" class="proj-link">View Details</a>
       </div>
       <div class="proj-card fu">
         <div class="proj-title">🌪️ Cyclone-PINN</div>
@@ -554,51 +554,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // ── CURSOR ──
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0;
-
-// Ensure cursor elements are visible
-if(cur && ring) {
-  cur.style.display = 'block';
-  ring.style.display = 'block';
-  
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;
-    my=e.clientY;
-    if(cur) {
-      cur.style.left=mx+'px';
-      cur.style.top=my+'px';
-    }
-  },{passive:true});
-  
-  (function ar(){
-    rx+=(mx-rx)*.1;
-    ry+=(my-ry)*.1;
-    if(ring) {
-      ring.style.left=rx+'px';
-      ring.style.top=ry+'px';
-    }
-    requestAnimationFrame(ar);
-  })();
-  
-  // Add hover effects to interactive elements
-  document.querySelectorAll('a,button,.gem-card,.proj-card,.ach-card,.cert-card,.testi-card,.skill-cat,.tl-card').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{
-      if(cur && ring) {
-        cur.style.width='18px';
-        cur.style.height='18px';
-        ring.style.width='44px';
-        ring.style.height='44px';
-      }
-    });
-    el.addEventListener('mouseleave',()=>{
-      if(cur && ring) {
-        cur.style.width='10px';
-        cur.style.height='10px';
-        ring.style.width='32px';
-        ring.style.height='32px';
-      }
-    });
-  });
-}
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'},{passive:true});
+(function ar(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar)})();
+document.querySelectorAll('a,button,.gem-card,.proj-card,.ach-card,.cert-card,.testi-card,.skill-cat').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='44px';ring.style.height='44px'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='32px';ring.style.height='32px'});
+});
 
 // ── SCROLL PROGRESS ──
 const prog=document.getElementById('prog');
@@ -835,8 +796,6 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
   tick();
   window.addEventListener('resize',()=>{const w=window.innerWidth,h=window.innerHeight;cam.aspect=w/h;cam.updateProjectionMatrix();renderer.setSize(w,h);},{passive:true});
 })();
-
-
 
 
 // ── REALISTIC EARTH WITH CITY LIGHTS — NO RIBBONS ──

@@ -17,7 +17,10 @@ html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smo
   --text:#f2f2f2;--text2:#9999bb;
   --border:rgba(255,255,255,0.06);
 }
-body{background:var(--bg);color:var(--text);font-family:'Nunito Sans',sans-serif;overflow-x:hidden;cursor:none;line-height:1.6}
+body{background:var(--bg);color:var(--text);font-family:'Nunito Sans',sans-serif;overflow-x:hidden;cursor:none;line-height:1.6;-webkit-overflow-scrolling:touch}
+
+/* PERFORMANCE OPTIMIZATIONS */
+.gem-card,.proj-card,.ach-card,.cert-card,.testi-card,.skill-cat,.tl-card{contain:layout style paint}
 
 /* CURSOR */
 #cur{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%) translateZ(0);transition:width .15s,height .15s;will-change:left,top;display:block;visibility:visible}
@@ -70,7 +73,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 #about{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
 .about-body{font-size:1rem;line-height:1.88;color:var(--text2);max-width:800px;margin-bottom:2.8rem}
 .gem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.95rem}
-.gem-card{background:var(--card);border:1px solid rgba(42,31,110,.9);border-radius:14px;padding:1.5rem 1.35rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s,border-color .3s;cursor:none;will-change:transform}
+.gem-card{background:var(--card);border:1px solid rgba(42,31,110,.9);border-radius:14px;padding:1.5rem 1.35rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s,border-color .3s;cursor:none;will-change:transform;transform:translateZ(0)}
 .gem-card:hover{transform:translateY(-5px) translateZ(0);border-color:rgba(201,169,110,.26);box-shadow:0 15px 34px rgba(0,0,0,.5)}
 .gem-icon{font-size:1.9rem;margin-bottom:.65rem;display:block;animation:gf 5s ease-in-out infinite}
 @keyframes gf{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -86,8 +89,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .tl-line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(201,169,110,.3) 10%,rgba(201,169,110,.3) 90%,transparent);transform:translateX(-50%)}
 .tl-item{display:grid;grid-template-columns:1fr 80px 1fr;margin-bottom:3rem}
 .tl-card-wrap{padding:0 .5rem}
-.tl-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.5rem 1.7rem;transition:transform .3s,border-color .3s,box-shadow .3s}
-.tl-card:hover{transform:translateY(-4px);border-color:rgba(201,169,110,.22);box-shadow:0 12px 32px rgba(0,0,0,.42)}
+.tl-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.5rem 1.7rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),border-color .3s,box-shadow .3s;will-change:transform;transform:translateZ(0)}
+.tl-card:hover{transform:translateY(-4px) translateZ(0);border-color:rgba(201,169,110,.22);box-shadow:0 12px 32px rgba(0,0,0,.42)}
 .tl-center{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding-top:.9rem}
 .tl-node{width:50px;height:50px;border-radius:50%;background:var(--purple);border:1.5px solid rgba(201,169,110,.32);display:flex;align-items:center;justify-content:center;font-size:1.25rem;box-shadow:0 0 16px rgba(42,31,110,.65)}
 .tl-date{font-family:'DM Mono',monospace;font-size:.66rem;color:var(--text2);text-align:center;white-space:nowrap}
@@ -100,7 +103,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* PROJECTS */
 #projects{background:var(--bg2)}
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
-.proj-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.65rem;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s,border-color .3s;cursor:none;will-change:transform}
+.proj-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.65rem;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s,border-color .3s;cursor:none;will-change:transform;transform:translateZ(0)}
 .proj-card:hover{transform:translateY(-6px) translateZ(0);border-color:rgba(201,169,110,.22);box-shadow:0 18px 42px rgba(0,0,0,.48)}
 .proj-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.66rem;font-weight:700;background:rgba(201,169,110,.13);color:var(--gold);letter-spacing:.05em;margin-bottom:.75rem;align-self:flex-start}
 .proj-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:.96rem;color:var(--text);margin-bottom:.5rem}
@@ -132,9 +135,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* ACHIEVEMENTS */
 #achievements{background:var(--bg)}
 .ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
-.ach-card{background:var(--card);border-radius:13px;padding:1.5rem;border-left:3px solid var(--gold);transition:transform .3s,box-shadow .3s;cursor:none}
+.ach-card{background:var(--card);border-radius:13px;padding:1.5rem;border-left:3px solid var(--gold);transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s;cursor:none;will-change:transform;transform:translateZ(0)}
 .ach-card.sv{border-left-color:#c0c0c0}.ach-card.br{border-left-color:#cd7f32}.ach-card.cy{border-left-color:#00bcd4}
-.ach-card:hover{transform:translateY(-4px);box-shadow:0 13px 30px rgba(0,0,0,.42)}
+.ach-card:hover{transform:translateY(-4px) translateZ(0);box-shadow:0 13px 30px rgba(0,0,0,.42)}
 .ach-badge{display:inline-block;padding:.18rem .58rem;border-radius:5px;font-size:.66rem;font-weight:700;letter-spacing:.06em;margin-bottom:.65rem}
 .bg-g{background:rgba(201,169,110,.15);color:var(--gold)}.bg-s{background:rgba(192,192,192,.15);color:#d0d0d0}.bg-b{background:rgba(205,127,50,.15);color:#d4935a}.bg-c{background:rgba(0,188,212,.12);color:#4dd0e1}
 .ach-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;color:var(--text);margin-bottom:.22rem}
@@ -144,8 +147,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* SKILLS */
 #skills{background:var(--bg2)}
 .skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem}
-.skill-cat{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.4rem;transition:transform .3s,border-color .3s;cursor:none}
-.skill-cat:hover{transform:translateY(-4px);border-color:rgba(201,169,110,.22)}
+.skill-cat{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.4rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),border-color .3s;cursor:none;will-change:transform;transform:translateZ(0)}
+.skill-cat:hover{transform:translateY(-4px) translateZ(0);border-color:rgba(201,169,110,.22)}
 .skill-cat-h{font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.8rem}
 .pills{display:flex;flex-wrap:wrap;gap:.38rem}
 .pill{padding:.22rem .65rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:20px;font-size:.74rem;font-family:'DM Mono',monospace;color:var(--text2);transition:border-color .2s,color .2s}
@@ -154,8 +157,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* CERTS */
 #certifications{background:var(--bg)}
 .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.95rem;margin-top:2.5rem}
-.cert-card{background:var(--card);border-radius:12px;padding:1.3rem;border:1px solid rgba(42,31,110,.8);border-top:2.5px solid var(--gold);transition:transform .3s,box-shadow .3s;cursor:none}
-.cert-card:hover{transform:translateY(-4px);box-shadow:0 11px 28px rgba(0,0,0,.38)}
+.cert-card{background:var(--card);border-radius:12px;padding:1.3rem;border:1px solid rgba(42,31,110,.8);border-top:2.5px solid var(--gold);transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s;cursor:none;will-change:transform;transform:translateZ(0)}
+.cert-card:hover{transform:translateY(-4px) translateZ(0);box-shadow:0 11px 28px rgba(0,0,0,.38)}
 .cert-iss{font-size:.7rem;color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.38rem}
 .cert-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.84rem;color:var(--text);margin-bottom:.32rem;line-height:1.38}
 .cert-meta{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text2)}
@@ -163,8 +166,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* TESTIMONIALS */
 #testimonials{background:var(--bg2)}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
-.testi-card{background:var(--card2);border:1px solid rgba(42,31,110,.6);border-radius:15px;padding:1.8rem 1.65rem 1.5rem;transition:transform .3s,box-shadow .3s;cursor:none}
-.testi-card:hover{transform:translateY(-5px);box-shadow:0 17px 38px rgba(0,0,0,.48)}
+.testi-card{background:var(--card2);border:1px solid rgba(42,31,110,.6);border-radius:15px;padding:1.8rem 1.65rem 1.5rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s;cursor:none;will-change:transform;transform:translateZ(0)}
+.testi-card:hover{transform:translateY(-5px) translateZ(0);box-shadow:0 17px 38px rgba(0,0,0,.48)}
 .testi-qq{display:flex;flex-direction:column;gap:6px;margin-bottom:1.1rem}
 .testi-qq span{display:block;height:3.5px;border-radius:2px;background:var(--gold)}
 .testi-qq span:last-child{width:60%}
@@ -300,6 +303,23 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
       <div class="tl-item fu">
         <div class="tl-card-wrap" style="grid-column:1">
           <div class="tl-card">
+            <div class="tl-role">Gen AI Virtual Intern</div>
+            <div class="tl-co">AICTE-EduSkills & AWS Academy</div>
+            <ul class="tl-ul">
+              <li>Completed intensive 10-week Gen AI curriculum covering transformer architectures, prompt engineering, and AWS AI services as measured by hands-on projects across LLM fundamentals, NLP applications, and cloud-based ML deployment</li>
+              <li>Built production-ready generative AI systems by implementing RAG pipelines, fine-tuning large language models, and deploying intelligent applications on AWS infrastructure with focus on real-world scalability and performance optimization</li>
+              <li>Gained specialized expertise in Amazon Bedrock, SageMaker, and generative AI best practices through structured coursework combining theoretical foundations with practical implementation across multiple AI/ML service offerings</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-center" style="grid-column:2"><div class="tl-node">🤖</div><div class="tl-date">Jan – Mar 2026</div></div>
+        <div style="grid-column:3"></div>
+      </div>
+      <div class="tl-item fu">
+        <div style="grid-column:1"></div>
+        <div class="tl-center" style="grid-column:2"><div class="tl-node">🏭</div><div class="tl-date">Mar – May 2025</div></div>
+        <div class="tl-card-wrap" style="grid-column:3">
+          <div class="tl-card">
             <div class="tl-role">Data Entry Operator Intern</div>
             <div class="tl-co">Motherson Group of Companies, Chennai</div>
             <ul class="tl-ul">
@@ -309,8 +329,6 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
             </ul>
           </div>
         </div>
-        <div class="tl-center" style="grid-column:2"><div class="tl-node">🏭</div><div class="tl-date">Mar – May 2025</div></div>
-        <div style="grid-column:3"></div>
       </div>
       <div class="tl-item fu">
         <div style="grid-column:1"></div>
@@ -339,20 +357,20 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
       <div class="proj-card fu">
         <div class="proj-badge">🏆 TOP 10 · SCHNEIDER HACKATHON</div>
         <div class="proj-title">AI Code Reviewer & Auto-Fix</div>
-        <p class="proj-desc">Improved code quality scores by 171% (from 35 to 95 out of 100) as measured by Schneider Electric's industrial standards compliance framework, by developing a dual-AI VSCode extension with RAG architecture that analyzes code against 558 rules across 7 programming languages and provides one-click automated fixes, reducing code review bottlenecks by 60%.</p>
+        <p class="proj-desc">Improved code quality scores by 171% (from 35 to 95 out of 100) as measured by Schneider Electric's industrial compliance framework, by developing a VSCode extension with dual-AI system (GPT-4 + Gemini) analyzing 558 rules across 7 programming languages with RAG architecture, reducing code review time by 60% and achieving sub-2-second analysis per 1,000 lines of code.</p>
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-fl">Flask</span><span class="ptag t-gp">GPT-4</span><span class="ptag t-re">React</span><span class="ptag t-ra">RAG</span></div>
         <a href="https://github.com/ShriHarsan64K/Schneider-AI-Code-Reviewer" target="_blank" class="proj-link">View Code</a>
       </div>
       <div class="proj-card fu">
         <div class="proj-badge">📚 M.TECH THESIS</div>
         <div class="proj-title">Marine Biodiversity Assessment</div>
-        <p class="proj-desc">Achieved 83.2% mean average precision (mAP@50) in reef health monitoring as measured across 15,000 curated images spanning 4 ocean basins, by developing a YOLOv8-based computer vision system with custom ecological metrics (CRHS and TWD) trained on a self-annotated ReefIndicator-10K dataset covering 8 critical marine species, enabling automated coral reef health assessment at scale.</p>
+        <p class="proj-desc">Achieved 95.1% mean average precision (mAP@0.5) with 93.8% precision and 59.3 FPS real-time performance on consumer GPU (RTX 3050 6GB) as measured across 5,201 curated reef images, by developing a YOLOv8-based computer vision system with novel Marine Health Index (MHI) scoring algorithm combining weighted Shannon diversity and trophic balance metrics, enabling automated coral reef health assessment from underwater video at production-grade speed.</p>
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-yo">YOLOv8</span><span class="ptag t-dl">Deep Learning</span><span class="ptag t-cv">Computer Vision</span></div>
         <a href="https://github.com/ShriHarsan64K" target="_blank" class="proj-link">View Details</a>
       </div>
       <div class="proj-card fu">
         <div class="proj-title">🌪️ Cyclone-PINN</div>
-        <p class="proj-desc">Reconstructed tropical cyclone vortex structures with 88% accuracy (R² score) as measured against complete ERA5 reanalysis data, by developing a Physics-Informed Neural Network that fuses atmospheric equations with deep learning to recover wind and pressure fields from only 20% of available observations, demonstrating 5× data efficiency improvement over traditional numerical methods in the Hurricane Ida case study.</p>
+        <p class="proj-desc">Reconstructed tropical cyclone wind and pressure fields with 88% accuracy (R² = 0.88 for U-wind, R² = 0.87 for V-wind) as measured against complete ERA5 reanalysis data, by developing a Physics-Informed Neural Network integrating atmospheric continuity equations with deep learning to recover Hurricane Ida's vortex structure from only 20% of available observations (336 sparse points), demonstrating 5× data efficiency improvement and localizing the storm center to within 58 km of official best-track position.</p>
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-pt">PyTorch</span><span class="ptag t-pm">Physics-ML</span><span class="ptag t-er">ERA5</span></div>
         <a href="https://github.com/ShriHarsan64K/Cyclone-PINN" target="_blank" class="proj-link">View Code</a>
       </div>
@@ -603,7 +621,17 @@ if(cur && ring) {
 
 // ── SCROLL PROGRESS ──
 const prog=document.getElementById('prog');
-window.addEventListener('scroll',()=>{const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=(s/h*100)+'%'},{passive:true});
+let scrollTicking=false;
+window.addEventListener('scroll',()=>{
+  if(!scrollTicking){
+    window.requestAnimationFrame(()=>{
+      const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;
+      prog.style.width=(s/h*100)+'%';
+      scrollTicking=false;
+    });
+    scrollTicking=true;
+  }
+},{passive:true});
 
 // ── SMOOTH SCROLL ──
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})}));

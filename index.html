@@ -19,13 +19,13 @@ html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smo
 }
 body{background:var(--bg);color:var(--text);font-family:'Nunito Sans',sans-serif;overflow-x:hidden;cursor:none;line-height:1.6;-webkit-overflow-scrolling:touch}
 
-/* PERFORMANCE OPTIMIZATIONS */
-.gem-card,.proj-card,.ach-card,.cert-card,.testi-card,.skill-cat,.tl-card{contain:layout style paint}
+/* PERFORMANCE: contain layout+style only, NOT paint */
+.gem-card,.proj-card,.ach-card,.cert-card,.testi-card,.skill-cat,.tl-card{contain:layout style}
 
 /* CURSOR */
-#cur{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%) translateZ(0);transition:width .15s,height .15s;will-change:left,top;display:block;visibility:visible}
-#cur-ring{position:fixed;width:32px;height:32px;border:1.5px solid rgba(201,169,110,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%) translateZ(0);transition:width .2s,height .2s;will-change:left,top;display:block;visibility:visible}
-#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:10000;width:0;pointer-events:none;will-change:width}
+#cur{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:width .15s,height .15s;will-change:transform;display:block;visibility:visible}
+#cur-ring{position:fixed;width:32px;height:32px;border:1.5px solid rgba(201,169,110,.45);border-radius:50%;pointer-events:none;z-index:9998;transition:width .2s,height .2s;will-change:transform;display:block;visibility:visible}
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:10000;width:0;pointer-events:none;will-change:transform}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 3.5rem;background:rgba(8,8,8,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
@@ -73,7 +73,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 #about{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
 .about-body{font-size:1rem;line-height:1.88;color:var(--text2);max-width:800px;margin-bottom:2.8rem}
 .gem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.95rem}
-.gem-card{background:var(--card);border:1px solid rgba(42,31,110,.9);border-radius:14px;padding:1.5rem 1.35rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s,border-color .3s;cursor:none;will-change:transform;transform:translateZ(0)}
+.gem-card{background:var(--card);border:1px solid rgba(42,31,110,.9);border-radius:14px;padding:1.5rem 1.35rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s,border-color .3s;cursor:none;transform:translateZ(0)}
+.gem-card:hover{will-change:transform}
 .gem-card:hover{transform:translateY(-5px) translateZ(0);border-color:rgba(201,169,110,.26);box-shadow:0 15px 34px rgba(0,0,0,.5)}
 .gem-icon{font-size:1.9rem;margin-bottom:.65rem;display:block;animation:gf 5s ease-in-out infinite}
 @keyframes gf{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -89,11 +90,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .tl-line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(201,169,110,.3) 10%,rgba(201,169,110,.3) 90%,transparent);transform:translateX(-50%)}
 .tl-item{display:grid;grid-template-columns:1fr 80px 1fr;margin-bottom:3rem}
 .tl-card-wrap{padding:0 .5rem}
-.tl-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.5rem 1.7rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),border-color .3s,box-shadow .3s;will-change:transform;transform:translateZ(0)}
+.tl-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.5rem 1.7rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),border-color .3s,box-shadow .3s;transform:translateZ(0)}
+.tl-card:hover{will-change:transform}
 .tl-card:hover{transform:translateY(-4px) translateZ(0);border-color:rgba(201,169,110,.22);box-shadow:0 12px 32px rgba(0,0,0,.42)}
 .tl-center{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding-top:.9rem}
 .tl-node{width:50px;height:50px;border-radius:50%;background:var(--purple);border:1.5px solid rgba(201,169,110,.32);display:flex;align-items:center;justify-content:center;font-size:1.25rem;box-shadow:0 0 16px rgba(42,31,110,.65)}
-.tl-date{font-family:'DM Mono',monospace;font-size:.66rem;color:var(--text2);text-align:center;white-space:nowrap}
+.tl-date{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text2);text-align:center;white-space:normal;line-height:1.4}
 .tl-role{font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;color:var(--text);margin-bottom:.22rem}
 .tl-co{font-size:.79rem;color:var(--gold);font-weight:600;margin-bottom:.65rem}
 .tl-ul{list-style:none}
@@ -103,7 +105,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* PROJECTS */
 #projects{background:var(--bg2)}
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
-.proj-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.65rem;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s,border-color .3s;cursor:none;will-change:transform;transform:translateZ(0)}
+.proj-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.65rem;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s,border-color .3s;cursor:none;transform:translateZ(0)}
+.proj-card:hover{will-change:transform}
 .proj-card:hover{transform:translateY(-6px) translateZ(0);border-color:rgba(201,169,110,.22);box-shadow:0 18px 42px rgba(0,0,0,.48)}
 .proj-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.66rem;font-weight:700;background:rgba(201,169,110,.13);color:var(--gold);letter-spacing:.05em;margin-bottom:.75rem;align-self:flex-start}
 .proj-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:.96rem;color:var(--text);margin-bottom:.5rem}
@@ -135,7 +138,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* ACHIEVEMENTS */
 #achievements{background:var(--bg)}
 .ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
-.ach-card{background:var(--card);border-radius:13px;padding:1.5rem;border-left:3px solid var(--gold);transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s;cursor:none;will-change:transform;transform:translateZ(0)}
+.ach-card{background:var(--card);border-radius:13px;padding:1.5rem;border-left:3px solid var(--gold);transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s;cursor:none;transform:translateZ(0)}
+.ach-card:hover{will-change:transform}
 .ach-card.sv{border-left-color:#c0c0c0}.ach-card.br{border-left-color:#cd7f32}.ach-card.cy{border-left-color:#00bcd4}
 .ach-card:hover{transform:translateY(-4px) translateZ(0);box-shadow:0 13px 30px rgba(0,0,0,.42)}
 .ach-badge{display:inline-block;padding:.18rem .58rem;border-radius:5px;font-size:.66rem;font-weight:700;letter-spacing:.06em;margin-bottom:.65rem}
@@ -146,8 +150,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 
 /* SKILLS */
 #skills{background:var(--bg2)}
-.skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem}
-.skill-cat{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.4rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),border-color .3s;cursor:none;will-change:transform;transform:translateZ(0)}
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.skill-cat{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.4rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),border-color .3s;cursor:none;transform:translateZ(0)}
+.skill-cat:hover{will-change:transform}
 .skill-cat:hover{transform:translateY(-4px) translateZ(0);border-color:rgba(201,169,110,.22)}
 .skill-cat-h{font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.8rem}
 .pills{display:flex;flex-wrap:wrap;gap:.38rem}
@@ -157,7 +162,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* CERTS */
 #certifications{background:var(--bg)}
 .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.95rem;margin-top:2.5rem}
-.cert-card{background:var(--card);border-radius:12px;padding:1.3rem;border:1px solid rgba(42,31,110,.8);border-top:2.5px solid var(--gold);transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s;cursor:none;will-change:transform;transform:translateZ(0)}
+.cert-card{background:var(--card);border-radius:12px;padding:1.3rem;border:1px solid rgba(42,31,110,.8);border-top:2.5px solid var(--gold);transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s;cursor:none;transform:translateZ(0)}
+.cert-card:hover{will-change:transform}
 .cert-card:hover{transform:translateY(-4px) translateZ(0);box-shadow:0 11px 28px rgba(0,0,0,.38)}
 .cert-iss{font-size:.7rem;color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.38rem}
 .cert-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.84rem;color:var(--text);margin-bottom:.32rem;line-height:1.38}
@@ -166,7 +172,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* TESTIMONIALS */
 #testimonials{background:var(--bg2)}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
-.testi-card{background:var(--card2);border:1px solid rgba(42,31,110,.6);border-radius:15px;padding:1.8rem 1.65rem 1.5rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s;cursor:none;will-change:transform;transform:translateZ(0)}
+.testi-card{background:var(--card2);border:1px solid rgba(42,31,110,.6);border-radius:15px;padding:1.8rem 1.65rem 1.5rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s;cursor:none;transform:translateZ(0)}
+.testi-card:hover{will-change:transform}
 .testi-card:hover{transform:translateY(-5px) translateZ(0);box-shadow:0 17px 38px rgba(0,0,0,.48)}
 .testi-qq{display:flex;flex-direction:column;gap:6px;margin-bottom:1.1rem}
 .testi-qq span{display:block;height:3.5px;border-radius:2px;background:var(--gold)}
@@ -179,18 +186,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .testi-role{font-size:.72rem;color:var(--text2);margin-top:.08rem}
 
 /* CONTACT */
-#contact{background:#000;display:flex;align-items:center;min-height:100vh;padding:5.5rem 3.5rem;overflow:hidden;position:relative;will-change:transform}
-#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 40%, rgba(100,60,180,0.35) 0%, rgba(80,50,150,0.25) 20%, transparent 45%),radial-gradient(ellipse at 75% 25%, rgba(60,40,140,0.3) 0%, rgba(50,35,120,0.2) 25%, transparent 50%),radial-gradient(ellipse at 50% 80%, rgba(120,80,200,0.25) 0%, rgba(90,60,160,0.15) 30%, transparent 55%),radial-gradient(ellipse at 15% 70%, rgba(80,50,150,0.2) 0%, transparent 40%),radial-gradient(ellipse at 85% 60%, rgba(70,45,140,0.25) 0%, transparent 45%),radial-gradient(ellipse at 40% 15%, rgba(90,60,170,0.2) 0%, transparent 35%),radial-gradient(circle at 60% 50%, rgba(100,70,180,0.15) 0%, transparent 30%),linear-gradient(135deg, #0a0818 0%, #150a25 30%, #0f0a1c 60%, #080810 100%);z-index:0;pointer-events:none;will-change:opacity}
-#contact::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 8% 23%, white, transparent 1px),radial-gradient(1px 1px at 15% 67%, white, transparent 1px),radial-gradient(2px 2px at 23% 11%, white, transparent 2px),radial-gradient(1px 1px at 31% 89%, white, transparent 1px),radial-gradient(1px 1px at 42% 34%, white, transparent 1px),radial-gradient(1px 1px at 56% 78%, white, transparent 1px),radial-gradient(2px 2px at 63% 5%, white, transparent 2px),radial-gradient(1px 1px at 71% 56%, white, transparent 1px),radial-gradient(1px 1px at 84% 91%, white, transparent 1px),radial-gradient(1px 1px at 92% 42%, white, transparent 1px),radial-gradient(1px 1px at 4% 51%, white, transparent 1px),radial-gradient(2px 2px at 11% 8%, white, transparent 2px),radial-gradient(1px 1px at 19% 74%, white, transparent 1px),radial-gradient(1px 1px at 28% 19%, white, transparent 1px),radial-gradient(1px 1px at 37% 95%, white, transparent 1px),radial-gradient(2px 2px at 46% 47%, white, transparent 2px),radial-gradient(1px 1px at 53% 3%, white, transparent 1px),radial-gradient(1px 1px at 67% 62%, white, transparent 1px),radial-gradient(1px 1px at 76% 28%, white, transparent 1px),radial-gradient(2px 2px at 88% 84%, white, transparent 2px),radial-gradient(1px 1px at 96% 15%, white, transparent 1px),radial-gradient(1px 1px at 6% 39%, white, transparent 1px),radial-gradient(1px 1px at 13% 86%, white, transparent 1px),radial-gradient(2px 2px at 21% 52%, white, transparent 2px),radial-gradient(1px 1px at 34% 7%, white, transparent 1px),radial-gradient(1px 1px at 41% 71%, white, transparent 1px),radial-gradient(1px 1px at 58% 25%, white, transparent 1px),radial-gradient(2px 2px at 69% 93%, white, transparent 2px),radial-gradient(1px 1px at 79% 44%, white, transparent 1px),radial-gradient(1px 1px at 87% 12%, white, transparent 1px),radial-gradient(1px 1px at 94% 68%, white, transparent 1px),radial-gradient(2px 2px at 3% 77%, white, transparent 2px),radial-gradient(1px 1px at 17% 31%, white, transparent 1px),radial-gradient(1px 1px at 26% 58%, white, transparent 1px),radial-gradient(1px 1px at 39% 14%, white, transparent 1px),radial-gradient(2px 2px at 48% 81%, white, transparent 2px),radial-gradient(1px 1px at 61% 49%, white, transparent 1px),radial-gradient(1px 1px at 73% 9%, white, transparent 1px),radial-gradient(1px 1px at 81% 72%, white, transparent 1px),radial-gradient(2px 2px at 91% 36%, white, transparent 2px),radial-gradient(1px 1px at 98% 97%, white, transparent 1px),radial-gradient(1px 1px at 9% 63%, white, transparent 1px),radial-gradient(1px 1px at 22% 21%, white, transparent 1px),radial-gradient(2px 2px at 33% 88%, white, transparent 2px),radial-gradient(1px 1px at 44% 38%, white, transparent 1px),radial-gradient(1px 1px at 51% 65%, white, transparent 1px),radial-gradient(1px 1px at 64% 17%, white, transparent 1px),radial-gradient(2px 2px at 77% 53%, white, transparent 2px),radial-gradient(1px 1px at 86% 2%, white, transparent 1px),radial-gradient(1px 1px at 93% 76%, white, transparent 1px),radial-gradient(1px 1px at 7% 45%, white, transparent 1px),radial-gradient(2px 2px at 16% 94%, white, transparent 2px),radial-gradient(1px 1px at 29% 27%, white, transparent 1px),radial-gradient(1px 1px at 38% 69%, white, transparent 1px),radial-gradient(1px 1px at 47% 6%, white, transparent 1px),radial-gradient(2px 2px at 59% 82%, white, transparent 2px),radial-gradient(1px 1px at 68% 41%, white, transparent 1px),radial-gradient(1px 1px at 74% 98%, white, transparent 1px),radial-gradient(1px 1px at 83% 54%, white, transparent 1px),radial-gradient(2px 2px at 89% 18%, white, transparent 2px),radial-gradient(1px 1px at 97% 85%, white, transparent 1px),radial-gradient(1px 1px at 5% 29%, white, transparent 1px),radial-gradient(1px 1px at 12% 72%, white, transparent 1px),radial-gradient(2px 2px at 24% 46%, white, transparent 2px),radial-gradient(1px 1px at 35% 4%, white, transparent 1px),radial-gradient(1px 1px at 43% 59%, white, transparent 1px),radial-gradient(1px 1px at 52% 92%, white, transparent 1px),radial-gradient(2px 2px at 66% 33%, white, transparent 2px),radial-gradient(1px 1px at 78% 61%, white, transparent 1px),radial-gradient(1px 1px at 85% 24%, white, transparent 1px),radial-gradient(1px 1px at 90% 87%, white, transparent 1px),radial-gradient(2px 2px at 99% 50%, white, transparent 2px),radial-gradient(1px 1px at 10% 13%, white, transparent 1px),radial-gradient(1px 1px at 20% 55%, white, transparent 1px),radial-gradient(1px 1px at 32% 79%, white, transparent 1px),radial-gradient(2px 2px at 45% 22%, white, transparent 2px),radial-gradient(1px 1px at 54% 36%, white, transparent 1px),radial-gradient(1px 1px at 62% 88%, white, transparent 1px),radial-gradient(1px 1px at 70% 48%, white, transparent 1px),radial-gradient(2px 2px at 82% 10%, white, transparent 2px),radial-gradient(1px 1px at 95% 64%, white, transparent 1px),radial-gradient(1px 1px at 14% 40%, white, transparent 1px),radial-gradient(1px 1px at 27% 83%, white, transparent 1px),radial-gradient(2px 2px at 36% 16%, white, transparent 2px),radial-gradient(1px 1px at 49% 70%, white, transparent 1px),radial-gradient(1px 1px at 57% 30%, white, transparent 1px),radial-gradient(1px 1px at 65% 96%, white, transparent 1px),radial-gradient(2px 2px at 72% 52%, white, transparent 2px),radial-gradient(1px 1px at 80% 20%, white, transparent 1px),radial-gradient(1px 1px at 88% 75%, white, transparent 1px),radial-gradient(1px 1px at 2% 60%, white, transparent 1px),radial-gradient(2px 2px at 18% 35%, white, transparent 2px),radial-gradient(1px 1px at 25% 90%, white, transparent 1px),radial-gradient(1px 1px at 40% 43%, white, transparent 1px),radial-gradient(1px 1px at 55% 11%, white, transparent 1px),radial-gradient(2px 2px at 75% 66%, white, transparent 2px),radial-gradient(1px 1px at 60% 57%, white, transparent 1px);background-size:100% 100%;opacity:0.9;z-index:0;pointer-events:none;animation:starBlink 3s ease-in-out infinite;will-change:opacity}
+#contact{background:#000;display:flex;align-items:center;min-height:100vh;padding:5.5rem 3.5rem;overflow:hidden;position:relative}
+#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 40%, rgba(100,60,180,0.35) 0%, rgba(80,50,150,0.25) 20%, transparent 45%),radial-gradient(ellipse at 75% 25%, rgba(60,40,140,0.3) 0%, rgba(50,35,120,0.2) 25%, transparent 50%),radial-gradient(ellipse at 50% 80%, rgba(120,80,200,0.25) 0%, rgba(90,60,160,0.15) 30%, transparent 55%),radial-gradient(ellipse at 15% 70%, rgba(80,50,150,0.2) 0%, transparent 40%),radial-gradient(ellipse at 85% 60%, rgba(70,45,140,0.25) 0%, transparent 45%),radial-gradient(ellipse at 40% 15%, rgba(90,60,170,0.2) 0%, transparent 35%),radial-gradient(circle at 60% 50%, rgba(100,70,180,0.15) 0%, transparent 30%),linear-gradient(135deg, #0a0818 0%, #150a25 30%, #0f0a1c 60%, #080810 100%);z-index:0;pointer-events:none}
+#contact::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 8% 23%, white, transparent 1px),radial-gradient(1px 1px at 15% 67%, white, transparent 1px),radial-gradient(2px 2px at 23% 11%, white, transparent 2px),radial-gradient(1px 1px at 31% 89%, white, transparent 1px),radial-gradient(1px 1px at 42% 34%, white, transparent 1px),radial-gradient(1px 1px at 56% 78%, white, transparent 1px),radial-gradient(2px 2px at 63% 5%, white, transparent 2px),radial-gradient(1px 1px at 71% 56%, white, transparent 1px),radial-gradient(1px 1px at 84% 91%, white, transparent 1px),radial-gradient(1px 1px at 92% 42%, white, transparent 1px),radial-gradient(1px 1px at 4% 51%, white, transparent 1px),radial-gradient(2px 2px at 11% 8%, white, transparent 2px),radial-gradient(1px 1px at 19% 74%, white, transparent 1px),radial-gradient(1px 1px at 28% 19%, white, transparent 1px),radial-gradient(1px 1px at 37% 95%, white, transparent 1px),radial-gradient(2px 2px at 46% 47%, white, transparent 2px),radial-gradient(1px 1px at 53% 3%, white, transparent 1px),radial-gradient(1px 1px at 67% 62%, white, transparent 1px),radial-gradient(1px 1px at 76% 28%, white, transparent 1px),radial-gradient(2px 2px at 88% 84%, white, transparent 2px),radial-gradient(1px 1px at 96% 15%, white, transparent 1px),radial-gradient(1px 1px at 6% 39%, white, transparent 1px),radial-gradient(1px 1px at 13% 86%, white, transparent 1px),radial-gradient(2px 2px at 21% 52%, white, transparent 2px),radial-gradient(1px 1px at 34% 7%, white, transparent 1px),radial-gradient(1px 1px at 41% 71%, white, transparent 1px),radial-gradient(1px 1px at 58% 25%, white, transparent 1px),radial-gradient(2px 2px at 69% 93%, white, transparent 2px),radial-gradient(1px 1px at 79% 44%, white, transparent 1px),radial-gradient(1px 1px at 87% 12%, white, transparent 1px),radial-gradient(1px 1px at 94% 68%, white, transparent 1px),radial-gradient(2px 2px at 3% 77%, white, transparent 2px),radial-gradient(1px 1px at 17% 31%, white, transparent 1px),radial-gradient(1px 1px at 26% 58%, white, transparent 1px),radial-gradient(1px 1px at 39% 14%, white, transparent 1px),radial-gradient(2px 2px at 48% 81%, white, transparent 2px),radial-gradient(1px 1px at 61% 49%, white, transparent 1px),radial-gradient(1px 1px at 73% 9%, white, transparent 1px),radial-gradient(1px 1px at 81% 72%, white, transparent 1px),radial-gradient(2px 2px at 91% 36%, white, transparent 2px),radial-gradient(1px 1px at 98% 97%, white, transparent 1px),radial-gradient(1px 1px at 9% 63%, white, transparent 1px),radial-gradient(1px 1px at 22% 21%, white, transparent 1px),radial-gradient(2px 2px at 33% 88%, white, transparent 2px),radial-gradient(1px 1px at 44% 38%, white, transparent 1px),radial-gradient(1px 1px at 51% 65%, white, transparent 1px),radial-gradient(1px 1px at 64% 17%, white, transparent 1px),radial-gradient(2px 2px at 77% 53%, white, transparent 2px),radial-gradient(1px 1px at 86% 2%, white, transparent 1px),radial-gradient(1px 1px at 93% 76%, white, transparent 1px),radial-gradient(1px 1px at 7% 45%, white, transparent 1px),radial-gradient(2px 2px at 16% 94%, white, transparent 2px),radial-gradient(1px 1px at 29% 27%, white, transparent 1px),radial-gradient(1px 1px at 38% 69%, white, transparent 1px),radial-gradient(1px 1px at 47% 6%, white, transparent 1px),radial-gradient(2px 2px at 59% 82%, white, transparent 2px),radial-gradient(1px 1px at 68% 41%, white, transparent 1px),radial-gradient(1px 1px at 74% 98%, white, transparent 1px),radial-gradient(1px 1px at 83% 54%, white, transparent 1px),radial-gradient(2px 2px at 89% 18%, white, transparent 2px),radial-gradient(1px 1px at 97% 85%, white, transparent 1px),radial-gradient(1px 1px at 5% 29%, white, transparent 1px),radial-gradient(1px 1px at 12% 72%, white, transparent 1px),radial-gradient(2px 2px at 24% 46%, white, transparent 2px),radial-gradient(1px 1px at 35% 4%, white, transparent 1px),radial-gradient(1px 1px at 43% 59%, white, transparent 1px),radial-gradient(1px 1px at 52% 92%, white, transparent 1px),radial-gradient(2px 2px at 66% 33%, white, transparent 2px),radial-gradient(1px 1px at 78% 61%, white, transparent 1px),radial-gradient(1px 1px at 85% 24%, white, transparent 1px),radial-gradient(1px 1px at 90% 87%, white, transparent 1px),radial-gradient(2px 2px at 99% 50%, white, transparent 2px),radial-gradient(1px 1px at 10% 13%, white, transparent 1px),radial-gradient(1px 1px at 20% 55%, white, transparent 1px),radial-gradient(1px 1px at 32% 79%, white, transparent 1px),radial-gradient(2px 2px at 45% 22%, white, transparent 2px),radial-gradient(1px 1px at 54% 36%, white, transparent 1px),radial-gradient(1px 1px at 62% 88%, white, transparent 1px),radial-gradient(1px 1px at 70% 48%, white, transparent 1px),radial-gradient(2px 2px at 82% 10%, white, transparent 2px),radial-gradient(1px 1px at 95% 64%, white, transparent 1px),radial-gradient(1px 1px at 14% 40%, white, transparent 1px),radial-gradient(1px 1px at 27% 83%, white, transparent 1px),radial-gradient(2px 2px at 36% 16%, white, transparent 2px),radial-gradient(1px 1px at 49% 70%, white, transparent 1px),radial-gradient(1px 1px at 57% 30%, white, transparent 1px),radial-gradient(1px 1px at 65% 96%, white, transparent 1px),radial-gradient(2px 2px at 72% 52%, white, transparent 2px),radial-gradient(1px 1px at 80% 20%, white, transparent 1px),radial-gradient(1px 1px at 88% 75%, white, transparent 1px),radial-gradient(1px 1px at 2% 60%, white, transparent 1px),radial-gradient(2px 2px at 18% 35%, white, transparent 2px),radial-gradient(1px 1px at 25% 90%, white, transparent 1px),radial-gradient(1px 1px at 40% 43%, white, transparent 1px),radial-gradient(1px 1px at 55% 11%, white, transparent 1px),radial-gradient(2px 2px at 75% 66%, white, transparent 2px),radial-gradient(1px 1px at 60% 57%, white, transparent 1px);background-size:100% 100%;opacity:0.9;z-index:0;pointer-events:none;animation:starBlink 3s ease-in-out infinite}
 .contact-left{flex:0 0 50%;padding-right:3rem;position:relative;z-index:2}
 .contact-form{margin-top:1.8rem;display:flex;flex-direction:column;gap:1.2rem;max-width:420px}
 .form-group{display:flex;flex-direction:column;gap:.38rem}
 .form-lbl{font-size:.8rem;font-weight:700;color:var(--text)}
-.form-inp,.form-ta{background:rgba(19,19,40,.95);border:1px solid rgba(42,31,110,.9);border-radius:8px;padding:.75rem .95rem;color:var(--text);font-family:'Nunito Sans',sans-serif;font-size:.85rem;outline:none;resize:none;transition:border-color .22s,box-shadow .22s;will-change:border-color,box-shadow}
+.form-inp,.form-ta{background:rgba(19,19,40,.95);border:1px solid rgba(42,31,110,.9);border-radius:8px;padding:.75rem .95rem;color:var(--text);font-family:'Nunito Sans',sans-serif;font-size:.85rem;outline:none;resize:none;transition:border-color .22s,box-shadow .22s}
 .form-inp::placeholder,.form-ta::placeholder{color:rgba(153,153,187,.38)}
 .form-inp:focus,.form-ta:focus{border-color:rgba(201,169,110,.42);box-shadow:0 0 0 3px rgba(201,169,110,.07)}
 .form-ta{height:125px}
-.btn-send{align-self:flex-start;padding:.72rem 1.9rem;background:transparent;border:1.5px solid rgba(255,255,255,.32);color:var(--text);border-radius:7px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;letter-spacing:.06em;transition:all .22s;will-change:border-color,box-shadow,transform}
+.btn-send{align-self:flex-start;padding:.72rem 1.9rem;background:transparent;border:1.5px solid rgba(255,255,255,.32);color:var(--text);border-radius:7px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;letter-spacing:.06em;transition:all .22s}
 .btn-send:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(201,169,110,.17)}
 .contact-right{flex:0 0 50%;height:650px;position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
 #earth-canvas{width:100%;height:100%;display:block}
@@ -225,7 +232,8 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
 @keyframes successPop{0%{transform:translateX(-50%) scale(0.3);opacity:0}50%{transform:translateX(-50%) scale(1.05)}100%{transform:translateX(-50%) scale(1);opacity:1}}
 
 @media(max-width:1100px){
-  .gem-grid,.skill-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}
+  .gem-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}
+  .skill-grid{grid-template-columns:repeat(2,1fr)}
   .proj-grid,.ach-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
@@ -300,8 +308,29 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
     </div>
     <div class="tl-wrap">
       <div class="tl-line"></div>
+
+      <!-- DEVVIT — ADDED FROM RESUME -->
       <div class="tl-item fu">
         <div class="tl-card-wrap" style="grid-column:1">
+          <div class="tl-card">
+            <div class="tl-role">Founding Team – Technical Lead & Community</div>
+            <div class="tl-co">Devvit (Early-Stage Startup), Chennai</div>
+            <ul class="tl-ul">
+              <li>Lead technical development and community strategy as core founding team member</li>
+              <li>Collaborate with founders on product architecture, strategic priorities, and team coordination</li>
+              <li>Build developer programs, manage cross-functional initiatives, contribute to technical infrastructure</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-center" style="grid-column:2"><div class="tl-node">🚀</div><div class="tl-date">Apr 2026 – Present</div></div>
+        <div style="grid-column:3"></div>
+      </div>
+
+      <!-- AICTE — EXISTING -->
+      <div class="tl-item fu">
+        <div style="grid-column:1"></div>
+        <div class="tl-center" style="grid-column:2"><div class="tl-node">🤖</div><div class="tl-date">Jan – Mar 2026</div></div>
+        <div class="tl-card-wrap" style="grid-column:3">
           <div class="tl-card">
             <div class="tl-role">Gen AI Virtual Intern</div>
             <div class="tl-co">AICTE-EduSkills & AWS Academy</div>
@@ -312,15 +341,13 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
             </ul>
           </div>
         </div>
-        <div class="tl-center" style="grid-column:2"><div class="tl-node">🤖</div><div class="tl-date">Jan – Mar 2026</div></div>
-        <div style="grid-column:3"></div>
       </div>
+
+      <!-- MOTHERSON — FIXED TITLE -->
       <div class="tl-item fu">
-        <div style="grid-column:1"></div>
-        <div class="tl-center" style="grid-column:2"><div class="tl-node">🏭</div><div class="tl-date">Mar – May 2025</div></div>
-        <div class="tl-card-wrap" style="grid-column:3">
+        <div class="tl-card-wrap" style="grid-column:1">
           <div class="tl-card">
-            <div class="tl-role">Data Entry Operator Intern</div>
+            <div class="tl-role">Process Automation & Analytics Intern</div>
             <div class="tl-co">Motherson Group of Companies, Chennai</div>
             <ul class="tl-ul">
               <li>Improved operational efficiency by 30% as measured by processing time reduction, by implementing automated quality control workflows for 1,000+ data entries across Excel and Empro ERP systems</li>
@@ -329,7 +356,11 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
             </ul>
           </div>
         </div>
+        <div class="tl-center" style="grid-column:2"><div class="tl-node">🏭</div><div class="tl-date">Mar – May 2025</div></div>
+        <div style="grid-column:3"></div>
       </div>
+
+      <!-- TOP ENGINEERS — EXISTING -->
       <div class="tl-item fu">
         <div style="grid-column:1"></div>
         <div class="tl-center" style="grid-column:2"><div class="tl-node">🤖</div><div class="tl-date">Jun 2022</div></div>
@@ -345,6 +376,7 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -354,6 +386,17 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
     <div class="eyebrow fu">Portfolio</div>
     <h2 class="sh fu">Work.</h2>
     <div class="proj-grid">
+
+      <!-- CAMPUSOS — ADDED FROM RESUME -->
+      <div class="proj-card fu">
+        <div class="proj-badge">🏆 1ST PLACE · STUDAI HACKATHON (Rs.50K)</div>
+        <div class="proj-title">CampusOS</div>
+        <p class="proj-desc">Achieved 91.4% intent accuracy with zero false registrations across 47 real student pilot interactions by building a multi-agent autonomous campus assistant. Reduced task completion time by 85% through autonomous event registration, grievance filing, and research retrieval in under 3 seconds. Improved system reliability from 76/100 to 1st place through full audit trail and idempotency controls.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ll">LangChain</span><span class="ptag t-ag">Multi-Agent</span><span class="ptag t-ra">RAG</span><span class="ptag t-fl">Flask</span></div>
+        <a href="https://github.com/ShriHarsan64K/Campus_OS" target="_blank" class="proj-link">View Code</a>
+      </div>
+
+      <!-- AI CODE REVIEWER — EXISTING -->
       <div class="proj-card fu">
         <div class="proj-badge">🏆 TOP 10 · SCHNEIDER HACKATHON</div>
         <div class="proj-title">AI Code Reviewer & Auto-Fix</div>
@@ -361,6 +404,8 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-fl">Flask</span><span class="ptag t-gp">GPT-4</span><span class="ptag t-re">React</span><span class="ptag t-ra">RAG</span></div>
         <a href="https://github.com/ShriHarsan64K/Schneider-AI-Code-Reviewer" target="_blank" class="proj-link">View Code</a>
       </div>
+
+      <!-- MARINE BIODIVERSITY — EXISTING -->
       <div class="proj-card fu">
         <div class="proj-badge">📚 M.TECH THESIS</div>
         <div class="proj-title">Marine Biodiversity Assessment</div>
@@ -368,12 +413,16 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-yo">YOLOv8</span><span class="ptag t-dl">Deep Learning</span><span class="ptag t-cv">Computer Vision</span></div>
         <a href="https://github.com/ShriHarsan64K" target="_blank" class="proj-link">View Details</a>
       </div>
+
+      <!-- CYCLONE PINN — EXISTING -->
       <div class="proj-card fu">
         <div class="proj-title">🌪️ Cyclone-PINN</div>
         <p class="proj-desc">Reconstructed tropical cyclone wind and pressure fields with 88% accuracy (R² = 0.88 for U-wind, R² = 0.87 for V-wind) as measured against complete ERA5 reanalysis data, by developing a Physics-Informed Neural Network integrating atmospheric continuity equations with deep learning to recover Hurricane Ida's vortex structure from only 20% of available observations (336 sparse points), demonstrating 5× data efficiency improvement and localizing the storm center to within 58 km of official best-track position.</p>
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-pt">PyTorch</span><span class="ptag t-pm">Physics-ML</span><span class="ptag t-er">ERA5</span></div>
         <a href="https://github.com/ShriHarsan64K/Cyclone-PINN" target="_blank" class="proj-link">View Code</a>
       </div>
+
+      <!-- RESEARCHMIND — EXISTING -->
       <div class="proj-card fu">
         <div class="proj-badge">🔧 AMD SLINGSHOT 2026</div>
         <div class="proj-title">ResearchMind</div>
@@ -381,6 +430,8 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ll">LLaMA 3</span><span class="ptag t-ch">ChromaDB</span><span class="ptag t-st">Streamlit</span></div>
         <a href="https://github.com/ShriHarsan64K/ResearchMind" target="_blank" class="proj-link">View Code</a>
       </div>
+
+      <!-- NETFAULT AI — EXISTING -->
       <div class="proj-card fu">
         <div class="proj-badge">🎯 FINALIST · TANFINET</div>
         <div class="proj-title">NetFault AI</div>
@@ -388,12 +439,15 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ml">ML</span><span class="ptag t-na">Network Analysis</span><span class="ptag t-fl">Monitoring</span></div>
         <a href="https://github.com/ShriHarsan64K/NetFault-AI" target="_blank" class="proj-link">View Code</a>
       </div>
+
+      <!-- AGENTREADY SCORE — EXISTING -->
       <div class="proj-card fu">
         <div class="proj-title">AgentReady Score</div>
         <p class="proj-desc">Developed comprehensive evaluation framework for autonomous AI agents as measured across multiple performance dimensions including task completion accuracy, reasoning capability, and real-world deployment readiness, by creating a standardized scoring system that benchmarks agent performance against industry-standard metrics and provides actionable optimization recommendations for production AI systems.</p>
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ml">ML</span><span class="ptag t-ra">Evaluation</span><span class="ptag t-ag">Agents</span></div>
         <a href="https://github.com/ShriHarsan64K/AgentReady-Score" target="_blank" class="proj-link">View Code</a>
       </div>
+
     </div>
   </div>
 </section>
@@ -403,12 +457,26 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
     <div class="eyebrow fu">Recognition</div>
     <h2 class="sh fu">Achievements.</h2>
     <div class="ach-grid">
+
+      <!-- STUDAI — ADDED FROM RESUME -->
+      <div class="ach-card fu"><div class="ach-badge bg-g">🥇 1ST PLACE</div><div class="ach-title">StudAI Hackathon 2026</div><div class="ach-org">Rs.50,000 Prize · 2026</div><div class="ach-desc">First place for CampusOS — autonomous multi-agent campus assistant achieving 91.4% intent accuracy across 47 real student interactions.</div></div>
+
+      <!-- EXISTING -->
       <div class="ach-card fu"><div class="ach-badge bg-g">🥇 1ST PLACE</div><div class="ach-title">SAE India Paper Presentation</div><div class="ach-org">Society of Automotive Engineers</div><div class="ach-desc">National-level technical paper presentation on automotive engineering innovations.</div></div>
+
       <div class="ach-card sv fu"><div class="ach-badge bg-s">🥈 2ND PLACE</div><div class="ach-title">National Technical Design Competition</div><div class="ach-org">SRM IST, 2025</div><div class="ach-desc">Runner-up among 200+ participants in university-level design competition.</div></div>
+
       <div class="ach-card br fu"><div class="ach-badge bg-b">🥉 3RD PLACE</div><div class="ach-title">AIOT Paper Presentation</div><div class="ach-org">FAME Society</div><div class="ach-desc">Third place for research on AI and IoT integration in industrial automation.</div></div>
+
       <div class="ach-card cy fu"><div class="ach-badge bg-c">🏆 TOP 10</div><div class="ach-title">Schneider Electric Hackathon</div><div class="ach-org">Schneider Electric, 2025</div><div class="ach-desc">Top 10 finalist for AI Code Reviewer achieving 91% quality improvement.</div></div>
+
+      <!-- TANFINET — ADDED FROM RESUME -->
+      <div class="ach-card cy fu"><div class="ach-badge bg-c">🎯 TOP 5</div><div class="ach-title">Tanfinet Hackathon 2026</div><div class="ach-org">Tanfinet, 2026</div><div class="ach-desc">Top 5 finish for NetFault AI — machine learning system for proactive network fault detection.</div></div>
+
       <div class="ach-card cy fu"><div class="ach-badge bg-c">🎯 FINALIST</div><div class="ach-title">NetFault AI Hackathon</div><div class="ach-org">Tanfinet, 2025</div><div class="ach-desc">Finalist for AI-powered network fault detection using machine learning.</div></div>
+
       <div class="ach-card fu"><div class="ach-badge bg-g">👥 LEADERSHIP</div><div class="ach-title">Head of Events — FAME Society</div><div class="ach-org">SRM IST</div><div class="ach-desc">Organised 10+ technical events with 200+ participants across 3 universities.</div></div>
+
     </div>
   </div>
 </section>
@@ -417,11 +485,65 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
   <div class="wrap">
     <div class="eyebrow fu">Expertise</div>
     <h2 class="sh fu">Technical Skills.</h2>
+    <!-- UPDATED: 5 categories, 3-col grid -->
     <div class="skill-grid">
-      <div class="skill-cat fu"><div class="skill-cat-h">Programming</div><div class="pills"><span class="pill">Python</span><span class="pill">SQL</span><span class="pill">MATLAB</span></div></div>
-      <div class="skill-cat fu"><div class="skill-cat-h">AI / ML</div><div class="pills"><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">YOLOv8</span><span class="pill">PINNs</span><span class="pill">LLaMA 3</span><span class="pill">GPT-4</span></div></div>
-      <div class="skill-cat fu"><div class="skill-cat-h">Data & Cloud</div><div class="pills"><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Tableau</span><span class="pill">Power BI</span><span class="pill">MySQL</span><span class="pill">ChromaDB</span><span class="pill">AWS</span></div></div>
-      <div class="skill-cat fu"><div class="skill-cat-h">Engineering</div><div class="pills"><span class="pill">CATIA</span><span class="pill">RAG</span><span class="pill">Streamlit</span><span class="pill">Flask</span><span class="pill">Git</span><span class="pill">Physics-ML</span></div></div>
+      <div class="skill-cat fu">
+        <div class="skill-cat-h">Programming</div>
+        <div class="pills">
+          <span class="pill">Python</span>
+          <span class="pill">SQL</span>
+          <span class="pill">MATLAB</span>
+        </div>
+      </div>
+      <div class="skill-cat fu">
+        <div class="skill-cat-h">AI / ML</div>
+        <div class="pills">
+          <span class="pill">PyTorch</span>
+          <span class="pill">TensorFlow</span>
+          <span class="pill">YOLOv8</span>
+          <span class="pill">scikit-learn</span>
+          <span class="pill">PINNs</span>
+          <span class="pill">LLaMA 3</span>
+          <span class="pill">GPT-4</span>
+          <span class="pill">LangChain</span>
+          <span class="pill">Multi-Agent</span>
+          <span class="pill">RAG</span>
+        </div>
+      </div>
+      <div class="skill-cat fu">
+        <div class="skill-cat-h">Data & Cloud</div>
+        <div class="pills">
+          <span class="pill">Pandas</span>
+          <span class="pill">NumPy</span>
+          <span class="pill">Apache Spark</span>
+          <span class="pill">Kafka</span>
+          <span class="pill">Flink</span>
+          <span class="pill">MySQL</span>
+          <span class="pill">ChromaDB</span>
+          <span class="pill">AWS</span>
+          <span class="pill">NVIDIA API</span>
+        </div>
+      </div>
+      <div class="skill-cat fu">
+        <div class="skill-cat-h">Tools & Systems</div>
+        <div class="pills">
+          <span class="pill">Flask</span>
+          <span class="pill">React</span>
+          <span class="pill">Git</span>
+          <span class="pill">Linux</span>
+          <span class="pill">Streamlit</span>
+          <span class="pill">Tableau</span>
+          <span class="pill">Power BI</span>
+        </div>
+      </div>
+      <div class="skill-cat fu">
+        <div class="skill-cat-h">Hardware & Edge</div>
+        <div class="pills">
+          <span class="pill">Jetson Orin Nano</span>
+          <span class="pill">Raspberry Pi</span>
+          <span class="pill">CATIA</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -435,10 +557,12 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
       <div class="cert-card fu"><div class="cert-iss">AWS Academy</div><div class="cert-name">ML for Natural Language Processing</div><div class="cert-meta">20 hrs · Mar 2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">AWS Academy</div><div class="cert-name">Generative AI Foundations</div><div class="cert-meta">12 hrs · Mar 2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">AWS</div><div class="cert-name">Cloud Practitioner</div><div class="cert-meta">2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">AWS</div><div class="cert-name">AI Practitioner</div><div class="cert-meta">2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">Google (Coursera)</div><div class="cert-name">Crash Course on Python</div><div class="cert-meta">Feb 2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">IBM (Coursera)</div><div class="cert-name">Python for Data Science, AI & Dev</div><div class="cert-meta">Feb 2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">Google & Kaggle</div><div class="cert-name">AI Agents Intensive</div><div class="cert-meta">2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">IIT NPTEL</div><div class="cert-name">Fundamentals of AI</div><div class="cert-meta">2025</div></div>
+      <div class="cert-card fu"><div class="cert-iss">IIT NPTEL</div><div class="cert-name">EDA for Machine Learning</div><div class="cert-meta">2025</div></div>
     </div>
   </div>
 </section>
@@ -481,12 +605,10 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
     <div class="eyebrow fu">I Would Love to Hear From You</div>
     <h2 class="sh fu">Contact.</h2>
     <form id="contact-form" class="contact-form" action="https://formsubmit.co/shriharsang@gmail.com" method="POST">
-      <!-- FormSubmit Configuration -->
       <input type="hidden" name="_subject" value="New Portfolio Contact Message!">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_autoresponse" value="Thank you for contacting Shri Harsan! I'll get back to you soon.">
-      
       <div class="form-group fu"><label class="form-lbl">Your Name</label><input class="form-inp" type="text" name="name" id="contact-name" placeholder="What's your name?" required/></div>
       <div class="form-group fu"><label class="form-lbl">Your Email</label><input class="form-inp" type="email" name="email" id="contact-email" placeholder="What's your email?" required/></div>
       <div class="form-group fu"><label class="form-lbl">Your Message</label><textarea class="form-ta" name="message" id="contact-message" placeholder="What do you want to say?" required></textarea></div>
@@ -505,6 +627,7 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
     <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"/><span>Pandas</span></div>
     <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL"/><span>SQL</span></div>
     <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)"/><span>GitHub</span></div>
+    <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"/><span>Linux</span></div>
   </div>
 </div>
 
@@ -524,44 +647,26 @@ document.addEventListener('DOMContentLoaded', function() {
   if(form) {
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      
       const formData = new FormData(form);
       const button = form.querySelector('.btn-send');
       const originalText = button.textContent;
-      
-      // Show loading state
       button.textContent = 'Sending...';
       button.disabled = true;
       button.style.opacity = '0.6';
-      
       try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-        
-        // Show success message
+        await fetch(form.action, {method:'POST',body:formData,headers:{'Accept':'application/json'}});
         const notification = document.createElement('div');
         notification.className = 'success-notification';
         notification.innerHTML = 'Message sent successfully! I\'ll get back to you soon.';
         document.body.appendChild(notification);
-        
-        // Reset form
         form.reset();
-        
-        // Remove notification after 5 seconds
         setTimeout(() => {
           notification.style.animation = 'successPop 0.3s reverse';
           setTimeout(() => notification.remove(), 300);
         }, 5000);
-        
       } catch (error) {
         alert('Oops! Something went wrong. Please try again or email me directly at shriharsang@gmail.com');
       } finally {
-        // Reset button
         button.textContent = originalText;
         button.disabled = false;
         button.style.opacity = '1';
@@ -570,68 +675,23 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// ── CURSOR ──
+// ── CURSOR — uses transform (GPU composited, no layout triggers) ──
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0;
-
-// Ensure cursor elements are visible
-if(cur && ring) {
-  cur.style.display = 'block';
-  ring.style.display = 'block';
-  
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;
-    my=e.clientY;
-    if(cur) {
-      cur.style.left=mx+'px';
-      cur.style.top=my+'px';
-    }
-  },{passive:true});
-  
-  (function ar(){
-    rx+=(mx-rx)*.1;
-    ry+=(my-ry)*.1;
-    if(ring) {
-      ring.style.left=rx+'px';
-      ring.style.top=ry+'px';
-    }
-    requestAnimationFrame(ar);
-  })();
-  
-  // Add hover effects to interactive elements
+if(cur && ring){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx}px,${my}px)`;},{passive:true});
+  (function ar(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(ar);})();
   document.querySelectorAll('a,button,.gem-card,.proj-card,.ach-card,.cert-card,.testi-card,.skill-cat,.tl-card').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{
-      if(cur && ring) {
-        cur.style.width='18px';
-        cur.style.height='18px';
-        ring.style.width='44px';
-        ring.style.height='44px';
-      }
-    });
-    el.addEventListener('mouseleave',()=>{
-      if(cur && ring) {
-        cur.style.width='10px';
-        cur.style.height='10px';
-        ring.style.width='32px';
-        ring.style.height='32px';
-      }
-    });
+    el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='44px';ring.style.height='44px';el.style.willChange='transform';},{passive:true});
+    el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='32px';ring.style.height='32px';setTimeout(()=>{el.style.willChange='auto';},300);},{passive:true});
   });
 }
 
-// ── SCROLL PROGRESS ──
+// ── SCROLL PROGRESS — uses transform:scaleX (no layout, GPU composited) ──
 const prog=document.getElementById('prog');
+prog.style.transformOrigin='left';prog.style.width='100%';prog.style.transform='scaleX(0)';
 let scrollTicking=false;
-window.addEventListener('scroll',()=>{
-  if(!scrollTicking){
-    window.requestAnimationFrame(()=>{
-      const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;
-      prog.style.width=(s/h*100)+'%';
-      scrollTicking=false;
-    });
-    scrollTicking=true;
-  }
-},{passive:true});
+window.addEventListener('scroll',()=>{if(!scrollTicking){window.requestAnimationFrame(()=>{const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;prog.style.transform=`scaleX(${s/h})`;scrollTicking=false;});scrollTicking=true;}},{passive:true});
 
 // ── SMOOTH SCROLL ──
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})}));
@@ -651,228 +711,102 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
   const scene=new THREE.Scene();
   const cam=new THREE.PerspectiveCamera(75,W/H,0.1,1000);
   cam.position.set(0,0,1);
-
-  // ── REALISTIC MILKY WAY with natural colors ──
   const STARS=45000;
   const pos=new Float32Array(STARS*3),col=new Float32Array(STARS*3),sizes=new Float32Array(STARS);
-  
-  // Create Milky Way band structure
   for(let i=0;i<STARS;i++){
-    let x, y, z, inBand;
-    
-    // 70% of stars in the Milky Way band
-    if(Math.random() < 0.7) {
-      // Milky Way band - horizontal across screen
-      const bandAngle = (Math.random() - 0.5) * Math.PI * 2;
-      const bandRadius = 15 + Math.random() * 35;
-      const bandThickness = Math.random() * 8;
-      const bandHeight = (Math.random() - 0.5) * bandThickness;
-      
-      x = bandRadius * Math.cos(bandAngle) + (Math.random() - 0.5) * 20;
-      y = bandHeight;
-      z = bandRadius * Math.sin(bandAngle) + (Math.random() - 0.5) * 15;
-      inBand = true;
+    let x,y,z,inBand;
+    if(Math.random()<0.7){
+      const bandAngle=(Math.random()-.5)*Math.PI*2;
+      const bandRadius=15+Math.random()*35;
+      const bandThickness=Math.random()*8;
+      const bandHeight=(Math.random()-.5)*bandThickness;
+      x=bandRadius*Math.cos(bandAngle)+(Math.random()-.5)*20;
+      y=bandHeight;
+      z=bandRadius*Math.sin(bandAngle)+(Math.random()-.5)*15;
+      inBand=true;
     } else {
-      // Background stars - distributed everywhere
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      const radius = 20 + Math.random() * 60;
-      
-      x = radius * Math.sin(phi) * Math.cos(theta);
-      y = radius * Math.sin(phi) * Math.sin(theta);
-      z = radius * Math.cos(phi);
-      inBand = false;
+      const theta=Math.random()*Math.PI*2;
+      const phi=Math.acos(2*Math.random()-1);
+      const radius=20+Math.random()*60;
+      x=radius*Math.sin(phi)*Math.cos(theta);
+      y=radius*Math.sin(phi)*Math.sin(theta);
+      z=radius*Math.cos(phi);
+      inBand=false;
     }
-    
-    pos[i*3] = x;
-    pos[i*3+1] = y;
-    pos[i*3+2] = z;
-    
-    // Realistic star colors - blue, white, yellow, orange, red
-    const colorType = Math.random();
-    const brightness = 0.3 + Math.random() * 0.7;
-    
-    if(colorType < 0.15) {
-      // Blue-white stars (hot)
-      col[i*3] = 0.7 + Math.random() * 0.3;
-      col[i*3+1] = 0.8 + Math.random() * 0.2;
-      col[i*3+2] = 1.0;
-    } else if(colorType < 0.35) {
-      // Yellow-white stars
-      col[i*3] = 1.0;
-      col[i*3+1] = 0.9 + Math.random() * 0.1;
-      col[i*3+2] = 0.7 + Math.random() * 0.2;
-    } else if(colorType < 0.5) {
-      // Golden/Orange stars
-      col[i*3] = 1.0;
-      col[i*3+1] = 0.6 + Math.random() * 0.3;
-      col[i*3+2] = 0.3 + Math.random() * 0.2;
-    } else if(colorType < 0.6) {
-      // Reddish stars (cool)
-      col[i*3] = 1.0;
-      col[i*3+1] = 0.4 + Math.random() * 0.3;
-      col[i*3+2] = 0.2 + Math.random() * 0.2;
-    } else {
-      // White stars (most common)
-      const white = 0.85 + Math.random() * 0.15;
-      col[i*3] = white;
-      col[i*3+1] = white;
-      col[i*3+2] = white;
-    }
-    
-    // Apply brightness
-    col[i*3] *= brightness;
-    col[i*3+1] *= brightness;
-    col[i*3+2] *= brightness;
-    
-    // Vary star sizes - brighter stars appear larger
-    if(inBand) {
-      sizes[i] = brightness > 0.7 ? 0.08 + Math.random() * 0.06 : 0.04 + Math.random() * 0.04;
-    } else {
-      sizes[i] = 0.025 + Math.random() * 0.03;
-    }
+    pos[i*3]=x;pos[i*3+1]=y;pos[i*3+2]=z;
+    const colorType=Math.random();
+    const brightness=0.3+Math.random()*0.7;
+    if(colorType<0.15){col[i*3]=0.7+Math.random()*0.3;col[i*3+1]=0.8+Math.random()*0.2;col[i*3+2]=1.0;}
+    else if(colorType<0.35){col[i*3]=1.0;col[i*3+1]=0.9+Math.random()*0.1;col[i*3+2]=0.7+Math.random()*0.2;}
+    else if(colorType<0.5){col[i*3]=1.0;col[i*3+1]=0.6+Math.random()*0.3;col[i*3+2]=0.3+Math.random()*0.2;}
+    else if(colorType<0.6){col[i*3]=1.0;col[i*3+1]=0.4+Math.random()*0.3;col[i*3+2]=0.2+Math.random()*0.2;}
+    else{const white=0.85+Math.random()*0.15;col[i*3]=white;col[i*3+1]=white;col[i*3+2]=white;}
+    col[i*3]*=brightness;col[i*3+1]*=brightness;col[i*3+2]*=brightness;
+    sizes[i]=inBand?(brightness>0.7?0.08+Math.random()*0.06:0.04+Math.random()*0.04):0.025+Math.random()*0.03;
   }
-
   const geo=new THREE.BufferGeometry();
   geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
   geo.setAttribute('color',new THREE.BufferAttribute(col,3));
-  const milkyWay=new THREE.Points(geo,new THREE.PointsMaterial({
-    size:0.04,
-    vertexColors:true,
-    transparent:true,
-    opacity:0.85,
-    sizeAttenuation:true,
-    blending:THREE.AdditiveBlending
-  }));
-  
-  // Tilt to show Milky Way band across the sky
-  milkyWay.rotation.x = Math.PI * 0.15;
-  milkyWay.rotation.z = Math.PI * 0.05;
+  const milkyWay=new THREE.Points(geo,new THREE.PointsMaterial({size:0.04,vertexColors:true,transparent:true,opacity:0.85,sizeAttenuation:true,blending:THREE.AdditiveBlending}));
+  milkyWay.rotation.x=Math.PI*0.15;milkyWay.rotation.z=Math.PI*0.05;
   scene.add(milkyWay);
-
-  // ── DARK DUST PATCHES - realistic dark nebulae ──
-  const DUST_PATCHES = 12;
-  for(let d=0; d<DUST_PATCHES; d++) {
-    const dustParticles = 1200;
-    const dustPos = new Float32Array(dustParticles*3);
-    const dustCol = new Float32Array(dustParticles*3);
-    
-    // Position dust patches along the Milky Way band
-    const dustX = (Math.random() - 0.5) * 70;
-    const dustY = (Math.random() - 0.5) * 8;
-    const dustZ = -8 - Math.random() * 35;
-    
-    for(let i=0; i<dustParticles; i++) {
-      const radius = Math.random() * 12;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      
-      dustPos[i*3] = dustX + radius * Math.sin(phi) * Math.cos(theta);
-      dustPos[i*3+1] = dustY + radius * Math.sin(phi) * Math.sin(theta) * 0.25;
-      dustPos[i*3+2] = dustZ + radius * Math.cos(phi);
-      
-      // Very dark colors - almost black with slight brownish tint
-      const darkness = 0.02 + Math.random() * 0.03;
-      dustCol[i*3] = darkness * 0.15;     // Slight reddish
-      dustCol[i*3+1] = darkness * 0.1;    // Less green
-      dustCol[i*3+2] = darkness * 0.08;   // Even less blue
+  const DUST_PATCHES=12;
+  for(let d=0;d<DUST_PATCHES;d++){
+    const dustParticles=1200;
+    const dustPos=new Float32Array(dustParticles*3);
+    const dustCol=new Float32Array(dustParticles*3);
+    const dustX=(Math.random()-.5)*70,dustY=(Math.random()-.5)*8,dustZ=-8-Math.random()*35;
+    for(let i=0;i<dustParticles;i++){
+      const radius=Math.random()*12,theta=Math.random()*Math.PI*2,phi=Math.acos(2*Math.random()-1);
+      dustPos[i*3]=dustX+radius*Math.sin(phi)*Math.cos(theta);
+      dustPos[i*3+1]=dustY+radius*Math.sin(phi)*Math.sin(theta)*0.25;
+      dustPos[i*3+2]=dustZ+radius*Math.cos(phi);
+      const darkness=0.02+Math.random()*0.03;
+      dustCol[i*3]=darkness*0.15;dustCol[i*3+1]=darkness*0.1;dustCol[i*3+2]=darkness*0.08;
     }
-    
-    const dustGeo = new THREE.BufferGeometry();
-    dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
-    dustGeo.setAttribute('color', new THREE.BufferAttribute(dustCol, 3));
-    const dustCloud = new THREE.Points(dustGeo, new THREE.PointsMaterial({
-      size: 0.25,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.7,
-      sizeAttenuation: true,
-      blending: THREE.NormalBlending  // Use normal blending for darkening effect
-    }));
-    dustCloud.rotation.x = milkyWay.rotation.x;
-    dustCloud.rotation.z = milkyWay.rotation.z;
+    const dustGeo=new THREE.BufferGeometry();
+    dustGeo.setAttribute('position',new THREE.BufferAttribute(dustPos,3));
+    dustGeo.setAttribute('color',new THREE.BufferAttribute(dustCol,3));
+    const dustCloud=new THREE.Points(dustGeo,new THREE.PointsMaterial({size:0.25,vertexColors:true,transparent:true,opacity:0.7,sizeAttenuation:true,blending:THREE.NormalBlending}));
+    dustCloud.rotation.x=milkyWay.rotation.x;dustCloud.rotation.z=milkyWay.rotation.z;
     scene.add(dustCloud);
   }
-
-  // Add nebula-like glow clouds
-  const CLOUDS = 8;
+  const CLOUDS=8;
   for(let c=0;c<CLOUDS;c++){
-    const cloudParticles = 800;
-    const cloudPos = new Float32Array(cloudParticles*3);
-    const cloudCol = new Float32Array(cloudParticles*3);
-    
-    const cloudX = (Math.random() - 0.5) * 80;
-    const cloudY = (Math.random() - 0.5) * 15;
-    const cloudZ = -10 - Math.random() * 40;
-    
-    // Cloud color - pinkish, bluish, or golden nebula
-    const cloudType = Math.random();
-    let baseR, baseG, baseB;
-    if(cloudType < 0.33) {
-      // Pinkish nebula
-      baseR = 0.8; baseG = 0.3; baseB = 0.5;
-    } else if(cloudType < 0.66) {
-      // Bluish nebula  
-      baseR = 0.3; baseG = 0.5; baseB = 0.9;
-    } else {
-      // Golden nebula
-      baseR = 0.9; baseG = 0.7; baseB = 0.3;
-    }
-    
+    const cloudParticles=800;
+    const cloudPos=new Float32Array(cloudParticles*3);
+    const cloudCol=new Float32Array(cloudParticles*3);
+    const cloudX=(Math.random()-.5)*80,cloudY=(Math.random()-.5)*15,cloudZ=-10-Math.random()*40;
+    const cloudType=Math.random();
+    let baseR,baseG,baseB;
+    if(cloudType<0.33){baseR=0.8;baseG=0.3;baseB=0.5;}
+    else if(cloudType<0.66){baseR=0.3;baseG=0.5;baseB=0.9;}
+    else{baseR=0.9;baseG=0.7;baseB=0.3;}
     for(let i=0;i<cloudParticles;i++){
-      const radius = Math.random() * 8;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      
-      cloudPos[i*3] = cloudX + radius * Math.sin(phi) * Math.cos(theta);
-      cloudPos[i*3+1] = cloudY + radius * Math.sin(phi) * Math.sin(theta) * 0.3;
-      cloudPos[i*3+2] = cloudZ + radius * Math.cos(phi);
-      
-      const variance = 0.7 + Math.random() * 0.3;
-      const alpha = 0.15 + Math.random() * 0.15;
-      cloudCol[i*3] = baseR * variance * alpha;
-      cloudCol[i*3+1] = baseG * variance * alpha;
-      cloudCol[i*3+2] = baseB * variance * alpha;
+      const radius=Math.random()*8,theta=Math.random()*Math.PI*2,phi=Math.acos(2*Math.random()-1);
+      cloudPos[i*3]=cloudX+radius*Math.sin(phi)*Math.cos(theta);
+      cloudPos[i*3+1]=cloudY+radius*Math.sin(phi)*Math.sin(theta)*0.3;
+      cloudPos[i*3+2]=cloudZ+radius*Math.cos(phi);
+      const variance=0.7+Math.random()*0.3,alpha=0.15+Math.random()*0.15;
+      cloudCol[i*3]=baseR*variance*alpha;cloudCol[i*3+1]=baseG*variance*alpha;cloudCol[i*3+2]=baseB*variance*alpha;
     }
-    
-    const cloudGeo = new THREE.BufferGeometry();
-    cloudGeo.setAttribute('position', new THREE.BufferAttribute(cloudPos, 3));
-    cloudGeo.setAttribute('color', new THREE.BufferAttribute(cloudCol, 3));
-    const cloud = new THREE.Points(cloudGeo, new THREE.PointsMaterial({
-      size: 0.15,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.4,
-      sizeAttenuation: true,
-      blending: THREE.AdditiveBlending
-    }));
-    scene.add(cloud);
+    const cloudGeo=new THREE.BufferGeometry();
+    cloudGeo.setAttribute('position',new THREE.BufferAttribute(cloudPos,3));
+    cloudGeo.setAttribute('color',new THREE.BufferAttribute(cloudCol,3));
+    scene.add(new THREE.Points(cloudGeo,new THREE.PointsMaterial({size:0.15,vertexColors:true,transparent:true,opacity:0.4,sizeAttenuation:true,blending:THREE.AdditiveBlending})));
   }
-
-  let mox=0,moy=0,fr=0;
+  let mox=0,moy=0;
   window.addEventListener('mousemove',e=>{mox=(e.clientX/window.innerWidth-.5)*.2;moy=(e.clientY/window.innerHeight-.5)*.15;},{passive:true});
-
-  function tick(){
-    requestAnimationFrame(tick); 
-    fr++;
-    // Very subtle rotation
-    milkyWay.rotation.y += 0.00008;
-    cam.position.x = mox * 0.5;
-    cam.position.y = -moy * 0.3;
-    renderer.render(scene,cam);
-  }
-  tick();
+  // Expose for shared loop
+  window._hero={milkyWay,scene,cam,renderer,getMox:()=>mox,getMoy:()=>moy};
   window.addEventListener('resize',()=>{const w=window.innerWidth,h=window.innerHeight;cam.aspect=w/h;cam.updateProjectionMatrix();renderer.setSize(w,h);},{passive:true});
 })();
 
-
-
-
-// ── REALISTIC EARTH WITH CITY LIGHTS — NO RIBBONS ──
+// ── REALISTIC EARTH WITH CITY LIGHTS ──
 (function(){
-  const canvas = document.getElementById('earth-canvas');
-  if (!canvas || typeof THREE === 'undefined') return;
-  function getSize(){ const p=canvas.parentElement; return{w:p.offsetWidth||600,h:p.offsetHeight||600}; }
+  const canvas=document.getElementById('earth-canvas');
+  if(!canvas||typeof THREE==='undefined')return;
+  function getSize(){const p=canvas.parentElement;return{w:p.offsetWidth||600,h:p.offsetHeight||600};}
   let {w:W,h:H}=getSize();
   const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -880,323 +814,145 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
   const scene=new THREE.Scene();
   const cam=new THREE.PerspectiveCamera(50,W/H,.1,100);
   cam.position.z=4.2;
-
-  // Lighting — sun from upper right (like photo)
   scene.add(new THREE.AmbientLight(0x112244,.6));
-  const sun=new THREE.DirectionalLight(0xffffff,3.5); sun.position.set(6,2,4); scene.add(sun);
-  const blue=new THREE.DirectionalLight(0x4466bb,.5); blue.position.set(-5,-2,-3); scene.add(blue);
-
-  // ── DAY TEXTURE (ocean + land with rich colours) ──
-  const dayC=document.createElement('canvas'); dayC.width=2048; dayC.height=1024;
+  const sun=new THREE.DirectionalLight(0xffffff,3.5);sun.position.set(6,2,4);scene.add(sun);
+  const blue=new THREE.DirectionalLight(0x4466bb,.5);blue.position.set(-5,-2,-3);scene.add(blue);
+  const dayC=document.createElement('canvas');dayC.width=2048;dayC.height=1024;
   const dc=dayC.getContext('2d');
-  // Deep blue ocean base
-  dc.fillStyle='#071a3e'; dc.fillRect(0,0,2048,1024);
-  // Ocean depth gradient
+  dc.fillStyle='#071a3e';dc.fillRect(0,0,2048,1024);
   const og=dc.createRadialGradient(1024,512,100,1024,512,1000);
-  og.addColorStop(0,'rgba(8,35,90,.6)'); og.addColorStop(1,'rgba(2,8,28,.8)');
-  dc.fillStyle=og; dc.fillRect(0,0,2048,1024);
-
-  // LAND — painted with detail
+  og.addColorStop(0,'rgba(8,35,90,.6)');og.addColorStop(1,'rgba(2,8,28,.8)');
+  dc.fillStyle=og;dc.fillRect(0,0,2048,1024);
   dc.fillStyle='#1a6b30';
-  // North America
-  dc.beginPath(); dc.ellipse(420,320,80,130,.1,0,Math.PI*2); dc.fill();
-  dc.beginPath(); dc.ellipse(480,260,55,70,-.1,0,Math.PI*2); dc.fill();
-  dc.beginPath(); dc.ellipse(350,290,40,60,.15,0,Math.PI*2); dc.fill();
-  // Central + South America
-  dc.beginPath(); dc.ellipse(470,440,40,50,.1,0,Math.PI*2); dc.fill();
-  dc.beginPath(); dc.ellipse(500,560,55,100,.05,0,Math.PI*2); dc.fill();
-  dc.beginPath(); dc.ellipse(520,640,40,60,-.05,0,Math.PI*2); dc.fill();
-  // Europe
-  dc.beginPath(); dc.ellipse(960,270,60,65,.05,0,Math.PI*2); dc.fill();
-  dc.beginPath(); dc.ellipse(1010,230,40,50,.1,0,Math.PI*2); dc.fill();
-  // Africa
-  dc.beginPath(); dc.ellipse(1020,400,65,110,0,0,Math.PI*2); dc.fill();
-  dc.beginPath(); dc.ellipse(1000,340,45,55,.1,0,Math.PI*2); dc.fill();
-  // Russia/Asia — large landmass
-  dc.beginPath(); dc.ellipse(1280,220,200,95,.05,0,Math.PI*2); dc.fill();
-  dc.beginPath(); dc.ellipse(1380,300,120,80,-.05,0,Math.PI*2); dc.fill();
-  dc.beginPath(); dc.ellipse(1450,350,90,70,0,0,Math.PI*2); dc.fill();
-  // India
-  dc.beginPath(); dc.ellipse(1300,390,45,65,.05,0,Math.PI*2); dc.fill();
-  // SE Asia
-  dc.beginPath(); dc.ellipse(1500,380,55,50,.1,0,Math.PI*2); dc.fill();
-  // Australia
-  dc.beginPath(); dc.ellipse(1600,530,70,50,-.1,0,Math.PI*2); dc.fill();
-  // Greenland (white)
-  dc.fillStyle='#c8e8f8'; dc.beginPath(); dc.ellipse(750,160,50,40,0,0,Math.PI*2); dc.fill();
-  // Antarctica
-  dc.fillStyle='#d0eaff'; dc.fillRect(0,930,2048,94);
-  dc.beginPath(); dc.ellipse(1024,930,1024,50,0,0,Math.PI*2); dc.fill();
-  // Ice caps top
-  dc.fillStyle='rgba(180,220,255,.5)'; dc.beginPath(); dc.ellipse(1024,30,1024,55,0,0,Math.PI*2); dc.fill();
-
-  // Cloud layer
+  dc.beginPath();dc.ellipse(420,320,80,130,.1,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(480,260,55,70,-.1,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(350,290,40,60,.15,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(470,440,40,50,.1,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(500,560,55,100,.05,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(520,640,40,60,-.05,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(960,270,60,65,.05,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(1010,230,40,50,.1,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(1020,400,65,110,0,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(1000,340,45,55,.1,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(1280,220,200,95,.05,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(1380,300,120,80,-.05,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(1450,350,90,70,0,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(1300,390,45,65,.05,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(1500,380,55,50,.1,0,Math.PI*2);dc.fill();
+  dc.beginPath();dc.ellipse(1600,530,70,50,-.1,0,Math.PI*2);dc.fill();
+  dc.fillStyle='#c8e8f8';dc.beginPath();dc.ellipse(750,160,50,40,0,0,Math.PI*2);dc.fill();
+  dc.fillStyle='#d0eaff';dc.fillRect(0,930,2048,94);
+  dc.beginPath();dc.ellipse(1024,930,1024,50,0,0,Math.PI*2);dc.fill();
+  dc.fillStyle='rgba(180,220,255,.5)';dc.beginPath();dc.ellipse(1024,30,1024,55,0,0,Math.PI*2);dc.fill();
   dc.fillStyle='rgba(255,255,255,.06)';
   for(let i=0;i<300;i++){dc.beginPath();dc.ellipse(Math.random()*2048,Math.random()*1024,8+Math.random()*80,2+Math.random()*20,Math.random()*Math.PI,0,Math.PI*2);dc.fill();}
-
-  // ── NIGHT TEXTURE — city lights ──
-  const nightC=document.createElement('canvas'); nightC.width=2048; nightC.height=1024;
+  const nightC=document.createElement('canvas');nightC.width=2048;nightC.height=1024;
   const nc=nightC.getContext('2d');
-  nc.fillStyle='#000308'; nc.fillRect(0,0,2048,1024);
-
-  // City lights — warm orange/yellow glow clusters matching land positions
+  nc.fillStyle='#000308';nc.fillRect(0,0,2048,1024);
   function cityCluster(cx,cy,density,spread){
     for(let i=0;i<density;i++){
-      const x=cx+(Math.random()-.5)*spread, y=cy+(Math.random()-.5)*spread*0.6;
+      const x=cx+(Math.random()-.5)*spread,y=cy+(Math.random()-.5)*spread*0.6;
       const sz=1+Math.random()*3;
       const alpha=0.4+Math.random()*0.6;
-      const r=200+Math.floor(Math.random()*55), g=140+Math.floor(Math.random()*60), b2=40+Math.floor(Math.random()*40);
+      const r=200+Math.floor(Math.random()*55),g=140+Math.floor(Math.random()*60),b2=40+Math.floor(Math.random()*40);
       nc.fillStyle=`rgba(${r},${g},${b2},${alpha})`;
-      nc.beginPath(); nc.arc(x,y,sz,0,Math.PI*2); nc.fill();
-      if(Math.random()>.7){
-        const g2=nc.createRadialGradient(x,y,0,x,y,sz*4);
-        g2.addColorStop(0,`rgba(${r},${g},${b2},.25)`); g2.addColorStop(1,'rgba(0,0,0,0)');
-        nc.fillStyle=g2; nc.beginPath(); nc.arc(x,y,sz*4,0,Math.PI*2); nc.fill();
-      }
+      nc.beginPath();nc.arc(x,y,sz,0,Math.PI*2);nc.fill();
+      if(Math.random()>.7){const g2=nc.createRadialGradient(x,y,0,x,y,sz*4);g2.addColorStop(0,`rgba(${r},${g},${b2},.25)`);g2.addColorStop(1,'rgba(0,0,0,0)');nc.fillStyle=g2;nc.beginPath();nc.arc(x,y,sz*4,0,Math.PI*2);nc.fill();}
     }
   }
-  // USA East Coast
-  cityCluster(520,310,280,55);
-  // USA West Coast
-  cityCluster(380,310,160,40);
-  // USA Central
-  cityCluster(455,320,120,50);
-  // Mexico/Central America
-  cityCluster(440,410,80,35);
-  // Brazil
-  cityCluster(560,530,120,55);
-  // Argentina
-  cityCluster(530,640,80,35);
-  // UK + W.Europe
-  cityCluster(960,255,260,60);
-  cityCluster(990,245,180,50);
-  cityCluster(1030,265,140,40);
-  // East Europe
-  cityCluster(1060,255,100,35);
-  // Russia W
-  cityCluster(1100,230,120,50);
-  // Russia E / Siberia (sparse)
-  cityCluster(1300,210,60,80);
-  // India
-  cityCluster(1290,380,200,55);
-  // China + E.Asia
-  cityCluster(1430,300,280,70);
-  cityCluster(1480,270,180,55);
-  // Japan
-  cityCluster(1560,290,160,30);
-  // SE Asia
-  cityCluster(1490,400,120,40);
-  // Australia
-  cityCluster(1620,540,100,45);
-  // N.Africa
-  cityCluster(980,360,60,50);
-  // S.Africa
-  cityCluster(1030,540,70,35);
-
+  cityCluster(520,310,280,55);cityCluster(380,310,160,40);cityCluster(455,320,120,50);
+  cityCluster(440,410,80,35);cityCluster(560,530,120,55);cityCluster(530,640,80,35);
+  cityCluster(960,255,260,60);cityCluster(990,245,180,50);cityCluster(1030,265,140,40);
+  cityCluster(1060,255,100,35);cityCluster(1100,230,120,50);cityCluster(1300,210,60,80);
+  cityCluster(1290,380,200,55);cityCluster(1430,300,280,70);cityCluster(1480,270,180,55);
+  cityCluster(1560,290,160,30);cityCluster(1490,400,120,40);cityCluster(1620,540,100,45);
+  cityCluster(980,360,60,50);cityCluster(1030,540,70,35);
   const dayTex=new THREE.CanvasTexture(dayC);
   const nightTex=new THREE.CanvasTexture(nightC);
-
-  // ── CUSTOM SHADER to blend day/night ──
-  const earthMat = new THREE.ShaderMaterial({
-    uniforms:{
-      dayMap:   {value: dayTex},
-      nightMap: {value: nightTex},
-      sunDir:   {value: new THREE.Vector3(6,2,4).normalize()},
-    },
-    vertexShader:`
-      varying vec2 vUv;
-      varying vec3 vNormal;
-      void main(){
-        vUv=uv; vNormal=normalize(normalMatrix*normal);
-        gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);
-      }
-    `,
-    fragmentShader:`
-      uniform sampler2D dayMap;
-      uniform sampler2D nightMap;
-      uniform vec3 sunDir;
-      varying vec2 vUv;
-      varying vec3 vNormal;
-      void main(){
-        float d=dot(vNormal,sunDir);
-        float blend=smoothstep(-0.1,0.25,d);
-        vec4 day=texture2D(dayMap,vUv);
-        vec4 night=texture2D(nightMap,vUv);
-        // Brighten day side, keep night dark with city glow
-        day.rgb*=1.2;
-        gl_FragColor=mix(night,day,blend);
-      }
-    `
+  const earthMat=new THREE.ShaderMaterial({
+    uniforms:{dayMap:{value:dayTex},nightMap:{value:nightTex},sunDir:{value:new THREE.Vector3(6,2,4).normalize()}},
+    vertexShader:`varying vec2 vUv;varying vec3 vNormal;void main(){vUv=uv;vNormal=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+    fragmentShader:`uniform sampler2D dayMap;uniform sampler2D nightMap;uniform vec3 sunDir;varying vec2 vUv;varying vec3 vNormal;void main(){float d=dot(vNormal,sunDir);float blend=smoothstep(-0.1,0.25,d);vec4 day=texture2D(dayMap,vUv);vec4 night=texture2D(nightMap,vUv);day.rgb*=1.2;gl_FragColor=mix(night,day,blend);}`
   });
-
-  const earth=new THREE.Mesh(new THREE.SphereGeometry(1,64,64), earthMat);
+  const earth=new THREE.Mesh(new THREE.SphereGeometry(1,64,64),earthMat);
   scene.add(earth);
-
-  // Thin blue atmosphere glow
   const atmMat=new THREE.ShaderMaterial({
     uniforms:{sunDir:{value:new THREE.Vector3(6,2,4).normalize()}},
-    vertexShader:`
-      varying vec3 vNormal;
-      void main(){vNormal=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}
-    `,
-    fragmentShader:`
-      uniform vec3 sunDir;
-      varying vec3 vNormal;
-      void main(){
-        float rim=1.0-abs(dot(vNormal,vec3(0,0,1)));
-        rim=pow(rim,2.5);
-        gl_FragColor=vec4(.3,.6,1.0,rim*.55);
-      }
-    `,
-    transparent:true, side:THREE.FrontSide, depthWrite:false
+    vertexShader:`varying vec3 vNormal;void main(){vNormal=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+    fragmentShader:`uniform vec3 sunDir;varying vec3 vNormal;void main(){float rim=1.0-abs(dot(vNormal,vec3(0,0,1)));rim=pow(rim,2.5);gl_FragColor=vec4(.3,.6,1.0,rim*.55);}`,
+    transparent:true,side:THREE.FrontSide,depthWrite:false
   });
-  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.03,64,64), atmMat));
-
-  // Outer glow halo (back side)
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.03,64,64),atmMat));
   const haloMat=new THREE.ShaderMaterial({
     uniforms:{},
     vertexShader:`varying vec3 vNormal;void main(){vNormal=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
     fragmentShader:`varying vec3 vNormal;void main(){float r=1.-abs(dot(vNormal,vec3(0,0,1)));r=pow(r,3.);gl_FragColor=vec4(.15,.4,.9,r*.4);}`,
-    transparent:true, side:THREE.BackSide, depthWrite:false
+    transparent:true,side:THREE.BackSide,depthWrite:false
   });
-  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.08,32,32), haloMat));
-
-  // ── REALISTIC BACKGROUND STARS ──
-  const STARS = 6000;
-  const stP = new Float32Array(STARS*3);
-  const stC = new Float32Array(STARS*3);
-  const stS = new Float32Array(STARS);
-  
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.08,32,32),haloMat));
+  const STARS=6000;
+  const stP=new Float32Array(STARS*3),stC=new Float32Array(STARS*3);
   for(let i=0;i<STARS;i++){
-    // Distribute stars in a sphere around the Earth
-    const r = 15 + Math.random() * 35;
-    const theta = Math.random() * Math.PI * 2;
-    const phi = Math.acos(2 * Math.random() - 1);
-    
-    stP[i*3] = r * Math.sin(phi) * Math.cos(theta);
-    stP[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
-    stP[i*3+2] = r * Math.cos(phi);
-    
-    // Realistic star colors - blue, white, yellow, orange
-    const colorType = Math.random();
-    const brightness = 0.4 + Math.random() * 0.6;
-    
-    if(colorType < 0.2) {
-      // Blue-white stars
-      stC[i*3] = 0.7 * brightness;
-      stC[i*3+1] = 0.85 * brightness;
-      stC[i*3+2] = 1.0 * brightness;
-    } else if(colorType < 0.4) {
-      // Yellow-white stars
-      stC[i*3] = 1.0 * brightness;
-      stC[i*3+1] = 0.95 * brightness;
-      stC[i*3+2] = 0.75 * brightness;
-    } else if(colorType < 0.5) {
-      // Orange stars
-      stC[i*3] = 1.0 * brightness;
-      stC[i*3+1] = 0.7 * brightness;
-      stC[i*3+2] = 0.4 * brightness;
-    } else {
-      // White stars (most common)
-      const white = 0.85 * brightness;
-      stC[i*3] = white;
-      stC[i*3+1] = white;
-      stC[i*3+2] = white;
-    }
-    
-    // Vary star sizes
-    stS[i] = brightness > 0.7 ? 0.08 + Math.random() * 0.05 : 0.04 + Math.random() * 0.03;
+    const r=15+Math.random()*35,theta=Math.random()*Math.PI*2,phi=Math.acos(2*Math.random()-1);
+    stP[i*3]=r*Math.sin(phi)*Math.cos(theta);stP[i*3+1]=r*Math.sin(phi)*Math.sin(theta);stP[i*3+2]=r*Math.cos(phi);
+    const colorType=Math.random(),brightness=0.4+Math.random()*0.6;
+    if(colorType<0.2){stC[i*3]=0.7*brightness;stC[i*3+1]=0.85*brightness;stC[i*3+2]=1.0*brightness;}
+    else if(colorType<0.4){stC[i*3]=1.0*brightness;stC[i*3+1]=0.95*brightness;stC[i*3+2]=0.75*brightness;}
+    else if(colorType<0.5){stC[i*3]=1.0*brightness;stC[i*3+1]=0.7*brightness;stC[i*3+2]=0.4*brightness;}
+    else{const white=0.85*brightness;stC[i*3]=white;stC[i*3+1]=white;stC[i*3+2]=white;}
   }
-  
-  const stG = new THREE.BufferGeometry();
-  stG.setAttribute('position', new THREE.BufferAttribute(stP, 3));
-  stG.setAttribute('color', new THREE.BufferAttribute(stC, 3));
-  scene.add(new THREE.Points(stG, new THREE.PointsMaterial({
-    size: 0.06,
-    vertexColors: true,
-    transparent: true,
-    opacity: 0.8,
-    sizeAttenuation: true,
-    blending: THREE.AdditiveBlending
-  })));
-
-  // ── SATURN/URANUS-STYLE RINGS ──
-  // Create a flat disc-like ring system similar to Saturn
-  const ringSystem = new THREE.Group();
-  
-  // Ring parameters - inspired by Saturn's rings (INCREASED VISIBILITY)
-  const ringSegments = [
-    { innerRadius: 1.3, outerRadius: 1.5, particles: 2000, color: [0.8, 0.85, 0.95], opacity: 0.5 },
-    { innerRadius: 1.52, outerRadius: 1.65, particles: 1200, color: [0.7, 0.75, 0.9], opacity: 0.45 },
-    { innerRadius: 1.68, outerRadius: 1.85, particles: 1800, color: [0.75, 0.8, 0.95], opacity: 0.55 },
-    { innerRadius: 1.88, outerRadius: 2.05, particles: 1000, color: [0.65, 0.7, 0.85], opacity: 0.4 }
+  const stG=new THREE.BufferGeometry();
+  stG.setAttribute('position',new THREE.BufferAttribute(stP,3));
+  stG.setAttribute('color',new THREE.BufferAttribute(stC,3));
+  scene.add(new THREE.Points(stG,new THREE.PointsMaterial({size:0.06,vertexColors:true,transparent:true,opacity:0.8,sizeAttenuation:true,blending:THREE.AdditiveBlending})));
+  const ringSystem=new THREE.Group();
+  const ringSegments=[
+    {innerRadius:1.3,outerRadius:1.5,particles:2000,color:[0.8,0.85,0.95],opacity:0.5},
+    {innerRadius:1.52,outerRadius:1.65,particles:1200,color:[0.7,0.75,0.9],opacity:0.45},
+    {innerRadius:1.68,outerRadius:1.85,particles:1800,color:[0.75,0.8,0.95],opacity:0.55},
+    {innerRadius:1.88,outerRadius:2.05,particles:1000,color:[0.65,0.7,0.85],opacity:0.4}
   ];
-  
-  ringSegments.forEach((segment, segIndex) => {
-    const particles = segment.particles;
-    const positions = new Float32Array(particles * 3);
-    const colors = new Float32Array(particles * 3);
-    
-    for(let i = 0; i < particles; i++) {
-      // Random angle around the ring
-      const angle = Math.random() * Math.PI * 2;
-      
-      // Random radius between inner and outer radius
-      const radius = segment.innerRadius + Math.random() * (segment.outerRadius - segment.innerRadius);
-      
-      // Position in ring plane
-      positions[i * 3] = radius * Math.cos(angle);
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 0.008; // Very flat ring
-      positions[i * 3 + 2] = radius * Math.sin(angle);
-      
-      // Brighter ice/dust colors with variation
-      const variation = 0.9 + Math.random() * 0.1;
-      colors[i * 3] = segment.color[0] * variation;
-      colors[i * 3 + 1] = segment.color[1] * variation;
-      colors[i * 3 + 2] = segment.color[2] * variation;
+  ringSegments.forEach(segment=>{
+    const particles=segment.particles;
+    const positions=new Float32Array(particles*3),colors=new Float32Array(particles*3);
+    for(let i=0;i<particles;i++){
+      const angle=Math.random()*Math.PI*2;
+      const radius=segment.innerRadius+Math.random()*(segment.outerRadius-segment.innerRadius);
+      positions[i*3]=radius*Math.cos(angle);positions[i*3+1]=(Math.random()-.5)*0.008;positions[i*3+2]=radius*Math.sin(angle);
+      const variation=0.9+Math.random()*0.1;
+      colors[i*3]=segment.color[0]*variation;colors[i*3+1]=segment.color[1]*variation;colors[i*3+2]=segment.color[2]*variation;
     }
-    
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    
-    const material = new THREE.PointsMaterial({
-      size: 0.022,
-      vertexColors: true,
-      transparent: true,
-      opacity: segment.opacity,
-      sizeAttenuation: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false
-    });
-    
-    const ringSegmentMesh = new THREE.Points(geometry, material);
-    ringSystem.add(ringSegmentMesh);
+    const geometry=new THREE.BufferGeometry();
+    geometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
+    geometry.setAttribute('color',new THREE.BufferAttribute(colors,3));
+    ringSystem.add(new THREE.Points(geometry,new THREE.PointsMaterial({size:0.022,vertexColors:true,transparent:true,opacity:segment.opacity,sizeAttenuation:true,blending:THREE.AdditiveBlending,depthWrite:false})));
   });
-  
-  // Tilt the entire ring system like Saturn's rings
-  ringSystem.rotation.x = Math.PI * 0.25; // 45 degree tilt
-  ringSystem.rotation.z = Math.PI * 0.1;
-  
+  ringSystem.rotation.x=Math.PI*0.25;ringSystem.rotation.z=Math.PI*0.1;
   scene.add(ringSystem);
-
   let emy=0;
   window.addEventListener('mousemove',e=>{emy=(e.clientY/window.innerHeight-.5);},{passive:true});
-
-  function etick(){
-    requestAnimationFrame(etick);
-    
-    // Rotate Earth
-    earth.rotation.y += .003;
-    earth.rotation.x += (emy*.18-earth.rotation.x)*.02;
-    
-    // Slowly rotate the ring system like Saturn's rings
-    ringSystem.rotation.y += 0.0004;
-    
-    renderer.render(scene,cam);
-  }
-  etick();
   window.addEventListener('resize',()=>{let {w,h}=getSize();cam.aspect=w/h;cam.updateProjectionMatrix();renderer.setSize(w,h);},{passive:true});
+
+  // ── SINGLE SHARED RAF — drives both hero + earth in one loop ──
+  const heroInnerHeight=window.innerHeight;
+  (function sharedLoop(){
+    requestAnimationFrame(sharedLoop);
+    // Hero: only render when scrolled into view (saves ~50% GPU when below fold)
+    if(window._hero){
+      const H=window._hero;
+      if(window.scrollY < heroInnerHeight * 1.5){
+        H.milkyWay.rotation.y+=0.00008;
+        H.cam.position.x=H.getMox()*0.5;
+        H.cam.position.y=-H.getMoy()*0.3;
+        H.renderer.render(H.scene,H.cam);
+      }
+    }
+    // Earth: always render (visible in contact section)
+    earth.rotation.y+=.003;
+    earth.rotation.x+=(emy*.18-earth.rotation.x)*.02;
+    ringSystem.rotation.y+=0.0004;
+    renderer.render(scene,cam);
+  })();
 })();
 </script>
 </body>

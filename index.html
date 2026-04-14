@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Shri Harsan M | Data Scientist & AI Engineer</title>
+<title>Shri Harsan M | AI Engineer & Data Scientist</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
@@ -19,7 +19,6 @@ html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smo
 }
 body{background:var(--bg);color:var(--text);font-family:'Nunito Sans',sans-serif;overflow-x:hidden;cursor:none;line-height:1.6;-webkit-overflow-scrolling:touch}
 
-/* PERFORMANCE: contain layout+style only, NOT paint */
 .gem-card,.proj-card,.ach-card,.cert-card,.testi-card,.skill-cat,.tl-card{contain:layout style}
 
 /* CURSOR */
@@ -46,12 +45,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 #home{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
 #particle-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .hero-line{position:absolute;left:3.5rem;top:50%;transform:translateY(-50%);width:1.5px;height:180px;background:rgba(255,255,255,.15);z-index:2}
-.hero-content{position:relative;z-index:2;padding:5.5rem 3.5rem 3rem 5rem;max-width:600px}
+.hero-content{position:relative;z-index:2;padding:5.5rem 3.5rem 3rem 5rem;max-width:640px}
 .hero-dot{width:13px;height:13px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold);animation:pdot 2.2s ease-in-out infinite;margin-bottom:1.2rem}
 @keyframes pdot{0%,100%{box-shadow:0 0 10px var(--gold)}50%{box-shadow:0 0 24px var(--gold2),0 0 48px rgba(201,169,110,.22)}}
 .hero-h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(2.8rem,5.2vw,4.8rem);line-height:1.06;margin-bottom:.6rem;color:var(--text)}
 .hero-h1 .gold{color:var(--gold)}
-.hero-sub{font-size:clamp(.95rem,1.6vw,1.18rem);color:var(--text2);margin-bottom:2rem}
+.hero-sub{font-size:clamp(.95rem,1.6vw,1.18rem);color:var(--text2);margin-bottom:.5rem}
+.hero-tagline{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--gold);letter-spacing:.12em;margin-bottom:2rem;opacity:.85}
 .hero-btns{display:flex;gap:.75rem;flex-wrap:wrap}
 .btn-p{padding:.72rem 1.7rem;background:var(--gold);color:#080808;border:none;border-radius:6px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:none;text-decoration:none;letter-spacing:.04em;transition:all .25s}
 .btn-p:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 22px rgba(201,169,110,.32)}
@@ -61,6 +61,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .scroll-mouse{width:24px;height:40px;border:2px solid rgba(255,255,255,.3);border-radius:12px;display:flex;justify-content:center;padding-top:5px}
 .scroll-ball{width:3px;height:7px;background:var(--gold);border-radius:2px;animation:sb 1.8s ease-in-out infinite}
 @keyframes sb{0%{opacity:1;transform:translateY(0)}70%{opacity:0;transform:translateY(12px)}100%{opacity:0;transform:translateY(0)}}
+
+/* HERO STATS STRIP */
+.hero-stats{display:flex;gap:2.2rem;margin-bottom:2rem;flex-wrap:wrap}
+.hstat{display:flex;flex-direction:column}
+.hstat-val{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.5rem;color:var(--gold);line-height:1}
+.hstat-lbl{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text2);letter-spacing:.08em;margin-top:.2rem}
 
 /* SECTIONS */
 .sec{position:relative;padding:5.5rem 3.5rem}
@@ -109,6 +115,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .proj-card:hover{will-change:transform}
 .proj-card:hover{transform:translateY(-6px) translateZ(0);border-color:rgba(201,169,110,.22);box-shadow:0 18px 42px rgba(0,0,0,.48)}
 .proj-badge{display:inline-block;padding:.2rem .6rem;border-radius:5px;font-size:.66rem;font-weight:700;background:rgba(201,169,110,.13);color:var(--gold);letter-spacing:.05em;margin-bottom:.75rem;align-self:flex-start}
+.proj-badge.first{background:rgba(201,169,110,.2);color:#f0d080}
 .proj-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:.96rem;color:var(--text);margin-bottom:.5rem}
 .proj-desc{font-size:.8rem;color:var(--text2);line-height:1.7;flex:1;margin-bottom:.9rem}
 .proj-tags{display:flex;flex-wrap:wrap;gap:.38rem;margin-bottom:.9rem}
@@ -131,6 +138,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .t-ml{background:rgba(100,100,200,.2);color:#c5cae9}
 .t-na{background:rgba(60,160,60,.18);color:#a5d6a7}
 .t-ag{background:rgba(200,150,0,.18);color:#ffe082}
+.t-bt{background:rgba(0,120,180,.18);color:#81d4fa}
+.t-sp{background:rgba(220,50,50,.18);color:#ef9a9a}
 .proj-link{display:inline-flex;align-items:center;gap:.32rem;font-size:.78rem;color:var(--gold);font-weight:700;text-decoration:none;font-family:'Nunito',sans-serif;transition:gap .18s;margin-top:auto}
 .proj-link:hover{gap:.65rem}
 .proj-link::after{content:'→'}
@@ -169,6 +178,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .cert-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.84rem;color:var(--text);margin-bottom:.32rem;line-height:1.38}
 .cert-meta{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text2)}
 
+/* LANGUAGES */
+#languages{background:var(--bg2)}
+.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.lang-card{background:var(--card);border:1px solid rgba(42,31,110,.8);border-radius:13px;padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1rem;transition:transform .3s cubic-bezier(0.4,0,0.2,1),border-color .3s;cursor:none;transform:translateZ(0)}
+.lang-card:hover{transform:translateY(-4px) translateZ(0);border-color:rgba(201,169,110,.22)}
+.lang-flag{font-size:1.8rem;flex-shrink:0}
+.lang-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.92rem;color:var(--text)}
+.lang-level{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--gold);margin-top:.15rem;letter-spacing:.06em}
+
 /* TESTIMONIALS */
 #testimonials{background:var(--bg2)}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem}
@@ -188,7 +206,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 /* CONTACT */
 #contact{background:#000;display:flex;align-items:center;min-height:100vh;padding:5.5rem 3.5rem;overflow:hidden;position:relative}
 #contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 40%, rgba(100,60,180,0.35) 0%, rgba(80,50,150,0.25) 20%, transparent 45%),radial-gradient(ellipse at 75% 25%, rgba(60,40,140,0.3) 0%, rgba(50,35,120,0.2) 25%, transparent 50%),radial-gradient(ellipse at 50% 80%, rgba(120,80,200,0.25) 0%, rgba(90,60,160,0.15) 30%, transparent 55%),radial-gradient(ellipse at 15% 70%, rgba(80,50,150,0.2) 0%, transparent 40%),radial-gradient(ellipse at 85% 60%, rgba(70,45,140,0.25) 0%, transparent 45%),radial-gradient(ellipse at 40% 15%, rgba(90,60,170,0.2) 0%, transparent 35%),radial-gradient(circle at 60% 50%, rgba(100,70,180,0.15) 0%, transparent 30%),linear-gradient(135deg, #0a0818 0%, #150a25 30%, #0f0a1c 60%, #080810 100%);z-index:0;pointer-events:none}
-#contact::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 8% 23%, white, transparent 1px),radial-gradient(1px 1px at 15% 67%, white, transparent 1px),radial-gradient(2px 2px at 23% 11%, white, transparent 2px),radial-gradient(1px 1px at 31% 89%, white, transparent 1px),radial-gradient(1px 1px at 42% 34%, white, transparent 1px),radial-gradient(1px 1px at 56% 78%, white, transparent 1px),radial-gradient(2px 2px at 63% 5%, white, transparent 2px),radial-gradient(1px 1px at 71% 56%, white, transparent 1px),radial-gradient(1px 1px at 84% 91%, white, transparent 1px),radial-gradient(1px 1px at 92% 42%, white, transparent 1px),radial-gradient(1px 1px at 4% 51%, white, transparent 1px),radial-gradient(2px 2px at 11% 8%, white, transparent 2px),radial-gradient(1px 1px at 19% 74%, white, transparent 1px),radial-gradient(1px 1px at 28% 19%, white, transparent 1px),radial-gradient(1px 1px at 37% 95%, white, transparent 1px),radial-gradient(2px 2px at 46% 47%, white, transparent 2px),radial-gradient(1px 1px at 53% 3%, white, transparent 1px),radial-gradient(1px 1px at 67% 62%, white, transparent 1px),radial-gradient(1px 1px at 76% 28%, white, transparent 1px),radial-gradient(2px 2px at 88% 84%, white, transparent 2px),radial-gradient(1px 1px at 96% 15%, white, transparent 1px),radial-gradient(1px 1px at 6% 39%, white, transparent 1px),radial-gradient(1px 1px at 13% 86%, white, transparent 1px),radial-gradient(2px 2px at 21% 52%, white, transparent 2px),radial-gradient(1px 1px at 34% 7%, white, transparent 1px),radial-gradient(1px 1px at 41% 71%, white, transparent 1px),radial-gradient(1px 1px at 58% 25%, white, transparent 1px),radial-gradient(2px 2px at 69% 93%, white, transparent 2px),radial-gradient(1px 1px at 79% 44%, white, transparent 1px),radial-gradient(1px 1px at 87% 12%, white, transparent 1px),radial-gradient(1px 1px at 94% 68%, white, transparent 1px),radial-gradient(2px 2px at 3% 77%, white, transparent 2px),radial-gradient(1px 1px at 17% 31%, white, transparent 1px),radial-gradient(1px 1px at 26% 58%, white, transparent 1px),radial-gradient(1px 1px at 39% 14%, white, transparent 1px),radial-gradient(2px 2px at 48% 81%, white, transparent 2px),radial-gradient(1px 1px at 61% 49%, white, transparent 1px),radial-gradient(1px 1px at 73% 9%, white, transparent 1px),radial-gradient(1px 1px at 81% 72%, white, transparent 1px),radial-gradient(2px 2px at 91% 36%, white, transparent 2px),radial-gradient(1px 1px at 98% 97%, white, transparent 1px),radial-gradient(1px 1px at 9% 63%, white, transparent 1px),radial-gradient(1px 1px at 22% 21%, white, transparent 1px),radial-gradient(2px 2px at 33% 88%, white, transparent 2px),radial-gradient(1px 1px at 44% 38%, white, transparent 1px),radial-gradient(1px 1px at 51% 65%, white, transparent 1px),radial-gradient(1px 1px at 64% 17%, white, transparent 1px),radial-gradient(2px 2px at 77% 53%, white, transparent 2px),radial-gradient(1px 1px at 86% 2%, white, transparent 1px),radial-gradient(1px 1px at 93% 76%, white, transparent 1px),radial-gradient(1px 1px at 7% 45%, white, transparent 1px),radial-gradient(2px 2px at 16% 94%, white, transparent 2px),radial-gradient(1px 1px at 29% 27%, white, transparent 1px),radial-gradient(1px 1px at 38% 69%, white, transparent 1px),radial-gradient(1px 1px at 47% 6%, white, transparent 1px),radial-gradient(2px 2px at 59% 82%, white, transparent 2px),radial-gradient(1px 1px at 68% 41%, white, transparent 1px),radial-gradient(1px 1px at 74% 98%, white, transparent 1px),radial-gradient(1px 1px at 83% 54%, white, transparent 1px),radial-gradient(2px 2px at 89% 18%, white, transparent 2px),radial-gradient(1px 1px at 97% 85%, white, transparent 1px),radial-gradient(1px 1px at 5% 29%, white, transparent 1px),radial-gradient(1px 1px at 12% 72%, white, transparent 1px),radial-gradient(2px 2px at 24% 46%, white, transparent 2px),radial-gradient(1px 1px at 35% 4%, white, transparent 1px),radial-gradient(1px 1px at 43% 59%, white, transparent 1px),radial-gradient(1px 1px at 52% 92%, white, transparent 1px),radial-gradient(2px 2px at 66% 33%, white, transparent 2px),radial-gradient(1px 1px at 78% 61%, white, transparent 1px),radial-gradient(1px 1px at 85% 24%, white, transparent 1px),radial-gradient(1px 1px at 90% 87%, white, transparent 1px),radial-gradient(2px 2px at 99% 50%, white, transparent 2px),radial-gradient(1px 1px at 10% 13%, white, transparent 1px),radial-gradient(1px 1px at 20% 55%, white, transparent 1px),radial-gradient(1px 1px at 32% 79%, white, transparent 1px),radial-gradient(2px 2px at 45% 22%, white, transparent 2px),radial-gradient(1px 1px at 54% 36%, white, transparent 1px),radial-gradient(1px 1px at 62% 88%, white, transparent 1px),radial-gradient(1px 1px at 70% 48%, white, transparent 1px),radial-gradient(2px 2px at 82% 10%, white, transparent 2px),radial-gradient(1px 1px at 95% 64%, white, transparent 1px),radial-gradient(1px 1px at 14% 40%, white, transparent 1px),radial-gradient(1px 1px at 27% 83%, white, transparent 1px),radial-gradient(2px 2px at 36% 16%, white, transparent 2px),radial-gradient(1px 1px at 49% 70%, white, transparent 1px),radial-gradient(1px 1px at 57% 30%, white, transparent 1px),radial-gradient(1px 1px at 65% 96%, white, transparent 1px),radial-gradient(2px 2px at 72% 52%, white, transparent 2px),radial-gradient(1px 1px at 80% 20%, white, transparent 1px),radial-gradient(1px 1px at 88% 75%, white, transparent 1px),radial-gradient(1px 1px at 2% 60%, white, transparent 1px),radial-gradient(2px 2px at 18% 35%, white, transparent 2px),radial-gradient(1px 1px at 25% 90%, white, transparent 1px),radial-gradient(1px 1px at 40% 43%, white, transparent 1px),radial-gradient(1px 1px at 55% 11%, white, transparent 1px),radial-gradient(2px 2px at 75% 66%, white, transparent 2px),radial-gradient(1px 1px at 60% 57%, white, transparent 1px);background-size:100% 100%;opacity:0.9;z-index:0;pointer-events:none;animation:starBlink 3s ease-in-out infinite}
+#contact::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 8% 23%, white, transparent 1px),radial-gradient(1px 1px at 15% 67%, white, transparent 1px),radial-gradient(2px 2px at 23% 11%, white, transparent 2px),radial-gradient(1px 1px at 31% 89%, white, transparent 1px),radial-gradient(1px 1px at 42% 34%, white, transparent 1px),radial-gradient(1px 1px at 56% 78%, white, transparent 1px),radial-gradient(2px 2px at 63% 5%, white, transparent 2px),radial-gradient(1px 1px at 71% 56%, white, transparent 1px),radial-gradient(1px 1px at 84% 91%, white, transparent 1px),radial-gradient(1px 1px at 92% 42%, white, transparent 1px),radial-gradient(1px 1px at 4% 51%, white, transparent 1px),radial-gradient(2px 2px at 11% 8%, white, transparent 2px),radial-gradient(1px 1px at 19% 74%, white, transparent 1px),radial-gradient(1px 1px at 28% 19%, white, transparent 1px),radial-gradient(1px 1px at 37% 95%, white, transparent 1px),radial-gradient(2px 2px at 46% 47%, white, transparent 2px),radial-gradient(1px 1px at 53% 3%, white, transparent 1px),radial-gradient(1px 1px at 67% 62%, white, transparent 1px),radial-gradient(1px 1px at 76% 28%, white, transparent 1px),radial-gradient(2px 2px at 88% 84%, white, transparent 2px),radial-gradient(1px 1px at 96% 15%, white, transparent 1px),radial-gradient(1px 1px at 6% 39%, white, transparent 1px),radial-gradient(1px 1px at 13% 86%, white, transparent 1px),radial-gradient(2px 2px at 21% 52%, white, transparent 2px),radial-gradient(1px 1px at 34% 7%, white, transparent 1px),radial-gradient(1px 1px at 41% 71%, white, transparent 1px),radial-gradient(1px 1px at 58% 25%, white, transparent 1px),radial-gradient(2px 2px at 69% 93%, white, transparent 2px),radial-gradient(1px 1px at 79% 44%, white, transparent 1px),radial-gradient(1px 1px at 87% 12%, white, transparent 1px),radial-gradient(1px 1px at 94% 68%, white, transparent 1px),radial-gradient(2px 2px at 3% 77%, white, transparent 2px),radial-gradient(1px 1px at 17% 31%, white, transparent 1px),radial-gradient(1px 1px at 26% 58%, white, transparent 1px),radial-gradient(1px 1px at 39% 14%, white, transparent 1px),radial-gradient(2px 2px at 48% 81%, white, transparent 2px),radial-gradient(1px 1px at 61% 49%, white, transparent 1px),radial-gradient(1px 1px at 73% 9%, white, transparent 1px),radial-gradient(1px 1px at 81% 72%, white, transparent 1px),radial-gradient(2px 2px at 91% 36%, white, transparent 2px),radial-gradient(1px 1px at 98% 97%, white, transparent 1px),radial-gradient(1px 1px at 9% 63%, white, transparent 1px),radial-gradient(1px 1px at 22% 21%, white, transparent 1px),radial-gradient(2px 2px at 33% 88%, white, transparent 2px),radial-gradient(1px 1px at 44% 38%, white, transparent 1px),radial-gradient(1px 1px at 51% 65%, white, transparent 1px),radial-gradient(1px 1px at 64% 17%, white, transparent 1px),radial-gradient(2px 2px at 77% 53%, white, transparent 2px),radial-gradient(1px 1px at 86% 2%, white, transparent 1px),radial-gradient(1px 1px at 93% 76%, white, transparent 1px),radial-gradient(1px 1px at 7% 45%, white, transparent 1px),radial-gradient(2px 2px at 16% 94%, white, transparent 2px),radial-gradient(1px 1px at 29% 27%, white, transparent 1px),radial-gradient(1px 1px at 38% 69%, white, transparent 1px),radial-gradient(1px 1px at 47% 6%, white, transparent 1px),radial-gradient(2px 2px at 59% 82%, white, transparent 2px),radial-gradient(1px 1px at 68% 41%, white, transparent 1px),radial-gradient(1px 1px at 74% 98%, white, transparent 1px),radial-gradient(1px 1px at 83% 54%, white, transparent 1px),radial-gradient(2px 2px at 89% 18%, white, transparent 2px),radial-gradient(1px 1px at 97% 85%, white, transparent 1px);background-size:100% 100%;opacity:0.9;z-index:0;pointer-events:none;animation:starBlink 3s ease-in-out infinite}
 .contact-left{flex:0 0 50%;padding-right:3rem;position:relative;z-index:2}
 .contact-form{margin-top:1.8rem;display:flex;flex-direction:column;gap:1.2rem;max-width:420px}
 .form-group{display:flex;flex-direction:column;gap:.38rem}
@@ -222,11 +240,9 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
 .fu{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
 .fu.in{opacity:1;transform:translateY(0)}
 
-/* NOTIFICATION ANIMATIONS */
 @keyframes slideIn{from{transform:translateX(400px);opacity:0}to{transform:translateX(0);opacity:1}}
 @keyframes slideOut{from{transform:translateX(0);opacity:1}to{transform:translateX(400px);opacity:0}}
 
-/* SUCCESS MESSAGE */
 .success-notification{position:fixed;top:100px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#c9a96e,#e2c48a);color:#080808;padding:1.2rem 2.5rem;border-radius:12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;box-shadow:0 15px 50px rgba(201,169,110,0.4),0 0 0 1px rgba(201,169,110,0.3);z-index:10000;animation:successPop 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);display:flex;align-items:center;gap:0.8rem}
 .success-notification::before{content:'✓';font-size:1.5rem;font-weight:900}
 @keyframes successPop{0%{transform:translateX(-50%) scale(0.3);opacity:0}50%{transform:translateX(-50%) scale(1.05)}100%{transform:translateX(-50%) scale(1);opacity:1}}
@@ -234,20 +250,21 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
 @media(max-width:1100px){
   .gem-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}
   .skill-grid{grid-template-columns:repeat(2,1fr)}
-  .proj-grid,.ach-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .proj-grid,.ach-grid,.testi-grid,.lang-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
   nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}
   .sec{padding:4rem 1.5rem}
   .hero-content{padding:5rem 1.5rem 2rem 2rem}
   .hero-line{display:none}
-  .gem-grid,.skill-grid,.cert-grid,.proj-grid,.ach-grid,.testi-grid{grid-template-columns:1fr}
+  .gem-grid,.skill-grid,.cert-grid,.proj-grid,.ach-grid,.testi-grid,.lang-grid{grid-template-columns:1fr}
   .tl-item{display:flex;flex-direction:column}
   .tl-line{left:24px}
   #contact{flex-direction:column;min-height:auto;padding:3rem 1.5rem}
   .contact-right{width:100%;height:350px;flex:none;margin-top:2rem}
   .contact-left{padding-right:0;width:100%;flex:none}
   footer{flex-direction:column;text-align:center;padding:1.5rem}
+  .hero-stats{gap:1.2rem}
 }
 </style>
 </head>
@@ -258,10 +275,12 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
 <div class="floral"></div>
 
 <nav>
-  <div class="nav-logo"><em>Shri Harsan</em> | Data Scientist</div>
+  <div class="nav-logo"><em>Shri Harsan</em> | AI Engineer</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Work</a></li>
+    <li><a href="#achievements">Awards</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -272,7 +291,12 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
   <div class="hero-content">
     <div class="hero-dot"></div>
     <h1 class="hero-h1">Hi, I'm<br><span class="gold">Shri Harsan M</span></h1>
-    <p class="hero-sub">I engineer intelligence from data.</p>
+    <p class="hero-sub">MTech Data Science · SRM IST Chennai</p>
+    <p class="hero-tagline">AI Engineer · Hackathon Winner · Founding Team @ Devvit</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-val">5+</span><span class="hstat-lbl">Hackathons</span></div>
+      <div class="hstat"><span class="hstat-val">₹50K</span><span class="hstat-lbl">Prize Won</span></div>
+    </div>
     <div class="hero-btns">
       <a href="#projects" class="btn-p">View Work</a>
       <a href="Shri_Harsan_Resume.pdf" target="_blank" class="btn-o">Resume</a>
@@ -284,22 +308,24 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about" class="sec">
   <div class="wrap">
     <div class="eyebrow fu">Introduction</div>
     <h2 class="sh fu">Overview.</h2>
     <p class="about-body fu">
-      I am a passionate Data Scientist and AI Engineer with a strong academic foundation in physics and engineering, now directing that analytical rigour toward building production-grade intelligent systems. My work spans the full spectrum of applied AI — from deriving physical laws computationally through Physics-Informed Neural Networks, to deploying real-time computer vision systems and orchestrating LLM-powered autonomous agents. I thrive at the intersection of mathematical rigour and practical engineering, driven by a singular goal: making AI that genuinely works in the real world.
+      I am a passionate Data Scientist and AI Engineer with a strong academic foundation in physics and engineering, now directing that analytical rigour toward building production-grade intelligent systems. My work spans the full spectrum of applied AI — from deriving physical laws computationally through Physics-Informed Neural Networks, to deploying real-time computer vision systems and orchestrating LLM-powered autonomous agents. Currently serving as Founding Team Technical Lead at Devvit, I thrive at the intersection of mathematical rigour and practical engineering, driven by a singular goal: making AI that genuinely works in the real world.
     </p>
     <div class="gem-grid">
-      <div class="gem-card fu"><span class="gem-icon">💎</span><div class="gem-title">Physics-Informed ML</div><div class="gem-sub">Integrating physical laws into neural networks for scientifically consistent, data-efficient predictions</div></div>
-      <div class="gem-card fu"><span class="gem-icon">🔮</span><div class="gem-title">Computer Vision</div><div class="gem-sub">Deep learning for real-world visual intelligence — detection, classification, and ecological assessment</div></div>
-      <div class="gem-card fu"><span class="gem-icon">⚡</span><div class="gem-title">Generative AI</div><div class="gem-sub">Building RAG pipelines, LLM agents, and AI-powered developer tools with GPT-4 and LLaMA 3</div></div>
-      <div class="gem-card fu"><span class="gem-icon">☁️</span><div class="gem-title">Cloud & MLOps</div><div class="gem-sub">AWS-certified, end-to-end ML pipelines, vector databases, and scalable real-time inference</div></div>
+      <div class="gem-card fu"><span class="gem-icon">🚀</span><div class="gem-title">Multi-Agent Systems</div><div class="gem-sub">Building autonomous LLM agents with LangChain, RAG pipelines, and idempotent real-world task execution</div></div>
+      <div class="gem-card fu"><span class="gem-icon">🔮</span><div class="gem-title">Computer Vision</div><div class="gem-sub">Deep learning for real-world visual intelligence — detection, tracking, and ecological assessment at production speed</div></div>
+      <div class="gem-card fu"><span class="gem-icon">💎</span><div class="gem-title">Physics-Informed ML</div><div class="gem-sub">Integrating Navier-Stokes and physical equations into neural networks for scientifically consistent predictions</div></div>
+      <div class="gem-card fu"><span class="gem-icon">☁️</span><div class="gem-title">Cloud & MLOps</div><div class="gem-sub">AWS Cloud & AI Practitioner certified — end-to-end ML pipelines, vector databases, and scalable inference</div></div>
     </div>
   </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience" class="sec">
   <div class="wrap">
     <div style="text-align:center">
@@ -309,7 +335,7 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
     <div class="tl-wrap">
       <div class="tl-line"></div>
 
-      <!-- DEVVIT — ADDED FROM RESUME -->
+      <!-- DEVVIT -->
       <div class="tl-item fu">
         <div class="tl-card-wrap" style="grid-column:1">
           <div class="tl-card">
@@ -318,7 +344,7 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
             <ul class="tl-ul">
               <li>Lead technical development and community strategy as core founding team member</li>
               <li>Collaborate with founders on product architecture, strategic priorities, and team coordination</li>
-              <li>Build developer programs, manage cross-functional initiatives, contribute to technical infrastructure</li>
+              <li>Build developer programs, manage cross-functional initiatives, and contribute to technical infrastructure</li>
             </ul>
           </div>
         </div>
@@ -326,7 +352,7 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
         <div style="grid-column:3"></div>
       </div>
 
-      <!-- AICTE — EXISTING -->
+      <!-- AICTE -->
       <div class="tl-item fu">
         <div style="grid-column:1"></div>
         <div class="tl-center" style="grid-column:2"><div class="tl-node">🤖</div><div class="tl-date">Jan – Mar 2026</div></div>
@@ -335,24 +361,24 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
             <div class="tl-role">Gen AI Virtual Intern</div>
             <div class="tl-co">AICTE-EduSkills & AWS Academy</div>
             <ul class="tl-ul">
-              <li>Completed intensive 10-week Gen AI curriculum covering transformer architectures, prompt engineering, and AWS AI services as measured by hands-on projects across LLM fundamentals, NLP applications, and cloud-based ML deployment</li>
-              <li>Built production-ready generative AI systems by implementing RAG pipelines, fine-tuning large language models, and deploying intelligent applications on AWS infrastructure with focus on real-world scalability and performance optimization</li>
-              <li>Gained specialized expertise in Amazon Bedrock, SageMaker, and generative AI best practices through structured coursework combining theoretical foundations with practical implementation across multiple AI/ML service offerings</li>
+              <li>Completed intensive 10-week Gen AI curriculum covering transformer architectures, prompt engineering, and AWS AI services</li>
+              <li>Built production-ready generative AI systems — RAG pipelines, fine-tuned LLMs, and intelligent applications on AWS infrastructure</li>
+              <li>Gained specialized expertise in Amazon Bedrock, SageMaker, and generative AI best practices across multiple AI/ML services</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- MOTHERSON — FIXED TITLE -->
+      <!-- MOTHERSON -->
       <div class="tl-item fu">
         <div class="tl-card-wrap" style="grid-column:1">
           <div class="tl-card">
             <div class="tl-role">Process Automation & Analytics Intern</div>
             <div class="tl-co">Motherson Group of Companies, Chennai</div>
             <ul class="tl-ul">
-              <li>Improved operational efficiency by 30% as measured by processing time reduction, by implementing automated quality control workflows for 1,000+ data entries across Excel and Empro ERP systems</li>
-              <li>Reduced paperwork volume by 75% across 10 manufacturing departments, by conducting process analysis and re-engineering workflows to eliminate redundant documentation steps</li>
-              <li>Enhanced cross-functional productivity by streamlining data flow between production, quality assurance, and logistics teams through standardized entry protocols and validation checkpoints</li>
+              <li>Engineered Python automation for 1,000+ records achieving <strong style="color:var(--gold)">30% efficiency gain</strong> through workflow optimization</li>
+              <li>Led process re-engineering across 10 teams, eliminating <strong style="color:var(--gold)">75% paperwork</strong> and saving <strong style="color:var(--gold)">120+ hours monthly</strong></li>
+              <li>Deployed analytics dashboards tracking manufacturing KPIs enabling data-driven operational decisions</li>
             </ul>
           </div>
         </div>
@@ -360,18 +386,17 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
         <div style="grid-column:3"></div>
       </div>
 
-      <!-- TOP ENGINEERS — EXISTING -->
+      <!-- TOP ENGINEERS -->
       <div class="tl-item fu">
         <div style="grid-column:1"></div>
-        <div class="tl-center" style="grid-column:2"><div class="tl-node">🤖</div><div class="tl-date">Jun 2022</div></div>
+        <div class="tl-center" style="grid-column:2"><div class="tl-node">⚙️</div><div class="tl-date">Jun 2022</div></div>
         <div class="tl-card-wrap" style="grid-column:3">
           <div class="tl-card">
             <div class="tl-role">AI Intern</div>
             <div class="tl-co">Top Engineers, Chennai</div>
             <ul class="tl-ul">
-              <li>Developed foundational expertise in production AI systems by building machine learning models integrated with IoT sensors for real-time industrial automation applications</li>
-              <li>Gained hands-on experience with data pipeline architecture by implementing real-time analysis workflows processing sensor telemetry for smart manufacturing systems</li>
-              <li>Established understanding of AI deployment in industrial environments through practical application of supervised learning algorithms to automation control systems</li>
+              <li>Developed foundational expertise in production AI systems by building ML models integrated with IoT sensors for industrial automation</li>
+              <li>Gained hands-on experience with data pipeline architecture implementing real-time analysis workflows for smart manufacturing systems</li>
             </ul>
           </div>
         </div>
@@ -381,70 +406,71 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects" class="sec">
   <div class="wrap">
     <div class="eyebrow fu">Portfolio</div>
     <h2 class="sh fu">Work.</h2>
     <div class="proj-grid">
 
-      <!-- CAMPUSOS — ADDED FROM RESUME -->
+      <!-- CAMPUSOS -->
       <div class="proj-card fu">
-        <div class="proj-badge">🏆 1ST PLACE · STUDAI HACKATHON (Rs.50K)</div>
+        <div class="proj-badge first">🥇 1ST PLACE · STUDAI HACKATHON · Rs.50,000</div>
         <div class="proj-title">CampusOS</div>
-        <p class="proj-desc">Achieved 91.4% intent accuracy with zero false registrations across 47 real student pilot interactions by building a multi-agent autonomous campus assistant. Reduced task completion time by 85% through autonomous event registration, grievance filing, and research retrieval in under 3 seconds. Improved system reliability from 76/100 to 1st place through full audit trail and idempotency controls.</p>
+        <p class="proj-desc">Autonomous multi-agent campus assistant achieving <strong style="color:var(--gold)">91.4% intent accuracy</strong> with zero false registrations across 47 real student pilot interactions. Reduced task completion time by 85% through autonomous event registration, grievance filing, and research retrieval in under 3 seconds. Improved reliability from 76/100 to 1st place via full audit trail and idempotency controls.</p>
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ll">LangChain</span><span class="ptag t-ag">Multi-Agent</span><span class="ptag t-ra">RAG</span><span class="ptag t-fl">Flask</span></div>
         <a href="https://github.com/ShriHarsan64K/Campus_OS" target="_blank" class="proj-link">View Code</a>
       </div>
 
-      <!-- AI CODE REVIEWER — EXISTING -->
+      <!-- AI CODE REVIEWER -->
       <div class="proj-card fu">
         <div class="proj-badge">🏆 TOP 10 · SCHNEIDER HACKATHON</div>
         <div class="proj-title">AI Code Reviewer & Auto-Fix</div>
-        <p class="proj-desc">Improved code quality scores by 171% (from 35 to 95 out of 100) as measured by Schneider Electric's industrial compliance framework, by developing a VSCode extension with dual-AI system (GPT-4 + Gemini) analyzing 558 rules across 7 programming languages with RAG architecture, reducing code review time by 60% and achieving sub-2-second analysis per 1,000 lines of code.</p>
-        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-fl">Flask</span><span class="ptag t-gp">GPT-4</span><span class="ptag t-re">React</span><span class="ptag t-ra">RAG</span></div>
+        <p class="proj-desc">VSCode extension analyzing code against <strong style="color:var(--gold)">558 Schneider Electric standards</strong> across 7 languages using dual-AI (GPT-4 + Gemini) with RAG architecture. Improved code quality by <strong style="color:var(--gold)">91%</strong> (35→91/100) and reduced review time by <strong style="color:var(--gold)">99.9%</strong> — hours to under 10 seconds — with automatic failover and compliance PDF reports.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-fl">Flask</span><span class="ptag t-gp">GPT-4</span><span class="ptag t-re">TypeScript</span><span class="ptag t-ra">RAG</span></div>
         <a href="https://github.com/ShriHarsan64K/Schneider-AI-Code-Reviewer" target="_blank" class="proj-link">View Code</a>
       </div>
 
-      <!-- MARINE BIODIVERSITY — EXISTING -->
+      <!-- MARINE BIODIVERSITY -->
       <div class="proj-card fu">
         <div class="proj-badge">📚 M.TECH THESIS</div>
         <div class="proj-title">Marine Biodiversity Assessment</div>
-        <p class="proj-desc">Achieved 95.1% mean average precision (mAP@0.5) with 93.8% precision and 59.3 FPS real-time performance on consumer GPU (RTX 3050 6GB) as measured across 5,201 curated reef images, by developing a YOLOv8-based computer vision system with novel Marine Health Index (MHI) scoring algorithm combining weighted Shannon diversity and trophic balance metrics, enabling automated coral reef health assessment from underwater video at production-grade speed.</p>
-        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-yo">YOLOv8</span><span class="ptag t-dl">Deep Learning</span><span class="ptag t-cv">Computer Vision</span></div>
+        <p class="proj-desc">YOLOv8 + ByteTrack computer vision system achieving <strong style="color:var(--gold)">95.1% mAP@0.5</strong> at <strong style="color:var(--gold)">59.3 FPS</strong> on consumer GPU (RTX 3050). Built 5,201-image self-curated dataset with underwater-aware augmentation reaching 93.8% precision. Reduced manual ecological survey time by 80% through automated Marine Health Index scoring.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-yo">YOLOv8</span><span class="ptag t-bt">ByteTrack</span><span class="ptag t-dl">Deep Learning</span><span class="ptag t-cv">Computer Vision</span></div>
         <a href="https://github.com/ShriHarsan64K" target="_blank" class="proj-link">View Details</a>
       </div>
 
-      <!-- CYCLONE PINN — EXISTING -->
+      <!-- CYCLONE PINN -->
       <div class="proj-card fu">
         <div class="proj-title">🌪️ Cyclone-PINN</div>
-        <p class="proj-desc">Reconstructed tropical cyclone wind and pressure fields with 88% accuracy (R² = 0.88 for U-wind, R² = 0.87 for V-wind) as measured against complete ERA5 reanalysis data, by developing a Physics-Informed Neural Network integrating atmospheric continuity equations with deep learning to recover Hurricane Ida's vortex structure from only 20% of available observations (336 sparse points), demonstrating 5× data efficiency improvement and localizing the storm center to within 58 km of official best-track position.</p>
+        <p class="proj-desc">Physics-Informed Neural Network reconstructing tropical cyclone wind fields from sparse ERA5 data. Achieved <strong style="color:var(--gold)">R² ≈ 0.88</strong> for U-wind using only <strong style="color:var(--gold)">20% of observations</strong>. Improved trajectory prediction by 15% over pure ML via Navier-Stokes integration, reducing training time by 40% while maintaining 92% accuracy across 100+ historical cyclone cases.</p>
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-pt">PyTorch</span><span class="ptag t-pm">Physics-ML</span><span class="ptag t-er">ERA5</span></div>
         <a href="https://github.com/ShriHarsan64K/Cyclone-PINN" target="_blank" class="proj-link">View Code</a>
       </div>
 
-      <!-- RESEARCHMIND — EXISTING -->
+      <!-- RESEARCHMIND -->
       <div class="proj-card fu">
         <div class="proj-badge">🔧 AMD SLINGSHOT 2026</div>
         <div class="proj-title">ResearchMind</div>
-        <p class="proj-desc">Reduced academic paper analysis time by 98.75% (from 4-5 hours to under 60 seconds) as measured by processing pipeline benchmarks, by building an offline-first AI research assistant running entirely on AMD Ryzen AI NPU that combines LLaMA 3 language models with local vector databases (ChromaDB) to extract insights, detect knowledge gaps, and answer researcher queries without internet connectivity.</p>
+        <p class="proj-desc">100% offline AI research assistant running on AMD Ryzen AI NPU — analyzes PDFs and extracts insights in <strong style="color:var(--gold)">under 60 seconds</strong> using LLaMA 3. Zero cloud dependency, no API keys needed. Local ChromaDB vector store for research library management targeting 1.5M+ Indian engineering students in Tier 2 & 3 cities.</p>
         <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ll">LLaMA 3</span><span class="ptag t-ch">ChromaDB</span><span class="ptag t-st">Streamlit</span></div>
         <a href="https://github.com/ShriHarsan64K/ResearchMind" target="_blank" class="proj-link">View Code</a>
       </div>
 
-      <!-- NETFAULT AI — EXISTING -->
+      <!-- NETFAULT AI -->
       <div class="proj-card fu">
-        <div class="proj-badge">🎯 FINALIST · TANFINET</div>
+        <div class="proj-badge">🎯 TOP 5 · TANFINET 2026</div>
         <div class="proj-title">NetFault AI</div>
-        <p class="proj-desc">Enabled proactive network failure prevention through real-time anomaly classification as measured by intelligent monitoring metrics, by developing a machine learning system that predicts network faults before they occur, analyzing traffic patterns and infrastructure telemetry to classify potential failures and trigger automated diagnostic protocols for enterprise network environments.</p>
-        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ml">ML</span><span class="ptag t-na">Network Analysis</span><span class="ptag t-fl">Monitoring</span></div>
+        <p class="proj-desc">AI-powered network fault isolation for BharatNet reducing fault detection from <strong style="color:var(--gold)">2–6 hours to under 60 seconds</strong>. Analyzes 106-node topology in real-time, detects 6 fault types across OSI layers using NLP + Anomaly Detection, with GIS mapping for 99 villages and live Mininet Digital Twin for fault injection testing.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ml">distilBERT</span><span class="ptag t-na">NetworkX</span><span class="ptag t-st">Streamlit</span></div>
         <a href="https://github.com/ShriHarsan64K/NetFault-AI" target="_blank" class="proj-link">View Code</a>
       </div>
 
-      <!-- AGENTREADY SCORE — EXISTING -->
+      <!-- AGENTREADY SCORE -->
       <div class="proj-card fu">
         <div class="proj-title">AgentReady Score</div>
-        <p class="proj-desc">Developed comprehensive evaluation framework for autonomous AI agents as measured across multiple performance dimensions including task completion accuracy, reasoning capability, and real-world deployment readiness, by creating a standardized scoring system that benchmarks agent performance against industry-standard metrics and provides actionable optimization recommendations for production AI systems.</p>
-        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-ml">ML</span><span class="ptag t-ra">Evaluation</span><span class="ptag t-ag">Agents</span></div>
+        <p class="proj-desc">Real-time scoring tool measuring how well e-commerce platforms are optimized for AI shopping agents. Developed for the SAP × Great Lakes Hackathon 2026 — evaluates agent readiness across structured data, API accessibility, and semantic search capability with actionable optimization recommendations.</p>
+        <div class="proj-tags"><span class="ptag t-py">Python</span><span class="ptag t-st">Streamlit</span><span class="ptag t-ra">API Integration</span><span class="ptag t-ag">Agents</span></div>
         <a href="https://github.com/ShriHarsan64K/AgentReady-Score" target="_blank" class="proj-link">View Code</a>
       </div>
 
@@ -452,66 +478,75 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
   </div>
 </section>
 
+<!-- ACHIEVEMENTS -->
 <section id="achievements" class="sec">
   <div class="wrap">
     <div class="eyebrow fu">Recognition</div>
     <h2 class="sh fu">Achievements.</h2>
     <div class="ach-grid">
 
-      <!-- STUDAI — ADDED FROM RESUME -->
-      <div class="ach-card fu"><div class="ach-badge bg-g">🥇 1ST PLACE</div><div class="ach-title">StudAI Hackathon 2026</div><div class="ach-org">Rs.50,000 Prize · 2026</div><div class="ach-desc">First place for CampusOS — autonomous multi-agent campus assistant achieving 91.4% intent accuracy across 47 real student interactions.</div></div>
+      <div class="ach-card fu"><div class="ach-badge bg-g">🥇 1ST PLACE</div><div class="ach-title">StudAI Hackathon 2026</div><div class="ach-org">Rs.50,000 Prize · 2026</div><div class="ach-desc">First place for CampusOS — autonomous multi-agent campus assistant with 91.4% intent accuracy and zero false registrations across real student pilots.</div></div>
 
-      <!-- EXISTING -->
-      <div class="ach-card fu"><div class="ach-badge bg-g">🥇 1ST PLACE</div><div class="ach-title">SAE India Paper Presentation</div><div class="ach-org">Society of Automotive Engineers</div><div class="ach-desc">National-level technical paper presentation on automotive engineering innovations.</div></div>
+      <div class="ach-card cy fu"><div class="ach-badge bg-c">🏆 TOP 5</div><div class="ach-title">TANFINET Hackathon 2026</div><div class="ach-org">TANFINET · 2026</div><div class="ach-desc">Top 5 for NetFault AI — AI-powered BharatNet fault isolation reducing detection time from hours to under 60 seconds.</div></div>
 
-      <div class="ach-card sv fu"><div class="ach-badge bg-s">🥈 2ND PLACE</div><div class="ach-title">National Technical Design Competition</div><div class="ach-org">SRM IST, 2025</div><div class="ach-desc">Runner-up among 200+ participants in university-level design competition.</div></div>
+      <div class="ach-card cy fu"><div class="ach-badge bg-c">🏆 TOP 10</div><div class="ach-title">Schneider Electric Hackathon</div><div class="ach-org">Schneider Electric · 2025</div><div class="ach-desc">Top 10 finalist for AI Code Reviewer achieving 91% quality improvement and 99.9% faster reviews across 7 languages.</div></div>
 
-      <div class="ach-card br fu"><div class="ach-badge bg-b">🥉 3RD PLACE</div><div class="ach-title">AIOT Paper Presentation</div><div class="ach-org">FAME Society</div><div class="ach-desc">Third place for research on AI and IoT integration in industrial automation.</div></div>
+      <div class="ach-card fu"><div class="ach-badge bg-g">🥇 1ST PLACE</div><div class="ach-title">SAE India Paper Presentation</div><div class="ach-org">Society of Automotive Engineers · 2023</div><div class="ach-desc">National-level first place for research on AIoT & Smart Systems in automotive engineering.</div></div>
 
-      <div class="ach-card cy fu"><div class="ach-badge bg-c">🏆 TOP 10</div><div class="ach-title">Schneider Electric Hackathon</div><div class="ach-org">Schneider Electric, 2025</div><div class="ach-desc">Top 10 finalist for AI Code Reviewer achieving 91% quality improvement.</div></div>
+      <div class="ach-card sv fu"><div class="ach-badge bg-s">🥈 2ND PLACE</div><div class="ach-title">National Technical Design Competition</div><div class="ach-org">SRM IST · 2025</div><div class="ach-desc">Runner-up among 200+ participants in university-level technical design competition.</div></div>
 
-      <!-- TANFINET — ADDED FROM RESUME -->
-      <div class="ach-card cy fu"><div class="ach-badge bg-c">🎯 TOP 5</div><div class="ach-title">Tanfinet Hackathon 2026</div><div class="ach-org">Tanfinet, 2026</div><div class="ach-desc">Top 5 finish for NetFault AI — machine learning system for proactive network fault detection.</div></div>
+      <div class="ach-card br fu"><div class="ach-badge bg-b">🥉 3RD PLACE</div><div class="ach-title">FAME Paper Presentation</div><div class="ach-org">FAME Society · 2024</div><div class="ach-desc">Third place for research on hybrid vehicles and sustainable automotive technology.</div></div>
 
-      <div class="ach-card cy fu"><div class="ach-badge bg-c">🎯 FINALIST</div><div class="ach-title">NetFault AI Hackathon</div><div class="ach-org">Tanfinet, 2025</div><div class="ach-desc">Finalist for AI-powered network fault detection using machine learning.</div></div>
+      <div class="ach-card cy fu"><div class="ach-badge bg-c">🎯 PARTICIPANT</div><div class="ach-title">AMD Slingshot 2026</div><div class="ach-org">AMD · Team NextStrike · 2026</div><div class="ach-desc">Participated with ResearchMind — offline AI research assistant powered by LLaMA 3 on Ryzen AI NPU.</div></div>
 
-      <div class="ach-card fu"><div class="ach-badge bg-g">👥 LEADERSHIP</div><div class="ach-title">Head of Events — FAME Society</div><div class="ach-org">SRM IST</div><div class="ach-desc">Organised 10+ technical events with 200+ participants across 3 universities.</div></div>
+      <div class="ach-card fu"><div class="ach-badge bg-g">👥 LEADERSHIP</div><div class="ach-title">Head of Events — FAME Society</div><div class="ach-org">SRM IST</div><div class="ach-desc">Organised 10+ technical events with 200+ participants. Also serving as Perplexity Campus Partner.</div></div>
 
     </div>
   </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills" class="sec">
   <div class="wrap">
     <div class="eyebrow fu">Expertise</div>
     <h2 class="sh fu">Technical Skills.</h2>
-    <!-- UPDATED: 5 categories, 3-col grid -->
     <div class="skill-grid">
       <div class="skill-cat fu">
         <div class="skill-cat-h">Programming</div>
         <div class="pills">
           <span class="pill">Python</span>
           <span class="pill">SQL</span>
+          <span class="pill">TypeScript</span>
           <span class="pill">MATLAB</span>
         </div>
       </div>
       <div class="skill-cat fu">
-        <div class="skill-cat-h">AI / ML</div>
+        <div class="skill-cat-h">AI / ML / DL</div>
         <div class="pills">
           <span class="pill">PyTorch</span>
           <span class="pill">TensorFlow</span>
           <span class="pill">YOLOv8</span>
           <span class="pill">scikit-learn</span>
           <span class="pill">PINNs</span>
-          <span class="pill">LLaMA 3</span>
-          <span class="pill">GPT-4</span>
           <span class="pill">LangChain</span>
           <span class="pill">Multi-Agent</span>
           <span class="pill">RAG</span>
+          <span class="pill">HuggingFace</span>
         </div>
       </div>
       <div class="skill-cat fu">
-        <div class="skill-cat-h">Data & Cloud</div>
+        <div class="skill-cat-h">LLMs & Gen AI</div>
+        <div class="pills">
+          <span class="pill">GPT-4</span>
+          <span class="pill">Gemini 2.0</span>
+          <span class="pill">LLaMA 3</span>
+          <span class="pill">Ollama</span>
+          <span class="pill">NVIDIA API</span>
+          <span class="pill">Amazon Bedrock</span>
+        </div>
+      </div>
+      <div class="skill-cat fu">
+        <div class="skill-cat-h">Data & Big Data</div>
         <div class="pills">
           <span class="pill">Pandas</span>
           <span class="pill">NumPy</span>
@@ -520,18 +555,18 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
           <span class="pill">Flink</span>
           <span class="pill">MySQL</span>
           <span class="pill">ChromaDB</span>
-          <span class="pill">AWS</span>
-          <span class="pill">NVIDIA API</span>
         </div>
       </div>
       <div class="skill-cat fu">
-        <div class="skill-cat-h">Tools & Systems</div>
+        <div class="skill-cat-h">Cloud & Tools</div>
         <div class="pills">
+          <span class="pill">AWS</span>
           <span class="pill">Flask</span>
           <span class="pill">React</span>
           <span class="pill">Git</span>
           <span class="pill">Linux</span>
           <span class="pill">Streamlit</span>
+          <span class="pill">SageMaker</span>
           <span class="pill">Tableau</span>
           <span class="pill">Power BI</span>
         </div>
@@ -539,8 +574,9 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
       <div class="skill-cat fu">
         <div class="skill-cat-h">Hardware & Edge</div>
         <div class="pills">
-          <span class="pill">Jetson Orin Nano</span>
+          <span class="pill">NVIDIA Jetson Orin Nano</span>
           <span class="pill">Raspberry Pi</span>
+          <span class="pill">Ryzen AI NPU</span>
           <span class="pill">CATIA</span>
         </div>
       </div>
@@ -548,25 +584,30 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
   </div>
 </section>
 
+<!-- CERTIFICATIONS -->
 <section id="certifications" class="sec">
   <div class="wrap">
     <div class="eyebrow fu">Credentials</div>
     <h2 class="sh fu">Certifications.</h2>
     <div class="cert-grid">
+      <div class="cert-card fu"><div class="cert-iss">AWS</div><div class="cert-name">Cloud Practitioner</div><div class="cert-meta">Certified · 2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">AWS</div><div class="cert-name">AI Practitioner</div><div class="cert-meta">Certified · 2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">AWS Academy</div><div class="cert-name">Machine Learning Foundations</div><div class="cert-meta">20 hrs · Mar 2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">AWS Academy</div><div class="cert-name">ML for Natural Language Processing</div><div class="cert-meta">20 hrs · Mar 2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">AWS Academy</div><div class="cert-name">Generative AI Foundations</div><div class="cert-meta">12 hrs · Mar 2026</div></div>
-      <div class="cert-card fu"><div class="cert-iss">AWS</div><div class="cert-name">Cloud Practitioner</div><div class="cert-meta">2026</div></div>
-      <div class="cert-card fu"><div class="cert-iss">AWS</div><div class="cert-name">AI Practitioner</div><div class="cert-meta">2026</div></div>
-      <div class="cert-card fu"><div class="cert-iss">Google (Coursera)</div><div class="cert-name">Crash Course on Python</div><div class="cert-meta">Feb 2026</div></div>
-      <div class="cert-card fu"><div class="cert-iss">IBM (Coursera)</div><div class="cert-name">Python for Data Science, AI & Dev</div><div class="cert-meta">Feb 2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">Google & Kaggle</div><div class="cert-name">AI Agents Intensive</div><div class="cert-meta">2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">Google / Coursera</div><div class="cert-name">Crash Course on Python</div><div class="cert-meta">Feb 2026</div></div>
+      <div class="cert-card fu"><div class="cert-iss">IBM / Coursera</div><div class="cert-name">Python for Data Science, AI & Dev</div><div class="cert-meta">Feb 2026</div></div>
       <div class="cert-card fu"><div class="cert-iss">IIT NPTEL</div><div class="cert-name">Fundamentals of AI</div><div class="cert-meta">2025</div></div>
-      <div class="cert-card fu"><div class="cert-iss">IIT NPTEL</div><div class="cert-name">EDA for Machine Learning</div><div class="cert-meta">2025</div></div>
+      <div class="cert-card fu"><div class="cert-iss">Coursera</div><div class="cert-name">EDA for Machine Learning</div><div class="cert-meta">2025</div></div>
+      <div class="cert-card fu"><div class="cert-iss">Coursera</div><div class="cert-name">MySQL</div><div class="cert-meta">2025</div></div>
     </div>
   </div>
 </section>
 
+
+
+<!-- TESTIMONIALS / INSPIRATION -->
 <section id="testimonials" class="sec">
   <div class="wrap">
     <div class="eyebrow fu">Words That Drive Me</div>
@@ -576,7 +617,7 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
         <div class="testi-qq"><span></span><span></span></div>
         <p class="testi-text">"The goal is to turn data into information, and information into insight. Every model is a hypothesis; every dataset is a chance to be proven wrong — and that is where science lives."</p>
         <div class="testi-person">
-          <div class="testi-avatar" style="font-size:.85rem;font-family:'DM Mono',monospace;color:var(--gold);background:rgba(42,31,110,.8)">DS</div>
+          <div class="testi-avatar" style="font-size:.85rem;font-family:'DM Mono',monospace;color:var(--gold);background:rgba(42,31,110,.8)">CF</div>
           <div><div class="testi-name"><em>—</em> Carly Fiorina</div><div class="testi-role">Former CEO, Hewlett-Packard · On Data & Strategy</div></div>
         </div>
       </div>
@@ -600,6 +641,7 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="contact-left">
     <div class="eyebrow fu">I Would Love to Hear From You</div>
@@ -609,15 +651,16 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_autoresponse" value="Thank you for contacting Shri Harsan! I'll get back to you soon.">
-      <div class="form-group fu"><label class="form-lbl">Your Name</label><input class="form-inp" type="text" name="name" id="contact-name" placeholder="What's your name?" required/></div>
-      <div class="form-group fu"><label class="form-lbl">Your Email</label><input class="form-inp" type="email" name="email" id="contact-email" placeholder="What's your email?" required/></div>
-      <div class="form-group fu"><label class="form-lbl">Your Message</label><textarea class="form-ta" name="message" id="contact-message" placeholder="What do you want to say?" required></textarea></div>
+      <div class="form-group fu"><label class="form-lbl">Your Name</label><input class="form-inp" type="text" name="name" placeholder="What's your name?" required/></div>
+      <div class="form-group fu"><label class="form-lbl">Your Email</label><input class="form-inp" type="email" name="email" placeholder="What's your email?" required/></div>
+      <div class="form-group fu"><label class="form-lbl">Your Message</label><textarea class="form-ta" name="message" placeholder="What do you want to say?" required></textarea></div>
       <button type="submit" class="btn-send fu">Send Message</button>
     </form>
   </div>
   <div class="contact-right"><canvas id="earth-canvas"></canvas></div>
 </section>
 
+<!-- TECH BAR -->
 <div class="tech-bar">
   <div class="tech-inner">
     <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/><span>Python</span></div>
@@ -626,13 +669,14 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
     <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"/><span>PyTorch</span></div>
     <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"/><span>Pandas</span></div>
     <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL"/><span>SQL</span></div>
+    <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"/><span>React</span></div>
     <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)"/><span>GitHub</span></div>
     <div class="tl-logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"/><span>Linux</span></div>
   </div>
 </div>
 
 <footer>
-  <div class="footer-copy">© 2026 Shri Harsan M · SRM Institute of Science and Technology</div>
+  <div class="footer-copy">© 2026 Shri Harsan M · SRM Institute of Science and Technology · SGPA 9.39/10</div>
   <div class="footer-links">
     <a href="https://github.com/ShriHarsan64K" target="_blank">GitHub</a>
     <a href="https://linkedin.com/in/shriharsan" target="_blank">LinkedIn</a>
@@ -641,7 +685,7 @@ footer{padding:1.6rem 3.5rem;background:var(--bg);border-top:1px solid var(--bor
 </footer>
 
 <script>
-// ── CONTACT FORM AJAX SUBMISSION ──
+// ── CONTACT FORM ──
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('contact-form');
   if(form) {
@@ -665,7 +709,7 @@ document.addEventListener('DOMContentLoaded', function() {
           setTimeout(() => notification.remove(), 300);
         }, 5000);
       } catch (error) {
-        alert('Oops! Something went wrong. Please try again or email me directly at shriharsang@gmail.com');
+        alert('Oops! Something went wrong. Please email shriharsang@gmail.com directly.');
       } finally {
         button.textContent = originalText;
         button.disabled = false;
@@ -675,19 +719,19 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// ── CURSOR — uses transform (GPU composited, no layout triggers) ──
+// ── CURSOR ──
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0;
 if(cur && ring){
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx}px,${my}px)`;},{passive:true});
   (function ar(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(ar);})();
-  document.querySelectorAll('a,button,.gem-card,.proj-card,.ach-card,.cert-card,.testi-card,.skill-cat,.tl-card').forEach(el=>{
+  document.querySelectorAll('a,button,.gem-card,.proj-card,.ach-card,.cert-card,.testi-card,.skill-cat,.tl-card,.lang-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='44px';ring.style.height='44px';el.style.willChange='transform';},{passive:true});
     el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='32px';ring.style.height='32px';setTimeout(()=>{el.style.willChange='auto';},300);},{passive:true});
   });
 }
 
-// ── SCROLL PROGRESS — uses transform:scaleX (no layout, GPU composited) ──
+// ── SCROLL PROGRESS ──
 const prog=document.getElementById('prog');
 prog.style.transformOrigin='left';prog.style.width='100%';prog.style.transform='scaleX(0)';
 let scrollTicking=false;
@@ -700,7 +744,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)*.065+'s';obs.observe(el)});
 
-// ── HERO: REALISTIC MILKY WAY BACKGROUND ──
+// ── HERO: MILKY WAY ──
 (function(){
   const canvas=document.getElementById('particle-canvas');
   if(!canvas||typeof THREE==='undefined')return;
@@ -712,7 +756,7 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
   const cam=new THREE.PerspectiveCamera(75,W/H,0.1,1000);
   cam.position.set(0,0,1);
   const STARS=45000;
-  const pos=new Float32Array(STARS*3),col=new Float32Array(STARS*3),sizes=new Float32Array(STARS);
+  const pos=new Float32Array(STARS*3),col=new Float32Array(STARS*3);
   for(let i=0;i<STARS;i++){
     let x,y,z,inBand;
     if(Math.random()<0.7){
@@ -742,7 +786,6 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
     else if(colorType<0.6){col[i*3]=1.0;col[i*3+1]=0.4+Math.random()*0.3;col[i*3+2]=0.2+Math.random()*0.2;}
     else{const white=0.85+Math.random()*0.15;col[i*3]=white;col[i*3+1]=white;col[i*3+2]=white;}
     col[i*3]*=brightness;col[i*3+1]*=brightness;col[i*3+2]*=brightness;
-    sizes[i]=inBand?(brightness>0.7?0.08+Math.random()*0.06:0.04+Math.random()*0.04):0.025+Math.random()*0.03;
   }
   const geo=new THREE.BufferGeometry();
   geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
@@ -750,11 +793,8 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
   const milkyWay=new THREE.Points(geo,new THREE.PointsMaterial({size:0.04,vertexColors:true,transparent:true,opacity:0.85,sizeAttenuation:true,blending:THREE.AdditiveBlending}));
   milkyWay.rotation.x=Math.PI*0.15;milkyWay.rotation.z=Math.PI*0.05;
   scene.add(milkyWay);
-  const DUST_PATCHES=12;
-  for(let d=0;d<DUST_PATCHES;d++){
-    const dustParticles=1200;
-    const dustPos=new Float32Array(dustParticles*3);
-    const dustCol=new Float32Array(dustParticles*3);
+  for(let d=0;d<12;d++){
+    const dustParticles=1200,dustPos=new Float32Array(dustParticles*3),dustCol=new Float32Array(dustParticles*3);
     const dustX=(Math.random()-.5)*70,dustY=(Math.random()-.5)*8,dustZ=-8-Math.random()*35;
     for(let i=0;i<dustParticles;i++){
       const radius=Math.random()*12,theta=Math.random()*Math.PI*2,phi=Math.acos(2*Math.random()-1);
@@ -771,38 +811,13 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
     dustCloud.rotation.x=milkyWay.rotation.x;dustCloud.rotation.z=milkyWay.rotation.z;
     scene.add(dustCloud);
   }
-  const CLOUDS=8;
-  for(let c=0;c<CLOUDS;c++){
-    const cloudParticles=800;
-    const cloudPos=new Float32Array(cloudParticles*3);
-    const cloudCol=new Float32Array(cloudParticles*3);
-    const cloudX=(Math.random()-.5)*80,cloudY=(Math.random()-.5)*15,cloudZ=-10-Math.random()*40;
-    const cloudType=Math.random();
-    let baseR,baseG,baseB;
-    if(cloudType<0.33){baseR=0.8;baseG=0.3;baseB=0.5;}
-    else if(cloudType<0.66){baseR=0.3;baseG=0.5;baseB=0.9;}
-    else{baseR=0.9;baseG=0.7;baseB=0.3;}
-    for(let i=0;i<cloudParticles;i++){
-      const radius=Math.random()*8,theta=Math.random()*Math.PI*2,phi=Math.acos(2*Math.random()-1);
-      cloudPos[i*3]=cloudX+radius*Math.sin(phi)*Math.cos(theta);
-      cloudPos[i*3+1]=cloudY+radius*Math.sin(phi)*Math.sin(theta)*0.3;
-      cloudPos[i*3+2]=cloudZ+radius*Math.cos(phi);
-      const variance=0.7+Math.random()*0.3,alpha=0.15+Math.random()*0.15;
-      cloudCol[i*3]=baseR*variance*alpha;cloudCol[i*3+1]=baseG*variance*alpha;cloudCol[i*3+2]=baseB*variance*alpha;
-    }
-    const cloudGeo=new THREE.BufferGeometry();
-    cloudGeo.setAttribute('position',new THREE.BufferAttribute(cloudPos,3));
-    cloudGeo.setAttribute('color',new THREE.BufferAttribute(cloudCol,3));
-    scene.add(new THREE.Points(cloudGeo,new THREE.PointsMaterial({size:0.15,vertexColors:true,transparent:true,opacity:0.4,sizeAttenuation:true,blending:THREE.AdditiveBlending})));
-  }
   let mox=0,moy=0;
   window.addEventListener('mousemove',e=>{mox=(e.clientX/window.innerWidth-.5)*.2;moy=(e.clientY/window.innerHeight-.5)*.15;},{passive:true});
-  // Expose for shared loop
   window._hero={milkyWay,scene,cam,renderer,getMox:()=>mox,getMoy:()=>moy};
   window.addEventListener('resize',()=>{const w=window.innerWidth,h=window.innerHeight;cam.aspect=w/h;cam.updateProjectionMatrix();renderer.setSize(w,h);},{passive:true});
 })();
 
-// ── REALISTIC EARTH WITH CITY LIGHTS ──
+// ── EARTH ──
 (function(){
   const canvas=document.getElementById('earth-canvas');
   if(!canvas||typeof THREE==='undefined')return;
@@ -824,26 +839,11 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
   og.addColorStop(0,'rgba(8,35,90,.6)');og.addColorStop(1,'rgba(2,8,28,.8)');
   dc.fillStyle=og;dc.fillRect(0,0,2048,1024);
   dc.fillStyle='#1a6b30';
-  dc.beginPath();dc.ellipse(420,320,80,130,.1,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(480,260,55,70,-.1,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(350,290,40,60,.15,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(470,440,40,50,.1,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(500,560,55,100,.05,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(520,640,40,60,-.05,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(960,270,60,65,.05,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(1010,230,40,50,.1,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(1020,400,65,110,0,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(1000,340,45,55,.1,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(1280,220,200,95,.05,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(1380,300,120,80,-.05,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(1450,350,90,70,0,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(1300,390,45,65,.05,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(1500,380,55,50,.1,0,Math.PI*2);dc.fill();
-  dc.beginPath();dc.ellipse(1600,530,70,50,-.1,0,Math.PI*2);dc.fill();
+  const continents=[[420,320,80,130,.1],[480,260,55,70,-.1],[350,290,40,60,.15],[470,440,40,50,.1],[500,560,55,100,.05],[520,640,40,60,-.05],[960,270,60,65,.05],[1010,230,40,50,.1],[1020,400,65,110,0],[1000,340,45,55,.1],[1280,220,200,95,.05],[1380,300,120,80,-.05],[1450,350,90,70,0],[1300,390,45,65,.05],[1500,380,55,50,.1],[1600,530,70,50,-.1]];
+  continents.forEach(c=>{dc.beginPath();dc.ellipse(c[0],c[1],c[2],c[3],c[4],0,Math.PI*2);dc.fill();});
   dc.fillStyle='#c8e8f8';dc.beginPath();dc.ellipse(750,160,50,40,0,0,Math.PI*2);dc.fill();
   dc.fillStyle='#d0eaff';dc.fillRect(0,930,2048,94);
   dc.beginPath();dc.ellipse(1024,930,1024,50,0,0,Math.PI*2);dc.fill();
-  dc.fillStyle='rgba(180,220,255,.5)';dc.beginPath();dc.ellipse(1024,30,1024,55,0,0,Math.PI*2);dc.fill();
   dc.fillStyle='rgba(255,255,255,.06)';
   for(let i=0;i<300;i++){dc.beginPath();dc.ellipse(Math.random()*2048,Math.random()*1024,8+Math.random()*80,2+Math.random()*20,Math.random()*Math.PI,0,Math.PI*2);dc.fill();}
   const nightC=document.createElement('canvas');nightC.width=2048;nightC.height=1024;
@@ -852,21 +852,13 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
   function cityCluster(cx,cy,density,spread){
     for(let i=0;i<density;i++){
       const x=cx+(Math.random()-.5)*spread,y=cy+(Math.random()-.5)*spread*0.6;
-      const sz=1+Math.random()*3;
-      const alpha=0.4+Math.random()*0.6;
+      const sz=1+Math.random()*3,alpha=0.4+Math.random()*0.6;
       const r=200+Math.floor(Math.random()*55),g=140+Math.floor(Math.random()*60),b2=40+Math.floor(Math.random()*40);
       nc.fillStyle=`rgba(${r},${g},${b2},${alpha})`;
       nc.beginPath();nc.arc(x,y,sz,0,Math.PI*2);nc.fill();
-      if(Math.random()>.7){const g2=nc.createRadialGradient(x,y,0,x,y,sz*4);g2.addColorStop(0,`rgba(${r},${g},${b2},.25)`);g2.addColorStop(1,'rgba(0,0,0,0)');nc.fillStyle=g2;nc.beginPath();nc.arc(x,y,sz*4,0,Math.PI*2);nc.fill();}
     }
   }
-  cityCluster(520,310,280,55);cityCluster(380,310,160,40);cityCluster(455,320,120,50);
-  cityCluster(440,410,80,35);cityCluster(560,530,120,55);cityCluster(530,640,80,35);
-  cityCluster(960,255,260,60);cityCluster(990,245,180,50);cityCluster(1030,265,140,40);
-  cityCluster(1060,255,100,35);cityCluster(1100,230,120,50);cityCluster(1300,210,60,80);
-  cityCluster(1290,380,200,55);cityCluster(1430,300,280,70);cityCluster(1480,270,180,55);
-  cityCluster(1560,290,160,30);cityCluster(1490,400,120,40);cityCluster(1620,540,100,45);
-  cityCluster(980,360,60,50);cityCluster(1030,540,70,35);
+  [[520,310,280,55],[380,310,160,40],[455,320,120,50],[440,410,80,35],[560,530,120,55],[530,640,80,35],[960,255,260,60],[990,245,180,50],[1030,265,140,40],[1060,255,100,35],[1100,230,120,50],[1300,210,60,80],[1290,380,200,55],[1430,300,280,70],[1480,270,180,55],[1560,290,160,30],[1490,400,120,40],[1620,540,100,45]].forEach(c=>cityCluster(...c));
   const dayTex=new THREE.CanvasTexture(dayC);
   const nightTex=new THREE.CanvasTexture(nightC);
   const earthMat=new THREE.ShaderMaterial({
@@ -874,8 +866,7 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
     vertexShader:`varying vec2 vUv;varying vec3 vNormal;void main(){vUv=uv;vNormal=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
     fragmentShader:`uniform sampler2D dayMap;uniform sampler2D nightMap;uniform vec3 sunDir;varying vec2 vUv;varying vec3 vNormal;void main(){float d=dot(vNormal,sunDir);float blend=smoothstep(-0.1,0.25,d);vec4 day=texture2D(dayMap,vUv);vec4 night=texture2D(nightMap,vUv);day.rgb*=1.2;gl_FragColor=mix(night,day,blend);}`
   });
-  const earth=new THREE.Mesh(new THREE.SphereGeometry(1,64,64),earthMat);
-  scene.add(earth);
+  const earth=new THREE.Mesh(new THREE.SphereGeometry(1,64,64),earthMat);scene.add(earth);
   const atmMat=new THREE.ShaderMaterial({
     uniforms:{sunDir:{value:new THREE.Vector3(6,2,4).normalize()}},
     vertexShader:`varying vec3 vNormal;void main(){vNormal=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
@@ -883,71 +874,45 @@ document.querySelectorAll('.fu').forEach((el,i)=>{el.style.transitionDelay=(i%5)
     transparent:true,side:THREE.FrontSide,depthWrite:false
   });
   scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.03,64,64),atmMat));
-  const haloMat=new THREE.ShaderMaterial({
-    uniforms:{},
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.08,32,32),new THREE.ShaderMaterial({
     vertexShader:`varying vec3 vNormal;void main(){vNormal=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
     fragmentShader:`varying vec3 vNormal;void main(){float r=1.-abs(dot(vNormal,vec3(0,0,1)));r=pow(r,3.);gl_FragColor=vec4(.15,.4,.9,r*.4);}`,
     transparent:true,side:THREE.BackSide,depthWrite:false
-  });
-  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.08,32,32),haloMat));
-  const STARS=6000;
-  const stP=new Float32Array(STARS*3),stC=new Float32Array(STARS*3);
-  for(let i=0;i<STARS;i++){
+  })));
+  const STARS2=6000;const stP=new Float32Array(STARS2*3),stC=new Float32Array(STARS2*3);
+  for(let i=0;i<STARS2;i++){
     const r=15+Math.random()*35,theta=Math.random()*Math.PI*2,phi=Math.acos(2*Math.random()-1);
     stP[i*3]=r*Math.sin(phi)*Math.cos(theta);stP[i*3+1]=r*Math.sin(phi)*Math.sin(theta);stP[i*3+2]=r*Math.cos(phi);
-    const colorType=Math.random(),brightness=0.4+Math.random()*0.6;
-    if(colorType<0.2){stC[i*3]=0.7*brightness;stC[i*3+1]=0.85*brightness;stC[i*3+2]=1.0*brightness;}
-    else if(colorType<0.4){stC[i*3]=1.0*brightness;stC[i*3+1]=0.95*brightness;stC[i*3+2]=0.75*brightness;}
-    else if(colorType<0.5){stC[i*3]=1.0*brightness;stC[i*3+1]=0.7*brightness;stC[i*3+2]=0.4*brightness;}
-    else{const white=0.85*brightness;stC[i*3]=white;stC[i*3+1]=white;stC[i*3+2]=white;}
+    const bt=0.4+Math.random()*0.6;stC[i*3]=0.85*bt;stC[i*3+1]=0.85*bt;stC[i*3+2]=0.85*bt;
   }
-  const stG=new THREE.BufferGeometry();
-  stG.setAttribute('position',new THREE.BufferAttribute(stP,3));
-  stG.setAttribute('color',new THREE.BufferAttribute(stC,3));
+  const stG=new THREE.BufferGeometry();stG.setAttribute('position',new THREE.BufferAttribute(stP,3));stG.setAttribute('color',new THREE.BufferAttribute(stC,3));
   scene.add(new THREE.Points(stG,new THREE.PointsMaterial({size:0.06,vertexColors:true,transparent:true,opacity:0.8,sizeAttenuation:true,blending:THREE.AdditiveBlending})));
   const ringSystem=new THREE.Group();
-  const ringSegments=[
-    {innerRadius:1.3,outerRadius:1.5,particles:2000,color:[0.8,0.85,0.95],opacity:0.5},
-    {innerRadius:1.52,outerRadius:1.65,particles:1200,color:[0.7,0.75,0.9],opacity:0.45},
-    {innerRadius:1.68,outerRadius:1.85,particles:1800,color:[0.75,0.8,0.95],opacity:0.55},
-    {innerRadius:1.88,outerRadius:2.05,particles:1000,color:[0.65,0.7,0.85],opacity:0.4}
-  ];
-  ringSegments.forEach(segment=>{
-    const particles=segment.particles;
-    const positions=new Float32Array(particles*3),colors=new Float32Array(particles*3);
-    for(let i=0;i<particles;i++){
-      const angle=Math.random()*Math.PI*2;
-      const radius=segment.innerRadius+Math.random()*(segment.outerRadius-segment.innerRadius);
+  [[1.3,1.5,2000],[1.52,1.65,1200],[1.68,1.85,1800],[1.88,2.05,1000]].forEach(([inner,outer,count])=>{
+    const positions=new Float32Array(count*3),colors=new Float32Array(count*3);
+    for(let i=0;i<count;i++){
+      const angle=Math.random()*Math.PI*2,radius=inner+Math.random()*(outer-inner);
       positions[i*3]=radius*Math.cos(angle);positions[i*3+1]=(Math.random()-.5)*0.008;positions[i*3+2]=radius*Math.sin(angle);
-      const variation=0.9+Math.random()*0.1;
-      colors[i*3]=segment.color[0]*variation;colors[i*3+1]=segment.color[1]*variation;colors[i*3+2]=segment.color[2]*variation;
+      const v=0.8+Math.random()*0.15;colors[i*3]=v*.8;colors[i*3+1]=v*.85;colors[i*3+2]=v*.95;
     }
-    const geometry=new THREE.BufferGeometry();
-    geometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
-    geometry.setAttribute('color',new THREE.BufferAttribute(colors,3));
-    ringSystem.add(new THREE.Points(geometry,new THREE.PointsMaterial({size:0.022,vertexColors:true,transparent:true,opacity:segment.opacity,sizeAttenuation:true,blending:THREE.AdditiveBlending,depthWrite:false})));
+    const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(positions,3));g.setAttribute('color',new THREE.BufferAttribute(colors,3));
+    ringSystem.add(new THREE.Points(g,new THREE.PointsMaterial({size:0.022,vertexColors:true,transparent:true,opacity:0.48,sizeAttenuation:true,blending:THREE.AdditiveBlending,depthWrite:false})));
   });
   ringSystem.rotation.x=Math.PI*0.25;ringSystem.rotation.z=Math.PI*0.1;
   scene.add(ringSystem);
   let emy=0;
   window.addEventListener('mousemove',e=>{emy=(e.clientY/window.innerHeight-.5);},{passive:true});
   window.addEventListener('resize',()=>{let {w,h}=getSize();cam.aspect=w/h;cam.updateProjectionMatrix();renderer.setSize(w,h);},{passive:true});
-
-  // ── SINGLE SHARED RAF — drives both hero + earth in one loop ──
   const heroInnerHeight=window.innerHeight;
   (function sharedLoop(){
     requestAnimationFrame(sharedLoop);
-    // Hero: only render when scrolled into view (saves ~50% GPU when below fold)
-    if(window._hero){
+    if(window._hero && window.scrollY < heroInnerHeight * 1.5){
       const H=window._hero;
-      if(window.scrollY < heroInnerHeight * 1.5){
-        H.milkyWay.rotation.y+=0.00008;
-        H.cam.position.x=H.getMox()*0.5;
-        H.cam.position.y=-H.getMoy()*0.3;
-        H.renderer.render(H.scene,H.cam);
-      }
+      H.milkyWay.rotation.y+=0.00008;
+      H.cam.position.x=H.getMox()*0.5;
+      H.cam.position.y=-H.getMoy()*0.3;
+      H.renderer.render(H.scene,H.cam);
     }
-    // Earth: always render (visible in contact section)
     earth.rotation.y+=.003;
     earth.rotation.x+=(emy*.18-earth.rotation.x)*.02;
     ringSystem.rotation.y+=0.0004;
